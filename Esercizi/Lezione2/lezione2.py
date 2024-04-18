@@ -156,6 +156,7 @@ print(places)
 people=['Pippo', 'Pluto', 'Paperino', 'Gastone', 'Topolino']
 print(f'I\'m inviting {len(people)} to dinner')
 
+
 # 3-10. Every Function - Think of things you could store in a list. 
 #       For example, you could make a list of mountains, rivers, countries, 
 #       cities, languages, or anything else you’d like. Write a program that creates 
