@@ -65,6 +65,7 @@ people=['Pippo', 'Pluto', 'Paperino']
 for person in people:
     print(f'Hi {person}, you are invited to dinner')
 
+
 #3-5. Changing Guest List: You just heard that one of your guests can’t make the dinner, 
 #     so you need to send out a new set of invitations. You’ll have to think of someone else to invite:
 #
@@ -209,6 +210,7 @@ glossary={
 for item in glossary.items():
     print(f'{item[0]}:\n{item[1]}\n')
 
+
 # 6-7. People - Start with the program you wrote for Exercise 6-1. 
 #      Make two new dictionaries representing different people, and store all three 
 #      dictionaries in a list called people. Loop through your list of people. 
@@ -221,6 +223,7 @@ for person in people:
     for item in person.items():
         print(f'{item[0]}:{item[1]}')
     print('')
+
 
 # 6-8. Pets - Make several dictionaries, where each dictionary represents a different pet. 
 #      In each dictionary, include the kind of animal and the owner’s name. 
