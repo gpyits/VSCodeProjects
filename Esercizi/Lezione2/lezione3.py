@@ -8,8 +8,10 @@
 #       • Add a line at the end of your program, outside the for loop, that states how much you like pizza. 
 #         The output should consist of three or more lines about the kinds of pizza 
 #         you like and then an additional sentence, such as I really love pizza!
-list=['margherita', 'boscaiola', 'ortolana']
-
+pizzas=['margherita', 'boscaiola', 'ortolana']
+for pizza in pizzas:
+    print(pizza, f'i like {pizza}!')
+print('I like pizza :3')
 
 
 # 4-2. Animals: 
@@ -19,50 +21,64 @@ list=['margherita', 'boscaiola', 'ortolana']
 #       • Modify your program to print a statement about each animal, such as A dog would make a great pet.
 #       • Add a line at the end of your program, stating what these animals have in common. 
 #         You could print a sentence, such as Any of these animals would make a great pet!
-
+pets=['dog', 'cat', 'mouse']
+for pet in pets:
+    print(pet, f'A {pet} would be great')
+print('The car is under the table') 
 
 
 # 4-3. Counting to Twenty: 
 #      Use a for loop to print the numbers from 1 to 20, inclusive.
-
+for r in range(21):
+    print(r)
 
 
 # 4-4. One Million: 
 #      Make a list of the numbers from one to one million, and then use a for loop to print the numbers. 
 #      (If the output is taking too long, stop it by pressing CTRL-C or by closing the output window.)
-
-
+'''commented for obvious reasons
+numbers=[r for r in range(0, (10**6)+1)]
+for number in numbers:
+    print(number)
+'''
 
 # 4-5. Summing a Million: 
 #      Make a list of the numbers from one to one million, and then use min() and max() 
 #      to make sure your list actually starts at one and ends at one million. 
 #      Also, use the sum() function to see how quickly Python can add a million numbers.
-
-
+'''same thing
+numbers=[r for r in range(0, (10**6)+1)]
+print(min(numbers), max(numbers), sum(numbers))
+'''
 
 # 4-6. Odd Numbers: 
 #      Use the third argument of the range() function to make a list of the odd numbers from 1 to 20. 
 #      Use a for loop to print each number.
-
+'''print(*range(1, 20, 2))'''
+for i in range(1, 20, 2):
+    print(i)
 
 
 # 4-7. Threes: 
-#    
-# 
-#   Make a list of the multiples of 3, from 3 to 30. Use a for loop to print the numbers in your list.
-
+#      Make a list of the multiples of 3, from 3 to 30. Use a for loop to print the numbers in your list.
+mults=[i for i in range(3, 31) if i%3==0]
+print(*mults)
 
 
 # 4-8. Cubes: 
 #      A number raised to the third power is called a cube. For example, the cube of 2 is 
 #      written as 2**3 in Python. Make a list of the first 10 cubes 
 #      (that is, the cube of each integer from 1 through 10), and use a for loop to print out the value of each cube.
-
+mults=[i**3 for i in range(1, 11)]
+print(*mults)
 
 
 # 4-9. Cube Comprehension: 
 #      Use a list comprehension to generate a list of the first 10 cubes.
-
+mults=[]
+for i in range(1, 11):
+    mults.append(i**3)
+print(mults)
 
 
 # 4-10. Slices: 
@@ -75,6 +91,9 @@ list=['margherita', 'boscaiola', 'ortolana']
 #          Then use a slice to print three items from the middle of the list.
 #        • Print the message 'The last three items in the list are:'
 #          Then use a slice to print the last three items in the list.
+pizzas=['margherita', 'boscaiola', 'ortolana', 'diavola', 'quattro formaggi']
+print(f'The first three items in the list are:', *pizzas[:3])
+print(f'Three items at the middle of the list are:', *pizzas[(len(pizzas)//2)-1:(len(pizzas)//2)+2])
 
 
 
