@@ -69,17 +69,16 @@ print(*mults)
 #      A number raised to the third power is called a cube. For example, the cube of 2 is 
 #      written as 2**3 in Python. Make a list of the first 10 cubes 
 #      (that is, the cube of each integer from 1 through 10), and use a for loop to print out the value of each cube.
-mults=[i**3 for i in range(1, 11)]
-print(*mults)
-
-
-# 4-9. Cube Comprehension: 
-#      Use a list comprehension to generate a list of the first 10 cubes.
 mults=[]
 for i in range(1, 11):
     mults.append(i**3)
 print(mults)
 
+
+# 4-9. Cube Comprehension: 
+#      Use a list comprehension to generate a list of the first 10 cubes.
+mults=[i**3 for i in range(1, 11)]
+print(*mults)
 
 # 4-10. Slices: 
 #       Using one of the programs you wrote in this chapter, add several lines to the 
@@ -92,9 +91,9 @@ print(mults)
 #        • Print the message 'The last three items in the list are:'
 #          Then use a slice to print the last three items in the list.
 pizzas=['margherita', 'boscaiola', 'ortolana', 'diavola', 'quattro formaggi']
-print(f'The first three items in the list are:', *pizzas[:3])
-print(f'Three items at the middle of the list are:', *pizzas[(len(pizzas)//2)-1:(len(pizzas)//2)+2])
-
+print(f'The first three items in the list are:', *pizzas[:3], 
+      f'\nThree items at the middle of the list are:', *pizzas[(len(pizzas)//2)-1:(len(pizzas)//2)+2],
+      f'\nThe first three items in the list are:', *pizzas[-3:])
 
 
 # 4-11. My Pizzas, Your Pizzas: 
@@ -103,28 +102,41 @@ print(f'Three items at the middle of the list are:', *pizzas[(len(pizzas)//2)-1:
 #
 #        • Add a new pizza to the original list.
 #        • Add a different pizza to the list friend_pizzas.
-#        • Prove that you have two separate lists. 'Print the message My favorite pizzas are:'
-#          and then use a for loop to print the first list. 'Print the message My friend’s favorite pizzas are:'
+#        • Prove that you have two separate lists. Print the message 'My favorite pizzas are:'
+#          and then use a for loop to print the first list. Print the message 'My friend’s favorite pizzas are:'
 #          and then use a for loop to print the second list. Make sure each new pizza is 
 #          stored in the appropriate list.
-
-
+pizzas=['margherita', 'boscaiola', 'ortolana', 'diavola']
+friend_pizzas=pizzas[:-1]
+friend_pizzas.append('quattro formaggi')
+print(pizzas, friend_pizzas)
+print('My favorite pizzas are: ', *pizzas)
+print('My friend\'s favorite pizzas are: ', *friend_pizzas)
+#for i in pizzas or friend_pizzas:
+#   print(f'My (friend's) favorite pizzas are {i}')
 
 # 4-12. More Loops: 
 #       All versions of foods.py in this section have avoided using for loops when printing, 
 #       to save space. Choose a version of foods.py, and write two for loops to print each list of foods.
-
+pass
 
 
 # 4-14. PEP 8: 
 #       Look through the original PEP 8 style guide at https://python.org/dev/peps/pep-0008. 
 #       You won’t use much of it now, but it might be interesting to skim through it.
-
+pass
 
 
 # 4-15. Code Review: 
 #       Choose three of the programs you’ve written in this chapter and modify each one to comply with PEP 8.
-
+#start by creating empty list
+multiples=[]
+#loop through 1 to 10
+for number in range(1, 11):
+    #append the cubed range values to the list
+    multiples.append(number**3)
+#print call
+print(mults)
 
 
 # 5-1. Conditional Tests: 
@@ -141,8 +153,40 @@ print(f'Three items at the middle of the list are:', *pizzas[(len(pizzas)//2)-1:
 #         evaluates to True or False.
 #       • Create at least 10 tests. Have at least 5 tests evaluate to True and another
 #         5 tests evaluate to False.
+#1 
+pizza='margherita'
+print("Is your favorite pizza 'margherita'? I predict False.")
+print(pizza == 'margherita')
+print("Is your favorite pizza 'boscaiola'? I predict False.")
+print(pizza == 'boscaiola')
+    
+#2
+car='lamborghini'
+print("Is your favorite car 'ferrari'? I predict False.")
+print(car == 'ferrari')
+print("Is your favorite car 'lamborghini'? I predict True.")
+print(car == 'lamborghini')
 
+#3
+videogame='dark souls'
+print("Is your favorite videogame 'dark souls'? I predict True.")
+print(videogame == 'dark souls')
+print("Is your favorite vidoegame 'cuphead'? I predict False.")
+print(videogame == 'cuphead')
 
+#4
+phone_brand='android'
+print("Is your favorite phone brand 'android'? I predict True.")
+print(phone_brand == 'android')
+print("Is your favorite phone brand 'apple'? I predict False.")
+print(phone_brand == 'apple')
+
+#5
+gpu_brand='nvidia'
+print("Is your favorite gpu brand 'nvidia'? I predict True.")
+print(gpu_brand == 'nvidia')
+print("Is your favorite gpu brand 'amd'? I predict False.")
+print(gpu_brand == 'amd')
 
 # 5-2. More Conditional Tests: 
 #      You don’t have to limit the number of tests you create to 10. 
@@ -153,9 +197,20 @@ print(f'Three items at the middle of the list are:', *pizzas[(len(pizzas)//2)-1:
 #       • Tests using the lower() method
 #       • Numerical tests involving equality and inequality, greater than and less than, 
 #         greater than or equal to, and less than or equal to
-#       • Tests using the and keyword and the or keyword
+#       • Tests using the AND keyword and the OR keyword
 #       • Test whether an item is in a list
 #       • Test whether an item is not in a list
+string1, string2='piPPo', 'pluTo'
+string1, string2=string1.lower(), string2.lower()
+#equality
+if string1==string2:
+    print(True)
+#inequality
+elif string1!=string2:
+    print(False)
+#greater than
+if string1.lower()==string2.lower():
+    print(True)
 
 
 
