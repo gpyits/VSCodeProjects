@@ -11,7 +11,7 @@
 pizzas=['margherita', 'boscaiola', 'ortolana']
 for pizza in pizzas:
     print(pizza, f'i like {pizza}!')
-print('I like pizza :3')
+print('I like pizza')
 
 
 # 4-2. Animals: 
@@ -112,13 +112,21 @@ friend_pizzas.append('quattro formaggi')
 print(pizzas, friend_pizzas)
 print('My favorite pizzas are: ', *pizzas)
 print('My friend\'s favorite pizzas are: ', *friend_pizzas)
-#for i in pizzas or friend_pizzas:
-#   print(f'My (friend's) favorite pizzas are {i}')
+
 
 # 4-12. More Loops: 
 #       All versions of foods.py in this section have avoided using for loops when printing, 
 #       to save space. Choose a version of foods.py, and write two for loops to print each list of foods.
-pass
+pizzas=['margherita', 'boscaiola', 'ortolana', 'diavola']
+friend_pizzas=pizzas[:-1]
+friend_pizzas.append('quattro formaggi')
+print(pizzas, friend_pizzas)
+print('My favorite pizzas are:')
+for pizza in pizzas:
+    print(f'{pizza}')
+print('\nMy favorite friend\'s pizzas are:')
+for pizza in friend_pizzas:
+    print(f'{pizza}')   
 
 
 # 4-14. PEP 8: 
@@ -200,18 +208,21 @@ print(gpu_brand == 'amd')
 #       • Tests using the AND keyword and the OR keyword
 #       • Test whether an item is in a list
 #       • Test whether an item is not in a list
-string1, string2='piPPo', 'pluTo'
-string1, string2=string1.lower(), string2.lower()
-#equality
-if string1==string2:
-    print(True)
-#inequality
-elif string1!=string2:
-    print(False)
-#greater than
-if string1.lower()==string2.lower():
-    print(True)
-
+print(
+    #true, false
+    'piPPo'.lower()=='PIppO'.lower(), 'piPPo'.lower()=='PIpp0'.lower(), '\n',
+    'pipPo'.lower()!='pLuto'.lower(), 'pipPo'.lower()!='pippo'.lower(), '\n',
+    23==23, 23==24, '\n',
+    23!=42, 23!=23, '\n',
+    23>12, 23>42, '\n',
+    23<42, 23<12, '\n',
+    23>=23, 23>=42, '\n',
+    23<=23, 23<=12, '\n',
+    bool(1 and 1), bool(0 and 1), '\n',
+    bool(0 or 1), bool(0 or 0), '\n',
+    'a' in ['a', 'b', 'c'], 'd' in ['a', 'b', 'c'], '\n',
+    3 not in ['a', 'b', 'c'], 'b' not in ['a', 'b', 'c']
+)
 
 
 # 5-3. Alien Colors #1: 
@@ -222,8 +233,18 @@ if string1.lower()==string2.lower():
 #         If it is, print a message that the player just earned 5 points.
 #       • Write one version of this program that passes the if test and another that fails. 
 #         (The version that fails will have no output.)
-
-
+#5 points
+alien_color='green'
+if alien_color=='green':
+    print('+5 points')
+else:
+    pass
+#pass
+alien_color='red'
+if alien_color=='green':
+    print('+5 points')
+else:
+    pass
 
 
 # 5-4. Alien Colors #2: 
@@ -231,7 +252,18 @@ if string1.lower()==string2.lower():
 #       • If the alien’s color is green, print a statement that the player just earned 5 points for shooting the alien.
 #       • If the alien’s color isn’t green, print a statement that the player just earned 10 points.
 #       • Write one version of this program that runs the if block and another that runs the else block.
-
+#else
+alien_color='red'
+if alien_color=='green':
+    print('+5 points')
+else:
+    print('+10 points')
+#if
+alien_color='green'
+if alien_color=='green':
+    print('+5 points')
+else:
+    print('+10 points')
 
 
 # 5-5. Alien Colors #3: 
@@ -241,8 +273,32 @@ if string1.lower()==string2.lower():
 #       • If the alien is yellow, print a message that the player earned 10 points.
 #       • If the alien is red, print a message that the player earned 15 points.
 #       • Write three versions of this program, making sure each message is printed for the appropriate color alien.
+#green
+alien_color='green'
+if alien_color=='green':
+    print('+5 points')
+elif alien_color=='yellow':
+    print('+10 points')
+else:
+    print('+15 points')
 
+#yellow
+alien_color='yellow'
+if alien_color=='green':
+    print('+5 points')
+elif alien_color=='yellow':
+    print('+10 points')
+else:
+    print('+15 points')
 
+#red
+    alien_color='red'
+if alien_color=='green':
+    print('+5 points')
+elif alien_color=='yellow':
+    print('+10 points')
+else:
+    print('+15 points')
 
 
 # 5-6. Stages of Life: 
@@ -255,7 +311,19 @@ if string1.lower()==string2.lower():
 #       • If the person is at least 13 years old but less than 20, print a message that the person is a teenager.
 #       • If the person is at least 20 years old but less than 65, print a message that the person is an adult.
 #       • If the person is age 65 or older, print a message that the person is an elder.
-
+age=20
+if age<2:
+    print('baby')
+elif 2<=age<4:
+    print('toddler')
+elif 4<=age<13:
+    print('kid')
+elif 13<=age<20:
+    print('teenager')
+elif 20<=age<65:
+    print('adult')
+else:
+    print('elder')
 
 
 # 5-7. Favorite Fruit: 
@@ -266,7 +334,17 @@ if string1.lower()==string2.lower():
 #       • Write five if statements. Each should check whether a certain kind of 
 #         fruit is in your list. If the fruit is in your list, the if block should 
 #         print a statement, such as You really like Apples!
-
+favorite_fruits=['apple', 'pear', 'strawberry', 'banana', 'blackberries']
+if 'apple' in favorite_fruits:
+    print('you like apples')
+elif 'pear' in favorite_fruits:
+    print('you like pears')
+elif 'strawberry' in favorite_fruits:
+    print('you like strawberries')
+elif 'banana' in favorite_fruits:
+    print('you like bananas')
+elif 'blackberries' in favorite_fruits:
+    print('you like blackberries')
 
 
 # 5-8. Hello Admin: 
@@ -277,8 +355,11 @@ if string1.lower()==string2.lower():
 #       • If the username is 'admin', print a special greeting, such as 'Hello admin, would you 
 #         like to see a status report?'
 #       • Otherwise, print a generic greeting, such as 'Hello Jaden, thank you for logging in again.'
-
-
+for user in ['admin', 'pippo', 'pluto', 'paperino', 'minnie']:
+    if user=='admin':
+        print('Hi admin, I\'m dad')
+    else:
+        print(f'Hello {user}')
 
 
 # 5-9. No Users: 
@@ -286,7 +367,14 @@ if string1.lower()==string2.lower():
 #
 #       • If the list is empty, print the message We need to find some users!
 #       • Remove all of the usernames from your list, and make sure the correct message is printed.
-
+users=[]
+for user in users:
+    if users==[]:
+        print('We need to find some users!')
+    elif user=='admin':
+        print('Hi admin, I\'m dad')
+    else:
+        print(f'Hello {user}')
 
 
 # 5-10. Checking Usernames: 
@@ -301,11 +389,17 @@ if string1.lower()==string2.lower():
 #       • Make sure your comparison is case insensitive. If 'John' has been used, 'JOHN' should not be accepted. 
 #         (To do this, you’ll need to make a copy of current_users containing the lowercase 
 #          versions of all existing users.)
-
+current_users=['topolino', 'pippo', 'pluto', 'paperino', 'minnie']
+new_users=['paperoga', 'topolino', 'pluto', 'gastone', 'nonna papera']
+for name in new_users:
+    if name.lower() in [i.lower() for i in current_users]:
+        print(f'{name} was taken, insert new username')
+    else: 
+        print(f'{name} is available, welcome')
 
 
 # 5-11. Ordinal Numbers: 
-#       Ordinal numbers indicate their position in a list, such as 1st or 2nd. 
+#       Ordinal numbers indicate their position in a list, such as 1st or 2nd.
 #       Most ordinal numbers end in th, except 1, 2, and 3:
 #
 #       • Store the numbers 1 through 9 in a list.
@@ -313,3 +407,14 @@ if string1.lower()==string2.lower():
 #       • Use an if-elif-else chain inside the loop to print the proper 
 #         ordinal ending for each number. Your output should read "1st 2nd 3rd 4th 5th 6th 7th 8th 9th",
 #         and each result should be on a separate line.
+numbers=[str(i) for i in range(1, 10)]
+for r in range(len(numbers)):
+    if r==0:
+        numbers[r]+='st'
+        numbers[r+1]+='nd'
+        numbers[r+2]+='nd'
+    elif r==1 or r==2:
+        continue
+    else:
+        numbers[r]+='th'
+print(numbers)
