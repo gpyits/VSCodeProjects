@@ -9,5 +9,6 @@
 #     friend+=f' {j}'
 # print(mine, '\n', friend)
 
-i=1
-print(i[-1])
+add='qualcosa'
+if add:
+    print(True)
