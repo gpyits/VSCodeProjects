@@ -9,8 +9,7 @@ Create a for loop to iterate over a list of students and scores, calling the fun
 students=[('Paperino', {'math':20, 'geography':30, 'english':60}), 
           ('Pippo', {'math':50, 'geography':60, 'english':70}), 
           ('Pluto', {'math':100, 'geography':100, 'english':100}),
-          ('Gastone', {'math':0, 'geography':0, 'english':0})
-          ]
+          ('Gastone', {'math':0, 'geography':0, 'english':0})]
 
 #calculates average number given numbers list
 def average(numbers: list):
