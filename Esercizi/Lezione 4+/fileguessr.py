@@ -17,6 +17,7 @@ def guess_core(max_attempts, guess, correct_number):
         return True
     elif guess!=correct_number:
         print(f'Too low!\nAttempts remaining: {max_attempts}' if guess<correct_number else f'Too high!\nAttempts remaining: {max_attempts}')
+        #evil recursive function
         guess_core(max_attempts-1, int(input('Take another guess, attempts remaining: #--->>>>continue here')), correct_number)
 
 #guesser game, attempt handling
