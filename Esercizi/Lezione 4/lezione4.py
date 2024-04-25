@@ -81,17 +81,17 @@ print(dict1, dict2, dict3, dict4)
 #      Start with your program from Exercise 8-7. Write a while loop that allows users to enter an album’s 
 #      artist and title. Once you have that information, call make_album() with the user’s input and print 
 #      the dictionary that’s created. Be sure to include a quit value in the while loop.
-# def make_album(artist_name: str=None, album_title: str=None, album_songs: int=None):
-#     while artist_name==None or album_title==None or album_songs==None:
-#         artist_name=input('Insert album name: ')
-#         album_title=input('Insert album title: ')
-#         album_songs=int(input('Insert album songs: '))
-#     dictionary={}
-#     dictionary[artist_name]=album_title
-#     if album_songs!=None:
-#         dictionary[artist_name]=[album_title, album_songs]
-#     return dictionary
-# print(make_album())
+def make_album(artist_name: str=None, album_title: str=None, album_songs: int=None):
+    while artist_name==None or album_title==None or album_songs==None:
+        artist_name=input('Insert album name: ')
+        album_title=input('Insert album title: ')
+        album_songs=int(input('Insert album songs: '))
+    dictionary={}
+    dictionary[artist_name]=album_title
+    if album_songs!=None:
+        dictionary[artist_name]=[album_title, album_songs]
+    return dictionary
+print(make_album())
 
 
 # 8-9. Messages: 
