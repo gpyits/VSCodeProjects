@@ -6,12 +6,8 @@ Terminate the loop when the user guesses the number correctly or reaches the max
 '''
 import random
 
-#creates a tuple simulating a range given user input
-def range_creator():
-    return (int(input('Insert first number: ')), int(input('Insert second number: '))+1)
-
-#guesser game core
-def guess_core(max_attempts, guess, correct_number):
+#guesser game, no arguments needed unless you want to set things up for yourself
+def number_guesser(max_attempts=5, correct_number=random.randrange(int(input('Insert first number: ')), int(input('Insert second number: '))+1), guess=int(input('Take a guess: '))):
     #correct guess
     if guess==correct_number:
         print('Congratulations! You guessed it!')
@@ -19,15 +15,11 @@ def guess_core(max_attempts, guess, correct_number):
     #ran out of attempts
     elif max_attempts==0:
         print('Sorry, you ran out of attempts. Better luck next time.')
+        return False
     #incorrect guess
     else:
-        print(f'Too low!\nAttempts remaining: {max_attempts}' if guess<correct_number else f'Too high!\nAttempts remaining: {max_attempts}')
+        print(f'Too low!' if guess<correct_number else f'Too high!')
         #recursive call
-        guess_core(max_attempts-1, int(input(f'Take another guess, attempts remaining: {max_attempts-1}\n')), correct_number)
-
-#guesser game, attempt handling
-def number_guesser(max_attempts, chosen_range=range_creator()):
-    correct_number=random.randrange(chosen_range[0], chosen_range[1])
-    guess_core(max_attempts, int(input('Take a guess: ')), correct_number)
+        return number_guesser(max_attempts-1, correct_number, int(input(f'Take another guess, attempts remaining: {max_attempts-1}\n')))
     
-number_guesser(5)
+number_guesser()
