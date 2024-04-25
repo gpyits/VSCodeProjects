@@ -10,11 +10,11 @@ def text_analyzer(file: str):
             for word in line.split():
                 word=word.lower()
                 #assuming no writing errors, removes common punctuation
-                while ord(word[-1]) in [i for i in range(32, 47)]+[i for i in range(57, 64)]: word=word[:-1]
+                while ord(word[-1]) in list(range(32, 47))+list(range(57, 64)): word=word[:-1]
                 #counts words
                 if word in words:
                     words[word]+=1
-                else: 
+                else:
                     words[word]=1
         print(words)
 
