@@ -12,13 +12,18 @@ def range_creator():
 
 #guesser game core
 def guess_core(max_attempts, guess, correct_number):
+    #correct guess
     if guess==correct_number:
         print('Congratulations! You guessed it!')
         return True
-    elif guess!=correct_number:
+    #ran out of attempts
+    elif max_attempts==0:
+        print('Sorry, you ran out of attempts. Better luck next time.')
+    #incorrect guess
+    else:
         print(f'Too low!\nAttempts remaining: {max_attempts}' if guess<correct_number else f'Too high!\nAttempts remaining: {max_attempts}')
-        #evil recursive function
-        guess_core(max_attempts-1, int(input('Take another guess, attempts remaining: #--->>>>continue here')), correct_number)
+        #recursive call
+        guess_core(max_attempts-1, int(input(f'Take another guess, attempts remaining: {max_attempts-1}\n')), correct_number)
 
 #guesser game, attempt handling
 def number_guesser(max_attempts, chosen_range=range_creator()):
