@@ -21,5 +21,5 @@ def number_guesser(max_attempts=5, correct_number=random.randrange(int(input('In
         print(f'Too low!' if guess<correct_number else f'Too high!')
         #recursive call
         return number_guesser(max_attempts-1, correct_number, int(input(f'Take another guess, attempts remaining: {max_attempts-1}\n')))
-    
+
 number_guesser()
