@@ -1,3 +1,5 @@
 #snippet tester
-for i in 30:
-    print(i)
+def fun(a=a.lower()):
+    print(a)
+
+fun('AAAAA')
