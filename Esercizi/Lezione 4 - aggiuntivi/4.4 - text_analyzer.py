@@ -16,6 +16,6 @@ def text_analyzer(file: str):
                     words[word]+=1
                 else:
                     words[word]=1
-        print(words)
+        return words
 
 text_analyzer('yourfile.txt')

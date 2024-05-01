@@ -3,7 +3,7 @@
 import random
 
 #very simplistic method, desired character types turned on by default
-def password_generator(password_length, want_lowercase=True, want_uppercase=True, want_numbers=True, want_symbols=True):
+def password_generator(password_length: int, want_lowercase=True, want_uppercase=True, want_numbers=True, want_symbols=True):
     desired=['abcdefghijklmnopqrstuvwxyz' if want_lowercase else None, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if want_uppercase else None, 
              '0123456789' if want_numbers else None, ',.-#+^\'\\!"£$%&/()=?[]@_:;<>|' if want_symbols else None]
     desired.remove(None) if None in desired else desired
