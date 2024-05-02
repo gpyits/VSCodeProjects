@@ -20,8 +20,7 @@ def third_max(nums: list[int]) -> int:
             dupes[number]+=1
         else:
             dupes[number]=1
-    #tutti i valori sono uguali
-    if min(dupes.values())==max(dupes.values()):
+    if min(dupes.values())==max(dupes.values()) and len(dupes.values())==2:
         return max(nums)
     else:
         minimum_dupe=min(dupes.values())
@@ -33,4 +32,4 @@ def third_max(nums: list[int]) -> int:
         else:
             return final_nums[2]
 
-print(third_max([2, 2, 3, 1])) #expected 3
+print(third_max([3, 2, 1])) #expected 1
