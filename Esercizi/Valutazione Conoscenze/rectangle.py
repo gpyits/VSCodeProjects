@@ -23,6 +23,6 @@ def construct_rectangle(area: float) -> list[float]:
                 combinations.append([j, i])
     for l, w in combinations:
         combinations[combinations.index([l, w])].append(l-w)
-    return sorted(combinations)[0]
+    return sorted(combinations)[0][:-1]
 
 print(construct_rectangle(4))
