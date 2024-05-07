@@ -22,6 +22,4 @@ def find_lhs(nums: list[int]) -> int:
         sequences.append(sequence)
     return max([len(i) for i in sequences])
 
-print(find_lhs([1, 3, 2, 2, 5, 2, 3, 7])) #5
-print(find_lhs([1,1,1,1,2,2,2,2])) #8
-print(find_lhs([1,2,3,4])) #2
+print(find_lhs([1, 3, 2, 2, 5, 2, 3, 7])) #expected 5
