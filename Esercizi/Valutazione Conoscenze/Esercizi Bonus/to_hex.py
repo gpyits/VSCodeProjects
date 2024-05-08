@@ -67,3 +67,4 @@ def to_hex(num: int) -> str:
     return '0x'+result2 if is_negative==False else '-0x'+result2
 
 print(to_hex(10))
+print(to_bin(-10))
