@@ -1,2 +1,3 @@
 #snippet tester
-print(hex(-10))
+dictionary={'p':None, 'ds':True}
+dictionary.pop(k for kin dictionary.items())
