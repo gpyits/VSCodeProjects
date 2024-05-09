@@ -66,5 +66,4 @@ def to_hex(num: int) -> str:
     #what's the point of 2's comp then? find out what this should be actually returning
     return '0x'+result2 if is_negative==False else '-0x'+result2
 
-print(to_hex(10))
-print(to_bin(-10))
+print(to_hex(-10))

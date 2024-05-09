@@ -4,7 +4,6 @@
 # Ad esempio, 6 (che può essere costruito come 2 x 3) è un numero brutto, ma 7 (che ha un fattore primo pari a 7) non lo è.
 
 def ugly_number(num: int) -> bool:
-    result=[]
     while num>1:
         if num%2==0:
             num//=2
