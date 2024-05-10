@@ -3,4 +3,7 @@
 # Implement a backtracking algorithm to search for the words in the grid, marking visited cells to avoid repetition.
 # Output the locations of the found words within the grid.
 
+def word_search(words_matrix: list) -> list:
+    pass
 
+words_matrix=[[]]
