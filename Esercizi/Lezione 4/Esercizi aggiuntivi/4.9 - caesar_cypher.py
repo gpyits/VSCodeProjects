@@ -4,7 +4,8 @@
 # Encrypt and decrypt the given message using the specified shift value.
 # a-z is 97 to 122
 
-def shift(letter, offset, is_positive):
+#encryption/decryption handler, shift single letter by one for specified number times
+def shift(letter: str, offset: int, is_positive: bool) -> str:
     if offset==0:
         return letter
     else:
@@ -13,7 +14,8 @@ def shift(letter, offset, is_positive):
         else:
             return shift(chr(ord(letter)-1), offset+1, is_positive) if ord(letter)-1!=96 else shift(chr(122), offset+1, is_positive)
 
-def caesar_cypher(message, offset, decrypt=False):
+#handles result message assembly, shaves offset so it doesn't overflow past 25
+def caesar_cypher(message: str, offset: int, decrypt: bool=False) -> str:
     result=''
     is_positive=True if offset>0 else False
     while abs(offset)>24: offset-=24 if is_positive else -24
