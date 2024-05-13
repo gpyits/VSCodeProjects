@@ -11,15 +11,3 @@ def ugly_number(num: int) -> bool:
 
 print(ugly_number(6))  #expected True
 print(ugly_number(14)) #expected False
-
-#Found a more compact solution, try using it on the test and restore if wrong
-#     if num%2==0:
-#         num//=2
-#     elif num%3==0:
-#         num//=3
-#     elif num%5==0:
-#         num//=5
-#     else:
-#         return False
-# else:
-#     return True

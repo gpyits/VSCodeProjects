@@ -20,6 +20,8 @@ def find_lhs(nums: list[int]) -> int:
             if j==i+1 or j==i:
                 sequence.append(j)
         sequences.append(sequence)
-    return max([len(i) for i in sequences])
+    return max([len(i) for i in sequences]) if len(set(sequences[0]))!=1 else 1
 
 print(find_lhs([1, 3, 2, 2, 5, 2, 3, 7])) #expected 5
+print(find_lhs([1,1,1,1])) #1
+#max([len(i) for i in sequences]) if len(set(sequences[0]))!=1 else 1

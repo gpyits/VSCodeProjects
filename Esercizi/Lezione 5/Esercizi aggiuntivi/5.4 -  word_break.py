@@ -17,6 +17,6 @@ def word_break(input_string: str, word_dictionary: dict) -> bool:
             else:
                 continue
         useful_substrings.append(substring)
-    return True if input_string in useful_substrings else False
+    return input_string in useful_substrings
 
 print(word_break('ciaocomestaibene', {1: 'ciao', 7:'ci', 2:'come', 8:'mesta', 4:'stai', 5:'tutto', 6:'bene'}))
