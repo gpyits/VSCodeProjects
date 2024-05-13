@@ -4,8 +4,6 @@ Module used for studying the classes in python.
 Returns:
     Person: Class describing a person
 '''
-# Gioele Amendola
-# 08/05/2024
 
 # Python classes:
 

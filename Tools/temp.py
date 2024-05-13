@@ -1,4 +1,4 @@
 #snippet tester
 
-d={1: 20000000, 4:1000}
-print(max(d))
+l=[(3, 2), (2, 4)]
+print(min(l))
