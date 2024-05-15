@@ -1,4 +1,5 @@
 #snippet tester
+x = -1
 
-l=[(3, 2), (2, 4)]
-print(min(l))
+if x < 0:
+  raise Whatever("Sorry, no numbers below zero")
