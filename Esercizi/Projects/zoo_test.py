@@ -63,7 +63,7 @@ from zoo_park import *
 
 animal1: Animal = Animal("Harambe", "Western Gorilla", 17, 2.1, 0.5, "Tropical")
 animal2: Animal = Animal("Fiona", "Common Hippopotamus", 20, 1.6, 1.2, "Savannah")
-animal3: Animal = Animal("Diego", "Aldabra giant tortoise", 90, 0.8, 1.2, "Tropical")
+animal3: Animal = Animal("Diego", "Aldabra giant tortoise", 90, 8, 2, "Tropical")
 animal4: Animal = Animal("Winter", "Hourglass Dolphin", 28, 0.2, 1.9, "Antarctic")
 animal5: Animal = Animal("Pingu", "Emperor penguin", 8, 0.5, 0.18, "Antarctic")
 
@@ -98,3 +98,5 @@ for _ in range(10):
 
 print(f"{zookeeper3.clean(fence2)}")
 print(f"{zookeeper3.clean(fence1)}")
+
+print(animal3.area)

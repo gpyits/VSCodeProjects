@@ -60,6 +60,7 @@ class ZooKeeper:
             print(f'Couldn\'t feed animal {animal.name}')
         animal.height+=animal.height*0.02
         animal.width+=animal.width*0.02
+        animal.area=animal.height*animal.width
         animal.health+=animal.health*0.01
         print(f'Successfully fed animal {animal.name}')
     def clean(self, fence: Fence) -> int:
