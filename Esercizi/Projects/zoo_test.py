@@ -59,7 +59,7 @@
 # Animal(name=Lupo, species=Lupus, age=14)
 # #########################
 # Fra un recinto e l'altro mettete 30 volte il carattere #.
-from zoo_park import *
+from gioele_zoo import *
 
 animal1: Animal = Animal("Harambe", "Western Gorilla", 17, 2.1, 0.5, "Tropical")
 animal2: Animal = Animal("Fiona", "Common Hippopotamus", 20, 1.6, 1.2, "Savannah")
@@ -98,5 +98,3 @@ for _ in range(10):
 
 print(f"{zookeeper3.clean(fence2)}")
 print(f"{zookeeper3.clean(fence1)}")
-
-print(animal3.area)

@@ -1,8 +1,7 @@
 class Zoo:
     def __init__(self, fences: list=[], zoo_keepers: list=[]) -> None:
-        ####ADD TYPE FOR SELF.####
-        self.fences=fences
-        self.zoo_keepers=zoo_keepers
+        self.fences: list[Fence]=fences
+        self.zoo_keepers: list[ZooKeeper]=zoo_keepers
     def describe_zoo(self) -> None:
         print('\nGuardians:')
         for zookeeper in self.zoo_keepers: 
@@ -16,21 +15,21 @@ class Zoo:
 
 class Fence:
     def __init__(self, area: int, temperature: int, habitat: str, animals: list[object]=[]) -> None:
-        self.area=area
+        self.area: int=area
         self.temperature=temperature
         self.habitat=habitat
         self.animals=animals
 
 class Animal:
-    def __init__(self, name: str, species: str, age: int, height: int, width: int, preferred_habitat: str, fence: Fence=None) -> None:
-        self.name=name
-        self.species=species
-        self.age=age
-        self.height=height
-        self.width=width
-        self.area: int=height*width
-        self.preferred_habitat=preferred_habitat
-        self.fence=fence
+    def __init__(self, name: str, species: str, age: int, height: float, width: float, preferred_habitat: str, fence: Fence=None) -> None:
+        self.name: str=name
+        self.species: str=species
+        self.age: int=age
+        self.height: float=height
+        self.width: float=width
+        self.area: float=height*width
+        self.preferred_habitat: str=preferred_habitat
+        self.fence: Fence=fence
         self.health: int=round(100 * (1 / age), 3)
 
 class ZooKeeper:
@@ -55,9 +54,10 @@ class ZooKeeper:
             print(f'Error: animal {animal.name} could not be removed')
     def feed(self, animal: Animal) -> None:
         if animal.fence and animal.fence.area-(animal.area)-((animal.area)*2/100)>=0:
-            animal.fence.area-=(animal.area)+((animal.area)*0.02)
+            animal.fence.area-=(animal.area)*0.02
         else:
             print(f'Couldn\'t feed animal {animal.name}')
+            return
         animal.height+=animal.height*0.02
         animal.width+=animal.width*0.02
         animal.area=animal.height*animal.width
