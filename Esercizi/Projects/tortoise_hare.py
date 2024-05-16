@@ -109,37 +109,48 @@ for i in hprob:
 import random, time
 
 def tortoise_hare(path=['H-T']+['_' for i in range(70)]):
-    tortoise_moves, hare_moves=[3, 3, 3, 3, 3, 1, 1, 1, -6, -6], [1, 1, 1, -2, -2, 0, 0, 9, 9, -12]
+    tortoise_moves, hare_moves=[(3, 5), (3, 5), (3, 5), (3, 5), (3, 5), (1, 3), (1, 3), (1, 3), (-6, 10), (-6, 10)], [(1, 5), (1, 5), (1, 5), (-2, 8), (-2, 8), (0, -10), (0, -10), (9, 15), (9, 15), (-12, 20)]
+    tortoise_energy, hare_energy=100, 100
     tortoise_position, hare_position=0, 0
+    weather=['sunny', 'rainy']
     print(f'BANG! AND THEY\'RE OFF!\n\n{path}')
     round=0
+    current_weather='sunny'
     while tortoise_position<70 and hare_position<70:
         round+=1
+        if round%10==0:
+            current_weather=random.choice(weather)
+            if current_weather=='rainy': tortoise_moves, hare_moves=[(2, 5), (2, 5), (2, 5), (2, 5), (2, 5), (0, 3), (0, 3), (0, 3), (-7, 10), (-7, 10)], [(-1, 5), (-1, 5), (-1, 5), (0, 8), (0, 8), (0, -10), (0, -10), (7, 15), (7, 15), (-10, 20)]
         path=['_' for i in range(71)]
         #time.sleep(1)
         move_tortoise, move_hare=random.sample(tortoise_moves, 1)[0], random.sample(hare_moves, 1)[0]
-        tortoise_position+=move_tortoise if tortoise_position+move_tortoise>=0 else -tortoise_position
-        hare_position+=move_hare if hare_position+move_hare>=0 else -hare_position
+        tortoise_energy-=move_tortoise[1] if tortoise_energy-move_tortoise[1]>=0 else -10
+        hare_energy-=move_hare[1] if hare_energy-move_hare[1]>=0 else hare_energy
+        if tortoise_energy-move_tortoise[1]<0: move_tortoise=(0, move_tortoise[1])
+        if hare_energy-move_hare[1]<0: move_hare=(0, move_hare[1])
+        tortoise_position+=move_tortoise[0] if tortoise_position+move_tortoise[0]>=0 else -tortoise_position
+        hare_position+=move_hare[0] if hare_position+move_hare[0]>=0 else -hare_position
         if tortoise_position>=70 or hare_position>=70:
             break
         elif tortoise_position!=hare_position:
             path[tortoise_position], path[hare_position]='T', 'H'
         else:
             path[tortoise_position]='OUCH!'
-        print(f'Round {round}:\n{path}\n\nTortoise moved: {move_tortoise}, Tortoise position: {tortoise_position+1}\nHare moved: {move_hare}, Hare position: {hare_position+1}\n')
+        print(f'Round {round}, Weather: {current_weather}\n{path}\n\nTortoise moved: {move_tortoise[0]}, Tortoise position: {tortoise_position+1}, Tortoise energy: {tortoise_energy}\nHare moved: {move_hare[0]}, Hare position: {hare_position+1}, Hare energy: {hare_energy}\n')
     path=['_' for i in range(71)]
     if tortoise_position>=70:
         tortoise_position=70
-        hare_position+=random.sample(hare_moves, 1)[0] if hare_position+random.sample(hare_moves, 1)[0]>=1 else -hare_position+1
+        move_hare=random.sample(hare_moves, 1)[0]
+        hare_position+=move_hare[0] if hare_position+move_hare[0]>=1 else -hare_position+1
         if hare_position>=70:
             path[-1]='H-T'
-            print(f'Round {round+1}:\n{path}\n\nTortoise moved: {move_tortoise}, Tortoise position: {70}\nHare moved: {move_hare}, Hare position: {70}\n\nIT\'S A TIE!')
+            print(f'Round {round+1}, Weather: {current_weather}\n{path}\n\nTortoise moved: {move_tortoise[0]}, Tortoise position: {70}, Tortoise energy: {tortoise_energy}\nHare moved: {move_hare[0]}, Hare position: {70}, Hare energy: {hare_energy}\n\nIT\'S A TIE!')
         else:
             path[-1], path[hare_position]='T', 'H'
-            print(f'Round {round+1}:\n{path}\n\nTortoise moved: {move_tortoise}, Tortoise position: {70}\nHare moved: {move_hare}, Hare position: {hare_position+1}\n\nTORTOISE WINS! || YAY!')
+            print(f'Round {round+1}, Weather: {current_weather}\n{path}\n\nTortoise moved: {move_tortoise[0]}, Tortoise position: {70}, Tortoise energy: {tortoise_energy}\nHare moved: {move_hare[0]}, Hare position: {hare_position+1}, Hare energy: {hare_energy}\n\nTORTOISE WINS! || YAY!')
     elif hare_position>=70:
         hare_position=70
         path[-1], path[tortoise_position]='H', 'T'
-        print(f'Round {round+1}:\n{path}\n\nTortoise moved: {move_tortoise}, Tortoise position: {tortoise_position+1}\nHare moved: {move_hare}, Hare position: {70}\n\nHARE WINS || YUCK!')
+        print(f'Round {round+1}, Weather: {current_weather}\n{path}\n\nTortoise moved: {move_tortoise[0]}, Tortoise position: {tortoise_position+1}, Tortoise energy: {tortoise_energy}\nHare moved: {move_hare[0]}, Hare position: {70}, Hare energy: {hare_energy}\n\nHARE WINS || YUCK!')
 
 tortoise_hare()

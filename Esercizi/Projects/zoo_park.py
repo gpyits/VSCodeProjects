@@ -47,6 +47,7 @@ class ZooKeeper:
     def remove_animal(self, animal: Animal, fence: Fence) -> None:
         if animal in fence.animals:
             del fence.animals[fence.animals.index(animal)]
+            animal.fence=None
             fence.area-=animal.area
             print(f'Successfully removed animal {animal.name} from fence')
         else:
@@ -54,8 +55,11 @@ class ZooKeeper:
     def feed(self, animal: Animal) -> None:
         if animal.fence and animal.fence.area-(animal.area)-((animal.area)*2/100)>=0:
             animal.fence.area-=(animal.area)+((animal.area)*2/100)
-        animal.height*=2/100
-        animal.width*=2/100
+        else:
+            print(f'Couldn\'t feed animal {animal.name}')
+        animal.height+=animal.height*0.02
+        animal.width+=animal.width*0.02
+        animal.health+=animal.health*0.01
         print(f'Successfully fed animal {animal.name}')
     def clean(self, fence: Fence) -> int:
         total_area: int=sum([animal.area for animal in fence.animals])
