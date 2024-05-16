@@ -1,5 +1,6 @@
 class Zoo:
     def __init__(self, fences: list=[], zoo_keepers: list=[]) -> None:
+        ####ADD TYPE FOR SELF.####
         self.fences=fences
         self.zoo_keepers=zoo_keepers
     def describe_zoo(self) -> None:
@@ -54,7 +55,7 @@ class ZooKeeper:
             print(f'Error: animal {animal.name} could not be removed')
     def feed(self, animal: Animal) -> None:
         if animal.fence and animal.fence.area-(animal.area)-((animal.area)*2/100)>=0:
-            animal.fence.area-=(animal.area)+((animal.area)*2/100)
+            animal.fence.area-=(animal.area)+((animal.area)*0.02)
         else:
             print(f'Couldn\'t feed animal {animal.name}')
         animal.height+=animal.height*0.02
