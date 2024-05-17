@@ -14,16 +14,6 @@ class Zoo:
                 print(f'Animal(name={animal.name}, species={animal.species}, age={animal.age})')
             print('#'*30)
 
-<<<<<<< HEAD:Esercizi/Projects/zoo.py
-=======
-class Fence:
-    def __init__(self, area: int, temperature: int, habitat: str, animals: list[object]=[]) -> None:
-        self.area: int=area
-        self.temperature: int=temperature
-        self.habitat: str=habitat
-        self.animals: list[Animal]=animals
-
->>>>>>> e0937278d5721a61d9265be568288d0af1eae115:Esercizi/Projects/zoo_park.py
 class Animal:
     '''Creates animal object'''
     def __init__(self, name: str, species: str, age: int, height: float, width: float, preferred_habitat: str) -> None:
