@@ -16,9 +16,9 @@ class Zoo:
 class Fence:
     def __init__(self, area: int, temperature: int, habitat: str, animals: list[object]=[]) -> None:
         self.area: int=area
-        self.temperature=temperature
-        self.habitat=habitat
-        self.animals=animals
+        self.temperature: int=temperature
+        self.habitat: str=habitat
+        self.animals: list[Animal]=animals
 
 class Animal:
     def __init__(self, name: str, species: str, age: int, height: float, width: float, preferred_habitat: str, fence: Fence=None) -> None:
@@ -34,9 +34,9 @@ class Animal:
 
 class ZooKeeper:
     def __init__(self, name: str, surname: str, id: str) -> None:
-        self.name=name
-        self.surname=surname
-        self.id=id
+        self.name: str=name
+        self.surname: str=surname
+        self.id: str=id
     def add_animal(self, animal: Animal, fence: Fence) -> None:
         if fence.habitat==animal.preferred_habitat and fence.area-(animal.height*animal.width)>=0:
             fence.animals.append(animal)
