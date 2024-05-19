@@ -25,5 +25,19 @@
 # Inizialmente, il numero totale di blocchi disponibili sul supporto di memorizzazione per il salvataggio dei file è un numero intero pari a 1000 blocchi. 
 
 def memorizza_file(files: list[int]) -> None:
-    spazio_totale_blocchi = 1000  # Spazio totale disponibile in blocchi
-    pass
+    remaining_blocks=1000
+    for file in files:
+        compressed_file=file*80/100
+        used_blocks=round(compressed_file/512)
+        remaining_blocks-=used_blocks
+        if remaining_blocks>0:
+            print(f'File di {file} byte compresso in {compressed_file} byte e memorizzato. Blocchi usati: {used_blocks}. Blocchi rimanenti: {remaining_blocks}.')
+        else:
+            print(f'Non è possibile memorizzare il file di {file} byte. Spazio insufficiente.')
+            break
+
+memorizza_file([1100, 20000, 1048576, 512, 5000])
+
+# File di 1100 byte compresso in 880.0 byte e memorizzato. Blocchi usati: 2. Blocchi rimanenti: 998.
+# File di 20000 byte compresso in 16000.0 byte e memorizzato. Blocchi usati: 31. Blocchi rimanenti: 967.
+# Non è possibile memorizzare il file di 1048576 byte. Spazio insufficiente.

@@ -32,4 +32,15 @@ def rimbalzo() -> None:
     velocita: float = 100.0
     rimbalzi: int = 0
     while rimbalzi<5:
-        pass
+        print(f'Tempo: {tempo} Altezza: {altezza}')
+        altezza+=velocita
+        velocita-=96
+        tempo+=1
+        if altezza<0:
+            rimbalzi+=1
+            print(f'Tempo: {tempo} Rimbalzo!')
+            altezza*=-0.5
+            velocita*=-0.5
+            tempo+=1
+        
+rimbalzo()
