@@ -4,4 +4,17 @@
 # The remaining unmarked numbers are the prime numbers within the limit.
 # Return the list of prime numbers.
 
+def is_prime(number: int) -> bool:
+    j=2
+    while j<number//2:
+        if number%j==0:
+            return False
+        else:
+            j**=2
+    return True
 
+def eratosthenes_sieve(limit: int):
+    pass
+
+
+print(eratosthenes_sieve)
