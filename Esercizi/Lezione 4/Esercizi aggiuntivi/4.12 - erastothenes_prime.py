@@ -5,6 +5,7 @@
 # Return the list of prime numbers.
 
 def is_prime(number: int) -> bool:
+    if number==4: return False
     j=2
     while j<number//2:
         if number%j==0:
@@ -14,7 +15,6 @@ def is_prime(number: int) -> bool:
     return True
 
 def eratosthenes_sieve(limit: int):
-    pass
+    return [i for i in range(2, limit+1) if is_prime(i)==True]
 
-
-print(eratosthenes_sieve)
+print(eratosthenes_sieve(100))

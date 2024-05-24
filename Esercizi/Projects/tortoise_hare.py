@@ -106,6 +106,25 @@ for i in hprob:
 #     - Grande scivolata (10% di probabilità): arretra di 12 quadrati e richiede 20 di energia. Non può andare sotto il quadrato 1.
 #     - Piccolo balzo (30% di probabilità): avanza di 1 quadrato e richiede 5 di energia.
 #     - Piccola scivolata (20% di probabilità): arretra di 2 quadrati e richiede 8 di energia. Non può andare sotto il quadrato 1.
+        
+# 3. Ostacoli e Bonus
+# Sulla pista di gara sono presenti alcuni ostacoli e bonus a posizioni fisse, 
+# che influenzano direttamente il movimento degli animali quando vengono calpestati. 
+# Gli ostacoli causano uno slittamento all'indietro, mentre i bonus offrono un avanzamento extra.
+
+# Dettagli Implementativi:
+        
+# - Ostacoli:
+# Posizionati a intervalli regolari sulla pista (es. ai quadrati 15, 30, 45), 
+# gli ostacoli riducono la posizione dell'animale di un numero specificato di quadrati (es: -3, -5, -7). 
+# Gli ostacoli sono rappresentati da un dizionario che mappa le posizioni degli ostacoli sul percorso (chiave) ed i relaviti effetti (valore). 
+# Assicurarsi che nessun animale retroceda al di sotto del primo quadrato a seguito di un ostacolo.
+
+# - Bonus:
+# Dislocati strategicamente lungo la corsa (es. ai quadrati 10, 25, 50), 
+# i bonus aumentano la posizione dell'animale di un numero determinato di quadrati (es: 5, 3, 10). 
+# I bonus sono rappresentati da un dizionario che mappa le posizioni dei bonus sul percorso (chiave) ed i relativi effetti (valore). 
+# Consentire agli animali di beneficiare pienamente dei bonus, ma non oltrepassare il traguardo.
 import random, time
 
 def tortoise_hare(path=['H-T']+['_' for i in range(70)]):

@@ -268,37 +268,72 @@ pass
 # Make a separate file that imports Restaurant. 
 # Make a Restaurant instance, and call one of Restaurant’s methods to show that the import statement is working properly.
 
-# module stored in restaurant.py
-# made separate file restaurant_tester.py
-pass
+'''
+module stored in restaurant.py
+made separate file restaurant_tester.py
+'''
 
 # 9.11. Imported Admin: 
 # Start with your work from Exercise 9-8. 
 # Store the classes User, Privileges, and Admin in one module. 
 # Create a separate file, make an Admin instance, and call show_privileges() to show that everything is working correctly.
 
-# module stored in user.py
-# made separate file user_tester.py
-pass
+'''
+modules stored in users.py
+made separate file user_tester.py
+'''
 
 # 9.12. Multiple Modules: 
 # Store the User class in one module, and store the Privileges and Admin classes in a separate module. 
 # In a separate file, create an Admin instance and call show_privileges() to show that everything is still working correctly.
-#--> CONTINUE HERE
+
+'''
+user module stored in user.py
+privileged user modules stored in admin_user.py
+tested in separate file user_tester.py
+'''
 
 # 9.13. Dice: 
 # Make a class Die with one attribute called sides, which has a default value of 6. 
 # Write a method called roll_die() that prints a random number between 1 and the number of sides the die has. 
 # Make a 6-sided die and roll it 10 times. Make a 10-sided die and a 20-sided die. Roll each die 10 times.
+import random
 
+class Die:
+    def __init__(self, sides: int=6) -> None:
+        self.sides: int=sides
+    def roll_die(self):
+        print(random.randrange(1, self.sides+1))
+
+Die().roll_die()
+for i in range(10): print('d6: ', end=' '), Die().roll_die()
+for i in range(10): print('d20:', end=' '), Die(20).roll_die()
 
 # 9.14. Lottery: 
 # Make a list or tuple containing a series of 10 numbers and 5 letters. 
-# Randomly select 4 numbers or letters from the list and print a message saying thself.first_name} {self.last_nameat any ticket matching these 4 numbers or letters wins a prize.
+# Randomly select 4 numbers or letters from the list and print a message saying that any ticket matching these 4 numbers or letters wins a prize.ù
+class Lottery:
+    def __init__(self, winning_sequence: tuple=(1, 2, 3, 6, 8, 'd', 'f', 'l', 's', 'g')) -> None:
+        self.winning_sequence: tuple=winning_sequence
+    def try_luck(self) -> None:
+        if input('Try your luck\nWrite 4 characters, numbers or letters: ')==''.join(str(i) for i in random.sample(self.winning_sequence, 4)):
+            print('Congratulations! You won!')
+        else: print('You lose. Better luck next time!')
 
+Lottery().try_luck()
 
 # 9.15. Lottery Analysis: 
 # You can use a loop to see how hard it might be to win the kind of lottery you just modeled. 
 # Make a list or tuple called my_ticket. Write a loop that keeps pulling numbers until your ticket wins. 
 # Print a message reporting how many times the loop had to run to give you a winning ticket.
 
+def lottery_tester(ticket: list, winning_sequence: tuple=(1, 2, 3, 6, 8, 'd', 'f', 'l', 's', 'g')):
+    tries=1
+    while True:
+        if ticket!=random.sample(winning_sequence, 4):
+            tries+=1
+        else:
+            print(f'Won the lottery at try no. {tries}')
+            return
+
+lottery_tester([8, 3, 2, 'f'])
