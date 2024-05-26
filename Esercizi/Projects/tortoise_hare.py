@@ -1,5 +1,5 @@
 #Due None
-#this proves percentage choices using random.coice() are accurate to normal distribution
+#this proves percentage choices using random.choice() are accurate to normal distribution
 import random
 tortoise_moves=[3, 3, 3, 3, 3, 1, 1, 1, -6, -6]
 hare_moves=[1, 1, 1, -2, -2, 0, 0, 9, 9, -12]
@@ -127,35 +127,64 @@ for i in hprob:
 # Consentire agli animali di beneficiare pienamente dei bonus, ma non oltrepassare il traguardo.
 import random, time
 
-def tortoise_hare(path=['H-T']+['_' for i in range(70)]):
+def tortoise_hare(path: list[str]=['H-T']+['_' for i in range(70)]) -> None:
+    #moves, energy, weather, position, bonuses and obstacles are all set
     tortoise_moves, hare_moves=[(3, 5), (3, 5), (3, 5), (3, 5), (3, 5), (1, 3), (1, 3), (1, 3), (-6, 10), (-6, 10)], [(1, 5), (1, 5), (1, 5), (-2, 8), (-2, 8), (0, -10), (0, -10), (9, 15), (9, 15), (-12, 20)]
     tortoise_energy, hare_energy=100, 100
     tortoise_position, hare_position=0, 0
     weather=['sunny', 'rainy']
+    bonuses={10:5, 25:3, 50:10}
+    path[10], path[25], path[50]='O', 'O', 'O'
+    obstacles={15:-3, 30:-5, 45:-7}
+    path[15], path[30], path[45]='X', 'X', 'X'
+    #game starter, starting round and weather picked
     print(f'BANG! AND THEY\'RE OFF!\n\n{path}')
     round=0
     current_weather='sunny'
     while tortoise_position<70 and hare_position<70:
         round+=1
+        #picks weather at 50% chance every 10 turns
         if round%10==0:
             current_weather=random.choice(weather)
             if current_weather=='rainy': tortoise_moves, hare_moves=[(2, 5), (2, 5), (2, 5), (2, 5), (2, 5), (0, 3), (0, 3), (0, 3), (-7, 10), (-7, 10)], [(-1, 5), (-1, 5), (-1, 5), (0, 8), (0, 8), (0, -10), (0, -10), (7, 15), (7, 15), (-10, 20)]
+        #redraws path to exclude starting position
         path=['_' for i in range(71)]
+        #this was written to simulate the 1s clock, but with energy and weather mechanics it can stall the code for hours
         #time.sleep(1)
+        #picks a random move
         move_tortoise, move_hare=random.sample(tortoise_moves, 1)[0], random.sample(hare_moves, 1)[0]
-        tortoise_energy-=move_tortoise[1] if tortoise_energy-move_tortoise[1]>=0 else -10
-        hare_energy-=move_hare[1] if hare_energy-move_hare[1]>=0 else hare_energy
+        #uses hare and tortoise energy
+        tortoise_energy-=move_tortoise[1] if tortoise_energy-move_tortoise[1]>=0 else -10 #gains 10 energy if depleted
+        hare_energy-=move_hare[1] if hare_energy-move_hare[1]>=0 else hare_energy #gains no energy if depleted
+        #if energy is depleted, they can't move
         if tortoise_energy-move_tortoise[1]<0: move_tortoise=(0, move_tortoise[1])
         if hare_energy-move_hare[1]<0: move_hare=(0, move_hare[1])
-        tortoise_position+=move_tortoise[0] if tortoise_position+move_tortoise[0]>=0 else -tortoise_position
-        hare_position+=move_hare[0] if hare_position+move_hare[0]>=0 else -hare_position
+        #moves turtle and hare in path
+        tortoise_position+=move_tortoise[0] if tortoise_position+move_tortoise[0]>=0 else -tortoise_position #if it falls below 0, goes back to 0
+        hare_position+=move_hare[0] if hare_position+move_hare[0]>=0 else -hare_position #if it falls below 0, goes back to 0
+        #checks if they landed on an obstacle or bonus and moves them accordingly
+        if tortoise_position in bonuses or tortoise_position in obstacles:
+            if tortoise_position in obstacles:
+                tortoise_position+=obstacles[tortoise_position] if tortoise_position+obstacles[tortoise_position]>=0 else -tortoise_position #if it falls below 0, goes back to 0
+            else:
+                tortoise_position+=bonuses[tortoise_position] #can't fall back to 0
+        if hare_position in bonuses or hare_position in obstacles:
+            if hare_position in obstacles:
+                hare_position+=obstacles[hare_position] if hare_position+obstacles[hare_position]>=0 else -tortoise_position #if it falls below 0, goes back to 0
+            else:
+                hare_position+=bonuses[hare_position] #can't fall back to 0
+        #if they go above 70, stops the game and prints the last round
         if tortoise_position>=70 or hare_position>=70:
             break
+        #moves the two characters in the UI
         elif tortoise_position!=hare_position:
             path[tortoise_position], path[hare_position]='T', 'H'
+        #if they land in the same spot, moves them in the UI as the message 'OUCH!'
         else:
             path[tortoise_position]='OUCH!'
+        #prints detailed informations about the current round
         print(f'Round {round}, Weather: {current_weather}\n{path}\n\nTortoise moved: {move_tortoise[0]}, Tortoise position: {tortoise_position+1}, Tortoise energy: {tortoise_energy}\nHare moved: {move_hare[0]}, Hare position: {hare_position+1}, Hare energy: {hare_energy}\n')
+    #it's not really necessary to do a last round for the loser, check who won instead and print the info. Rewrite three separate win conditions and move them to line 178.
     path=['_' for i in range(71)]
     if tortoise_position>=70:
         tortoise_position=70
