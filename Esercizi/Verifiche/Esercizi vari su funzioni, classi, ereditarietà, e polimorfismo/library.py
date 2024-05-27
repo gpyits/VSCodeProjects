@@ -53,20 +53,22 @@ class Member:
         book.is_borrowed=False
 
 class Library:
-    def __init__(self, books: dict[str, Book]=[], members: dict[str, Member]=[]) -> None:
-        self.books: dict[str, Book]=books
-        self.members: dict[str, Member]=members
+    def __init__(self) -> None:
+        self.books: dict[str, Book]=[]
+        self.members: dict[str, Member]=[]
     def add_book(self, book_id: str, title: str, author: str) -> None:
         self.books.append(Book(book_id, title, author))
     def register_member(self, member_id:str, name: str) -> None:
         self.members.append(Member(member_id, name))
+
 
     def borrow_book(self, member_id: str, book_id: str) -> None:
         member=[member for member in self.members if member.id==member_id]
         book=[book for book in self.books if book.id==book_id]
         if member==[]: print('Membro non trovato')
         if book==[]: print('Libro non trovato')
-        
+        ##############
+
 
     def return_book(self, member_id: str, book_id: str) -> None:
         [member for member in self.members if member.id==member_id][0].return_book([book for book in self.books if book.id==book_id][0])
