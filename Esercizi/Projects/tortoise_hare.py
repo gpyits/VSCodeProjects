@@ -159,20 +159,25 @@ def tortoise_hare(path: list[str]=['H-T']+['_' for i in range(70)]) -> None:
         #moves turtle and hare in path
         tortoise_position+=move_tortoise[0] if tortoise_position+move_tortoise[0]>=0 else -tortoise_position #if it falls below 0, goes back to 0
         hare_position+=move_hare[0] if hare_position+move_hare[0]>=0 else -hare_position #if it falls below 0, goes back to 0
-        #checks if they landed on an obstacle or bonus and moves them accordingly 
+        #checks if tortoise on an obstacle or bonus and moves them accordingly 
         if tortoise_position in bonuses or tortoise_position in obstacles:
+            #checks if tortoise hit an obstacle
             if tortoise_position in obstacles:
-                print() #add prints that tell the player they landed there and the bonus/malus they got
+                print(f'Tortoise hit an obstacle! Set back by {-obstacles[tortoise_position]} squares')
                 tortoise_position+=obstacles[tortoise_position] if tortoise_position+obstacles[tortoise_position]>=0 else -tortoise_position #if it falls below 0, goes back to 0
-            else:
-                print()
+            #checks if tortoise landed on a bonus
+            else: 
+                print(f'Tortoise landed on a bonus! Went further by {bonuses[tortoise_position]} squares')
                 tortoise_position+=bonuses[tortoise_position] #can't fall back to 0
+        #checks if hare on an obstacle or bonus and moves them accordingly 
         if hare_position in bonuses or hare_position in obstacles:
+            #checks if tortoise hit an obstacle
             if hare_position in obstacles:
-                print()
+                print(f'Hare hit an obstacle! Set back by {-obstacles[hare_position]} squares')
                 hare_position+=obstacles[hare_position] if hare_position+obstacles[hare_position]>=0 else -tortoise_position #if it falls below 0, goes back to 0
+            #checks if tortoise landed on a bonus
             else:
-                print()
+                print(f'hare landed on a bonus! Went further by {bonuses[hare_position]} squares')
                 hare_position+=bonuses[hare_position] #can't fall back to 0
         #if they go above 70, stops the game and prints the last round
         if tortoise_position>=69 or hare_position>=69:

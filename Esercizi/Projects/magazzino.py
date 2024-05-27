@@ -23,7 +23,7 @@ class Warehouse:
         for product in self.products:
             if product.name==product_name:
                 return product
-    def verify_availability(self, product_name:str) -> bool:
+    def verify_availability(self, product_name: str) -> bool:
         for product in self.products:
             if product.name==product_name:
                 return True if product.quantity>0 else False
