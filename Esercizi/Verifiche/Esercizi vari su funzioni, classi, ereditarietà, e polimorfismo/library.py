@@ -48,32 +48,25 @@ class Member:
         self.name: str=name
         self.borrowed_books: list[Book]=[]
     def borrow_book(self, book: Book) -> None:
-        if book.is_borrowed==False: self.borrowed_books.append(book); book.is_borrowed=True #book.__str__()?
+        if book.is_borrowed==False: self.borrowed_books.append(book); book.is_borrowed=True
     def return_book(self, book: Book) -> None:
-        if book in self.borrowed_books: self.borrowed_books.remove(book); book.is_borrowed=False #book.__str__()?
+        if book in self.borrowed_books: self.borrowed_books.remove(book); book.is_borrowed=False
 
 class Library:
     def __init__(self) -> None:
-        self.books: dict[str, Book]=[]
-        self.members: dict[str, Member]=[]
+        self.books: dict[str, Book]={}
+        self.members: dict[str, Member]={}
     def add_book(self, book_id: str, title: str, author: str) -> None:
-        self.books.append(Book(book_id, title, author))
+        self.books[book_id]=Book(book_id, title, author)
     def register_member(self, member_id:str, name: str) -> None:
-        self.members.append(Member(member_id, name))
+        self.members[member_id]=Member(member_id, name)
     def borrow_book(self, member_id: str, book_id: str) -> None:
-        member=[member for member in self.members if member.id==member_id]
-        book=[book for book in self.books if book.id==book_id]
-        if member==[]: return 'Membro non trovato'
-        if book==[]: return 'Libro non trovato'
-        member[0].borrow_book(book[0])
+        self.members[member_id].borrow_book(self.books[book_id])
     def return_book(self, member_id: str, book_id: str) -> None:
-        member=[member for member in self.members if member.id==member_id]
-        book=[book for book in self.books if book.id==book_id]
-        if member==[]: return 'Membro non trovato'
-        if book==[]: return 'Libro non trovato'
-        member[0].return_book(book[0])
+        self.members[member_id].return_book(self.books[book_id])
     def get_borrowed_books(self, member_id: str) -> list[Book]:
-        return [member for member in self.members if member.id==member_id][0].borrowed_books
+        #return [book.__str__() for book in self.members[member_id].borrowed_books]?
+        return self.members[member_id].borrowed_books
     
 library = Library()
 

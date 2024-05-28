@@ -14,13 +14,14 @@ def valid_sudoku(board: list[list[str]]) -> bool:
     if len(board)==9 or len(board==3): #check if this works logically
         for row in board:
             row_numbers=[int(number) for number in row if number!='.']
+            #if len(row_numbers[i])!=len(set(row_numbers[i]))
             if [row_numbers[i] for i in range(len(row_numbers)-1) if row_numbers[i]==row_numbers[i+1]]!=[]: return False
             for column in row:
                 column_numbers=[int(number) for number in board[row.index(column)][board.index(row)] if number!='.']
                 if [column_numbers[i] for i in range(len(column_numbers)-1) if column_numbers[i]==column_numbers[i+1]]!=[]: return False
     else:
         #recursive call to validate segmented board and returning True
-    
+        pass
 
 board = [["5","3",".",".","7",".",".",".","."],
          ["6",".",".","1","9","5",".",".","."],
@@ -43,3 +44,13 @@ board = [["8","3",".",".","7",".",".",".","."],
          [".",".",".","4","1","9",".",".","5"],
          [".",".",".",".","8",".",".","7","9"]]
 print(valid_sudoku(board)) #False
+
+# # Controlla tutti i sottogruppi 3x3
+# for box_row in range(0, 9, 3):
+#     for box_col in range(0, 9, 3):
+#         # Costruisce una lista degli elementi del sottogruppo 3x3 corrente
+#         box = [
+#             board[r][c]
+#             for r in range(box_row, box_row + 3)
+#             for c in range(box_col, box_col + 3)
+#         ]
