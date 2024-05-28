@@ -9,6 +9,37 @@
 #     Una tavola Sudoku (parzialmente riempita) potrebbe essere valida ma non è necessariamente risolvibile.
 #     Solo le celle riempite devono essere convalidate secondo le regole menzionate.
 def valid_sudoku(board: list[list[str]]) -> bool:
-    # la tavola del sudo viene rapperentata come una matrice (lista di liste)
-    # con 9 righe e 9 colonne
-    pass
+    #try board[8] except IndexError, to prevent this calculation again
+    #calculate segmented board
+    if len(board)==9 or len(board==3): #check if this works logically
+        for row in board:
+            row_numbers=[int(number) for number in row if number!='.']
+            if [row_numbers[i] for i in range(len(row_numbers)-1) if row_numbers[i]==row_numbers[i+1]]!=[]: return False
+            for column in row:
+                column_numbers=[int(number) for number in board[row.index(column)][board.index(row)] if number!='.']
+                if [column_numbers[i] for i in range(len(column_numbers)-1) if column_numbers[i]==column_numbers[i+1]]!=[]: return False
+    else:
+        #recursive call to validate segmented board and returning True
+    
+
+board = [["5","3",".",".","7",".",".",".","."],
+         ["6",".",".","1","9","5",".",".","."],
+         [".","9","8",".",".",".",".","6","."],
+         ["8",".",".",".","6",".",".",".","3"],
+         ["4",".",".","8",".","3",".",".","1"],
+         ["7",".",".",".","2",".",".",".","6"],
+         [".","6",".",".",".",".","2","8","."],
+         [".",".",".","4","1","9",".",".","5"],
+         [".",".",".",".","8",".",".","7","9"]]
+print(valid_sudoku(board)) #True
+
+board = [["8","3",".",".","7",".",".",".","."],
+         ["6",".",".","1","9","5",".",".","."],
+         [".","9","8",".",".",".",".","6","."],
+         ["8",".",".",".","6",".",".",".","3"],
+         ["4",".",".","8",".","3",".",".","1"],
+         ["7",".",".",".","2",".",".",".","6"],
+         [".","6",".",".",".",".","2","8","."],
+         [".",".",".","4","1","9",".",".","5"],
+         [".",".",".",".","8",".",".","7","9"]]
+print(valid_sudoku(board)) #False

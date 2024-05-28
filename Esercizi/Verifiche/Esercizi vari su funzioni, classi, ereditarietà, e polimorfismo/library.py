@@ -31,26 +31,26 @@
 #             get_borrowed_books(member_id): list[Book] - restituisce la lista dei libri presi in prestito dal membro.
 class Book:
     def __init__(self, book_id: str, title: str, author: str, is_borrowed: bool=False) -> None:
-        self.book_id: str=book_id
-        self.id: str=title
+        self.id: str=book_id
+        self.title: str=title
         self.author: str=author
         self.is_borrowed: bool=is_borrowed
     def borrow(self) -> None:
         self.is_borrowed=True
     def return_book(self) -> None:
         self.is_borrowed=False
+    def __str__(self) -> str:
+        return self.title
 
 class Member:
-    def __init__(self, member_id: str, name: str, borrowed_books: list[Book]=[]) -> None:
+    def __init__(self, member_id: str, name: str) -> None:
         self.id: str=member_id
         self.name: str=name
-        self.borrowed_books: list[Book]=borrowed_books
+        self.borrowed_books: list[Book]=[]
     def borrow_book(self, book: Book) -> None:
-        self.borrowed_books.append(book)
-        book.is_borrowed=True
+        if book.is_borrowed==False: self.borrowed_books.append(book); book.is_borrowed=True #book.__str__()?
     def return_book(self, book: Book) -> None:
-        self.borrowed_books.remove(book)
-        book.is_borrowed=False
+        if book in self.borrowed_books: self.borrowed_books.remove(book); book.is_borrowed=False #book.__str__()?
 
 class Library:
     def __init__(self) -> None:
@@ -60,18 +60,18 @@ class Library:
         self.books.append(Book(book_id, title, author))
     def register_member(self, member_id:str, name: str) -> None:
         self.members.append(Member(member_id, name))
-
-
     def borrow_book(self, member_id: str, book_id: str) -> None:
         member=[member for member in self.members if member.id==member_id]
         book=[book for book in self.books if book.id==book_id]
-        if member==[]: print('Membro non trovato')
-        if book==[]: print('Libro non trovato')
-        ##############
-
-
+        if member==[]: return 'Membro non trovato'
+        if book==[]: return 'Libro non trovato'
+        member[0].borrow_book(book[0])
     def return_book(self, member_id: str, book_id: str) -> None:
-        [member for member in self.members if member.id==member_id][0].return_book([book for book in self.books if book.id==book_id][0])
+        member=[member for member in self.members if member.id==member_id]
+        book=[book for book in self.books if book.id==book_id]
+        if member==[]: return 'Membro non trovato'
+        if book==[]: return 'Libro non trovato'
+        member[0].return_book(book[0])
     def get_borrowed_books(self, member_id: str) -> list[Book]:
         return [member for member in self.members if member.id==member_id][0].borrowed_books
     
@@ -92,3 +92,28 @@ library.borrow_book("M002", "B002")
 
 print(library.get_borrowed_books("M001"))  # Expected output: ['The Great Gatsby']
 print(library.get_borrowed_books("M002"))  # Expected output: ['1984']
+
+###################
+
+library = Library()
+
+library.add_book("B001", "The Great Gatsby", "F. Scott Fitzgerald")
+library.add_book("B002", "1984", "George Orwell")
+library.add_book("B003", "To Kill a Mockingbird", "Harper Lee")
+
+# Register members
+library.register_member("M001", "Alice")
+library.register_member("M002", "Bob")
+library.register_member("M003", "Charlie")
+
+# Borrow books
+library.borrow_book("M001", "B001")
+library.borrow_book("M002", "B002")
+
+# Return books
+library.return_book("M001", "B001")
+library.return_book("M002", "B002")
+
+# Check borrowed books after returning
+print(library.get_borrowed_books("M001")) # Expected output: []
+print(library.get_borrowed_books("M002")) # Expected output: []
