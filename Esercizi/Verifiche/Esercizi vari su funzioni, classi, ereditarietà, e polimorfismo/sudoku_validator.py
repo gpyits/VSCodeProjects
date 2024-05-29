@@ -9,29 +9,30 @@
 #     Una tavola Sudoku (parzialmente riempita) potrebbe essere valida ma non è necessariamente risolvibile.
 #     Solo le celle riempite devono essere convalidate secondo le regole menzionate.
 def valid_sudoku(board: list[list[str]]) -> bool:
-    #try board[8] except IndexError, to prevent this calculation again
-    #calculate segmented board
-    if len(board)==9 or len(board==3): #check if this works logically
-        for row in board:
-            row_numbers=[int(number) for number in row if number!='.']
-            #if len(row_numbers[i])!=len(set(row_numbers[i]))
-            if [row_numbers[i] for i in range(len(row_numbers)-1) if row_numbers[i]==row_numbers[i+1]]!=[]: return False
-            for column in row:
-                column_numbers=[int(number) for number in board[row.index(column)][board.index(row)] if number!='.']
-                if [column_numbers[i] for i in range(len(column_numbers)-1) if column_numbers[i]==column_numbers[i+1]]!=[]: return False
-    else:
-        #recursive call to validate segmented board and returning True
-        pass
+    for row in board:
+        row_numbers=[int(number) for number in row if number!='.']
+        if len(row_numbers)!=len(set(row_numbers)): return False
+        for column in row:
+            column_numbers=[int(number) for number in board[row.index(column)][board.index(row)] if number!='.']
+            if len(column_numbers)!=len(set(column_numbers)): return False
+    for row in [0, 3, 6]:
+        for column in [0, 3, 6]:
+            box_numbers=[int(number) for number in [board[r][c] for r in range(row, row+3) for c in range(column, column+3)] if number!='.']
+            if len(box_numbers)!=len(set(box_numbers)): return False
+    return True
 
-board = [["5","3",".",".","7",".",".",".","."],
-         ["6",".",".","1","9","5",".",".","."],
-         [".","9","8",".",".",".",".","6","."],
-         ["8",".",".",".","6",".",".",".","3"],
-         ["4",".",".","8",".","3",".",".","1"],
-         ["7",".",".",".","2",".",".",".","6"],
-         [".","6",".",".",".",".","2","8","."],
-         [".",".",".","4","1","9",".",".","5"],
-         [".",".",".",".","8",".",".","7","9"]]
+board = [["5","3",".",  ".","7",".",  ".",".","."],
+         ["6",".",".",  "1","9","5",  ".",".","."],
+         [".","9","8",  ".",".",".",  ".","6","."],
+
+         ["8",".",".",  ".","6",".",  ".",".","3"],
+         ["4",".",".",  "8",".","3",  ".",".","1"],
+         ["7",".",".",  ".","2",".",  ".",".","6"],
+
+         [".","6",".",  ".",".",".",  "2","8","."],
+         [".",".",".",  "4","1","9",  ".",".","5"],
+         [".",".",".",  ".","8",".",  ".","7","9"]]
+
 print(valid_sudoku(board)) #True
 
 board = [["8","3",".",".","7",".",".",".","."],
@@ -44,13 +45,3 @@ board = [["8","3",".",".","7",".",".",".","."],
          [".",".",".","4","1","9",".",".","5"],
          [".",".",".",".","8",".",".","7","9"]]
 print(valid_sudoku(board)) #False
-
-# # Controlla tutti i sottogruppi 3x3
-# for box_row in range(0, 9, 3):
-#     for box_col in range(0, 9, 3):
-#         # Costruisce una lista degli elementi del sottogruppo 3x3 corrente
-#         box = [
-#             board[r][c]
-#             for r in range(box_row, box_row + 3)
-#             for c in range(box_col, box_col + 3)
-#         ]

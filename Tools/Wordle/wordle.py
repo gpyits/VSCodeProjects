@@ -5,19 +5,13 @@ import random, time
 #RESET '\033[0m'
 
 '''things to add:
-Add hints:
- -level 1 hints: YELLOW letter
- -level 2 hints: GREEN letter
-Add help:
- -level 1 help: prints a keyboard list with all the black, yellow and green letters
- -level 2 help: says word is invalid when there are known black letters in it
 Add statistics:
  Create a file statistics.txt with wins, losses and winrate%. Add time spent to win/lose at the end of the game (and for each word? maybe not)
 '''
 
 #prints game matrix for user interface
 def print_game(game: list[str]) -> None:
-    print('\n### WORDLE ###\n')
+    print('\n### WORDLE ###\nHelp: prints a keyboard with every letter found so far\nHints: type y for yellow, g for green\n')
     if len(game)!=1:
         for word in game[:-1]:
             print(*word)
@@ -27,7 +21,7 @@ def print_game(game: list[str]) -> None:
     print()
 
 #adds properly colored word to the game matrix
-def word_adder(correct_word: str, guess: str, game: list[str]) -> None:
+def word_adder(correct_word: str, guess: str, game: list[str], found_letters: dict[str:list]) -> None:
     #counts letters in correct word
     correct_count={}
     for letter in correct_word:
@@ -42,16 +36,18 @@ def word_adder(correct_word: str, guess: str, game: list[str]) -> None:
         if guess[i]==correct_word[i]:
             correct_count[guess[i]]-=1
             color_guess+=[f'\033[32m{guess[i]}\033[0m']
+            found_letters['g'][i]=color_guess[-1]
         #if letter is black
         else:
             color_guess+=[f'\033[30m{guess[i]}\033[0m']
+            found_letters['b'].append(color_guess[-1])
     #if letter is yellow
     for i in range(len(color_guess)):
         if guess[i] in correct_word and color_guess[i]==f'\033[30m{guess[i]}\033[0m':
-            print(True)
             if correct_count[guess[i]]>0:
                 color_guess[i]=f'\033[33m{guess[i]}\033[0m'
                 correct_count[guess[i]]-=1
+                found_letters['y'].append(color_guess[i])
             else:
                 continue
     game.append(color_guess)
@@ -65,26 +61,32 @@ elif wordle_language=='it':
 else:
     raise NameError(f'invalid language "{wordle_language}"')
 
+# Add help:
+#  -level 1 help: prints a keyboard list with all the black, yellow and green letters
+#  -level 2 help: says word is invalid when there are known black letters in it
 #game starter
 game=[]
 attempts=6
 correct_word=random.choice(file.readlines()).strip('\n')
-print('\n### WORDLE ###\n')
+found_letters={'b':[], 'y':[], 'g':['\033[30m#\033[0m' for i in range(5)], 'word': correct_word}#############
+print(found_letters)
+print('\n### WORDLE ###\nHelp: prints a keyboard with every letter found so far\nHints: type y for yellow, g for green\n')
 while attempts>0:
-    #is this really necessary?
-    if attempts==0:
-        time.sleep(0.5)
-        print(f'\nYou lost. Correct word was {correct_word}')
     #makes sure input is a real, length-5 word
     while True: 
         file.seek(0)
         guess=input('Guess word: ').upper().strip()
         if len(guess)==5 and guess+'\n' in file.readlines():
             break
+        #hints
+        elif guess=='Y':
+            pass
+        elif guess=='G':
+            pass
         else:
             print(f'Invalid word "{guess}"')
     #adds word to the game
-    word_adder(correct_word, guess, game)
+    word_adder(correct_word, guess, game, found_letters)
     print_game(game)
     #if user wins the game
     if guess==correct_word:
@@ -94,3 +96,5 @@ while attempts>0:
     #if guess isn't the right word
     else:
         attempts-=1
+time.sleep(0.5)
+print(f'\nYou lost. Correct word was {correct_word}')
