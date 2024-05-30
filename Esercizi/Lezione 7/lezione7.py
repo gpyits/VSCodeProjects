@@ -1,4 +1,3 @@
-
 # Write a function to find all numbers divisible by 7, not a multiple of 5, between 2000 and 3200 (both included). 
 # The numbers should be stored in a list and returned as output.
 def divisible_by(num: int, num_range: tuple) -> list:
