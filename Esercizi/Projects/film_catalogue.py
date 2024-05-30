@@ -39,4 +39,9 @@ class MovieCatalogue:
     def get_movies_by_director(self, director_name: str) -> None:
         print(f'Movies by {director_name}:', *self.movies[director_name], sep='\n')
     def search_movies_by_title(self, title: str) -> list[str]:
-        return movie if False '''continua qui''' else 'Errore: film is not present'
+        searched=[]
+        for movies in self.movies.keys(): 
+            for movie in movies: 
+                if title in movie: 
+                    searched.append(movie)
+        return searched if searched else 'Errore: l\'elemento selezionato non corrisponde a nessun criterio di ricerca'

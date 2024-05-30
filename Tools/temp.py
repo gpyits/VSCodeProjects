@@ -1,2 +1,4 @@
 a=[['word', 'word'], ['ksdjcfhn']]
-print([].extend(i for i in a))
+b=[]
+b.extend(i for i in a)
+print(b)

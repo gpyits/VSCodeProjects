@@ -30,17 +30,17 @@
 #             return_book(member_id: str, book_id: str): Permette al membro di restituire il libro.
 #             get_borrowed_books(member_id): list[Book] - restituisce la lista dei libri presi in prestito dal membro.
 class Book:
-    def __init__(self, book_id: str, title: str, author: str, is_borrowed: bool=False) -> None:
+    def __init__(self, book_id: str, title: str, author: str) -> None:
         self.id: str=book_id
         self.title: str=title
         self.author: str=author
-        self.is_borrowed: bool=is_borrowed
+        self.is_borrowed: bool=False
     def borrow(self) -> None:
         self.is_borrowed=True
     def return_book(self) -> None:
         self.is_borrowed=False
     def __str__(self) -> str:
-        return self.title
+        return self.title 
 
 class Member:
     def __init__(self, member_id: str, name: str) -> None:
@@ -49,6 +49,7 @@ class Member:
         self.borrowed_books: list[Book]=[]
     def borrow_book(self, book: Book) -> None:
         if book.is_borrowed==False: self.borrowed_books.append(book); book.is_borrowed=True
+        else: raise ValueError('Book is already borrowed')
     def return_book(self, book: Book) -> None:
         if book in self.borrowed_books: self.borrowed_books.remove(book); book.is_borrowed=False
 
@@ -61,12 +62,13 @@ class Library:
     def register_member(self, member_id:str, name: str) -> None:
         self.members[member_id]=Member(member_id, name)
     def borrow_book(self, member_id: str, book_id: str) -> None:
+        if member_id not in self.members: raise ValueError('Member not found')
+        if book_id not in self.books: raise ValueError('Book not found')
         self.members[member_id].borrow_book(self.books[book_id])
     def return_book(self, member_id: str, book_id: str) -> None:
         self.members[member_id].return_book(self.books[book_id])
     def get_borrowed_books(self, member_id: str) -> list[Book]:
-        #return [book.__str__() for book in self.members[member_id].borrowed_books]?
-        return self.members[member_id].borrowed_books
+        return [book.__str__() for book in self.members[member_id].borrowed_books]
     
 library = Library()
 
