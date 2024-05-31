@@ -15,7 +15,7 @@
 #             deposit(account_id, amount): deposita l'importo specificato sul conto con l'ID fornito.
 #             get_balance(account_id): restituisce il saldo del conto con l'ID specificato.
 class Account:
-    def __init__(self, account_id: str, balance: float) -> None:
+    def __init__(self, account_id: str, balance: float=0) -> None:
         self.id=account_id
         self.balance=balance
     def deposit(self, amount: float) -> None:
@@ -25,23 +25,26 @@ class Account:
 
 class Bank:
     def __init__(self) -> None:
-        self.accounts: dict[str, Account]=[]
-    def create_account(self, account_id: str) -> None:
-        self.accounts.append(Account(account_id, 0))
+        self.accounts: dict[str, Account]={}
+    def create_account(self, account_id: str) -> Account:
+        if account_id not in self.accounts: self.accounts[account_id]=Account(account_id, 0); return Account(account_id, 0)
+        else: raise ValueError('Account with this ID already exists')
     def deposit(self, account_id: str, amount: float) -> None:
-        account=[account for account in self.accounts if account.id==account_id]
-        if account==[]: return 'Utente non trovato'
-        account[0].deposit(amount)
+        if account_id in self.accounts: self.accounts[account_id].deposit(amount)
+        else: raise ValueError('Account not found - deposit')
     def get_balance(self, account_id: str) -> float:
-        return [account for account in self.accounts if account.id==account_id][0].get_balance()
-    
+        if account_id in self.accounts: return self.accounts[account_id].get_balance()
+        else: raise ValueError('Account not found')
 
 bank = Bank()
 account1 = bank.create_account("123")
-bank.deposit("123",100)
-print(bank.get_balance("123")) #100
+try:
+    bank.create_account("123")
+except ValueError as e:
+    print(e)
 
 bank = Bank()
-account2 = bank.create_account("456")
-bank.deposit("456",200)
-print(bank.get_balance("456")) #200
+try:
+    bank.get_balance("456")
+except ValueError as e:
+    print(e)

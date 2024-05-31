@@ -52,6 +52,7 @@ class Member:
         else: raise ValueError('Book is already borrowed')
     def return_book(self, book: Book) -> None:
         if book in self.borrowed_books: self.borrowed_books.remove(book); book.is_borrowed=False
+        else: raise ValueError('Book not borrowed by this member')
 
 class Library:
     def __init__(self) -> None:
