@@ -45,7 +45,7 @@ class RecipeManager:
             else: raise ValueError('Error: ingredient is not among recipe ingredients')
         else: raise ValueError('Error: recipe does not exist')
     def list_recipes(self) -> list[str]:
-        return [k for k in self.recipes.keys()]
+        return [k for k in self.recipes.keys()] #print(*[f'Recipe {k} with ingredients: {v}' for k, v in self.recipes.items()], sep='\n')
     def list_ingredients(self, recipe_name: str) -> list[str]:
         try: return self.recipes[recipe_name]
         except ValueError: raise ValueError('Error: recipe does not exist')
