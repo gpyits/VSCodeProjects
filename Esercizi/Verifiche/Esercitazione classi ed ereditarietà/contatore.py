@@ -13,12 +13,23 @@
 # - get(): Restituisce il valore corrente del conteggio.
 # - mostra(): Stampa a schermo il valore corrente del conteggio.
 class Contatore:
-    pass
-
+    def __init__(self) -> None:
+        self.conteggio: int=0
+    def setZero(self) -> None:
+        self.conteggio=0
+    def add1(self) -> None:
+        self.conteggio+=1
+    def sub1(self) -> None:
+        if self.conteggio==0: print('Non è possibile eseguire la sottrazione')
+        else: self.conteggio-=1
+    def get(self) -> int:
+        return self.conteggio
+    def mostra(self) -> None:
+        print(f'Conteggio attuale: {self.conteggio}')
+    
 c = Contatore()  
 c.add1() 
 c.mostra() #Conteggio attuale: 1
-
 c = Contatore()  
 c.sub1()  
 c.mostra() #Non è possibile eseguire la sottrazione

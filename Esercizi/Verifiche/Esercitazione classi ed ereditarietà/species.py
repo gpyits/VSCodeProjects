@@ -33,11 +33,29 @@
 #     Calcolo degli anni necessari per superare la popolazione di un'altra specie:
 #           Hint: Loop incrementale che continua ad aggiornare la popolazione di entrambe le specie finché la popolazione di questa specie non supera quella dell'altra.
 class Specie:
-    pass
+    def __init__(self, nome: str, popolazione: int, tasso_di_crescita: float) -> None:
+        self.nome: str=nome
+        self.popolazione: int=popolazione
+        self.tasso_di_crescita: float= tasso_di_crescita
+    def cresci(self) -> None: 
+        self.popolazione=int(self.popolazione*(1+self.tasso_di_crescita/100))
+    def anni_per_superare(self, altra_specie: 'Specie') -> int:
+        anni=0
+        while self.popolazione<altra_specie.popolazione: self.cresci(), altra_specie.cresci(); anni+=1
+        return anni
+    def getDensita(self, area_kmq: float) -> int:
+        anni=0
+        while self.popolazione//area_kmq!=1:
+            self.cresci(); anni+=1
+        return anni
+    
 class BufaloKlingon(Specie):
-    pass
+    def __init__(self, popolazione: int, tasso_di_crescita: float, nome: str='BufaloKlingon') -> None:
+        super().__init__(nome, popolazione, tasso_di_crescita)
+
 class Elefante(Specie):
-    pass
+    def __init__(self, popolazione: int, tasso_di_crescita: float, nome: str='Elefante') -> None:
+        super().__init__(nome, popolazione, tasso_di_crescita)
 
 # Creazione delle istanze delle specie
 bufalo_klingon = BufaloKlingon(100, 15)  # Crea un'istanza di BufaloKlingon con popolazione 100 e tasso di crescita 15%

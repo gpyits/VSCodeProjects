@@ -24,18 +24,44 @@
 #     - search_recipe_by_ingredient(ingredient): Trova e restituisce tutte le ricette che contengono un determinato ingrediente. 
 #       Restituisce un elenco di ricette o un messaggio di errore se nessuna ricetta contiene l'ingrediente.
 class RecipeManager:
-    pass
-
+    def __init__(self) -> None:
+        self.recipes: dict[str, list[str]]={}
+    def create_recipe(self, name: str, ingredients: list[str]) -> dict[str, list[str]]:
+        if name not in self.recipes: self.recipes[name]=ingredients; return {name:self.recipes[name]}
+        else: raise ValueError('Error: recipe already exists')
+    def add_ingredient(self, recipe_name: str, ingredient: str) -> dict[str, list[str]]:
+        if recipe_name in self.recipes: 
+            if ingredient not in self.recipes[recipe_name]: self.recipes[recipe_name].append(ingredient); return {recipe_name:self.recipes[recipe_name]}
+            else: raise ValueError('Error: ingredient already is among recipe ingredients')
+        else: raise ValueError('Error: recipe does not exist')
+    def remove_ingredient(self, recipe_name: str, ingredient: str) -> dict[str, list[str]]:
+        if recipe_name in self.recipes: 
+            if ingredient in self.recipes[recipe_name]: self.recipes[recipe_name].remove(ingredient); return {recipe_name:self.recipes[recipe_name]}
+            else: raise ValueError('Error: ingredient is not among recipe ingredients')
+        else: raise ValueError('Error: recipe does not exist')
+    def update_ingredient(self, recipe_name: str, old_ingredient: str, new_ingredient: str) -> dict[str, list[str]]:
+        if recipe_name in self.recipes: 
+            if old_ingredient in self.recipes[recipe_name]: self.recipes[recipe_name][self.recipes[recipe_name].index(old_ingredient)]=new_ingredient; return {recipe_name:self.recipes[recipe_name]}
+            else: raise ValueError('Error: ingredient is not among recipe ingredients')
+        else: raise ValueError('Error: recipe does not exist')
+    def list_recipes(self) -> list[str]:
+        return [k for k in self.recipes.keys()]
+    def list_ingredients(self, recipe_name: str) -> list[str]:
+        try: return self.recipes[recipe_name]
+        except ValueError: raise ValueError('Error: recipe does not exist')
+    def search_recipe_by_ingredient(self, ingredient: str) -> dict[str, list[str]]:
+        searched_recipes=[{k:v} for k, v in self.recipes.items() if ingredient.lower() in [i.lower() for i in self.recipes[k]]][0]
+        return searched_recipes if searched_recipes else f'Error: no valid recipe found for ingredient "{ingredient.title()}"'
+    
 manager = RecipeManager()
-print(manager.create_recipe("Pizza Margherita", ["Farina", "Acqua", "Lievito", "Pomodoro", "Mozzarella"]))
-print(manager.add_ingredient("Pizza Margherita", "Basilico"))
-print(manager.update_ingredient("Pizza Margherita", "Mozzarella", "Mozzarella di Bufala"))
-print(manager.remove_ingredient("Pizza Margherita", "Acqua"))
-print(manager.list_ingredients("Pizza Margherita"))
+print(manager.create_recipe("Torta di mele", ["Farina", "Uova", "Mele"]))
+print(manager.add_ingredient("Torta di mele", "Zucchero"))
+print(manager.list_recipes()) # ['Torta di mele']
+print(manager.list_ingredients("Torta di mele"))
+print(manager.search_recipe_by_ingredient("Uova"))
 
-#Expected:
-# {'Pizza Margherita': ['Farina', 'Acqua', 'Lievito', 'Pomodoro', 'Mozzarella']}
-# {'Pizza Margherita': ['Farina', 'Acqua', 'Lievito', 'Pomodoro', 'Mozzarella', 'Basilico']}
-# {'Pizza Margherita': ['Farina', 'Acqua', 'Lievito', 'Pomodoro', 'Mozzarella di Bufala', 'Basilico']}
-# {'Pizza Margherita': ['Farina', 'Lievito', 'Pomodoro', 'Mozzarella di Bufala', 'Basilico']}
-# ['Farina', 'Lievito', 'Pomodoro', 'Mozzarella di Bufala', 'Basilico']
+# {'Torta di mele': ['Farina', 'Uova', 'Mele']}
+# {'Torta di mele': ['Farina', 'Uova', 'Mele', 'Zucchero']}
+# ['Torta di mele']
+# ['Farina', 'Uova', 'Mele', 'Zucchero']
+# {'Torta di mele': ['Farina', 'Uova', 'Mele', 'Zucchero']}

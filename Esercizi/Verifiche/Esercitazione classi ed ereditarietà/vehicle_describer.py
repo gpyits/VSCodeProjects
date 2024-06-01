@@ -29,11 +29,26 @@
 #           __init__(self, marca, modello, anno, tipo): metodo costruttore che inizializza gli attributi della classe base e tipo.
 #           descrivi_veicolo(self): metodo che sovrascrive quello della classe base per includere anche il tipo di moto nella descrizione, nel formato "Marca: [marca], Modello: [modello], Anno: [anno], Tipo: [tipo]".
 class Veicolo:
-    pass
+    def __init__(self, marca: str, modello: str, anno: int) -> None:
+        self.marca: str=marca
+        self.modello: str=modello
+        self.anno: int=anno
+    def descrivi_veicolo(self) -> None:
+        print(f'Marca: {self.marca}, Modello: {self.modello}, Anno: {self.anno}')
+
 class Auto(Veicolo):
-    pass
+    def __init__(self, marca: str, modello: str, anno: int, numero_porte: int) -> None:
+        super().__init__(marca, modello, anno)
+        self.numero_porte: int=numero_porte
+    def descrivi_veicolo(self) -> None:
+        print(f'Marca: {self.marca}, Modello: {self.modello}, Anno: {self.anno}, Numero di porte: {self.numero_porte}')
+    
 class Moto(Veicolo):
-    pass
+    def __init__(self, marca: str, modello: str, anno: int, tipo: str) -> None:
+        super().__init__(marca, modello, anno)
+        self.tipo: str=tipo
+    def descrivi_veicolo(self) -> None:
+        print(f'Marca: {self.marca}, Modello: {self.modello}, Anno: {self.anno}, Tipo: {self.tipo}')
 
 veicolo = Veicolo("Generic", "Model", 2020)
 auto = Auto("Toyota", "Corolla", 2021, 4)
