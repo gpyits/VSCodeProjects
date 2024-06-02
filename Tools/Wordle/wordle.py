@@ -69,7 +69,7 @@ game=[]
 attempts=6
 correct_word=random.choice(file.readlines()).strip('\n')
 found_letters={'b':[], 'y':[], 'g':['\033[30m#\033[0m' for i in range(5)], 'word': correct_word}#############
-print(found_letters)
+#print(found_letters)
 print('\n### WORDLE ###\nHelp: prints a keyboard with every letter found so far\nHints: type y for yellow, g for green\n')
 while attempts>0:
     #makes sure input is a real, length-5 word
@@ -96,5 +96,6 @@ while attempts>0:
     #if guess isn't the right word
     else:
         attempts-=1
+#always prints. duh
 time.sleep(0.5)
 print(f'\nYou lost. Correct word was {correct_word}')
