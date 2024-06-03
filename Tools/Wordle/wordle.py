@@ -11,7 +11,7 @@ Add statistics:
 
 #prints game matrix for user interface
 def print_game(game: list[str]) -> None:
-    print('\n### WORDLE ###\nHelp: prints a keyboard with every letter found so far\nHints: type y for yellow, g for green\n')
+    print('\n### WORDLE ###\nHints: prints a keyboard with every letter found so far\nHints: type y for yellow, g for green\nHelp: type help1 for keyboard')
     if len(game)!=1:
         for word in game[:-1]:
             print(*word)
@@ -25,10 +25,8 @@ def word_adder(correct_word: str, guess: str, game: list[str], found_letters: di
     #counts letters in correct word
     correct_count={}
     for letter in correct_word:
-        if letter in correct_count:
-            correct_count[letter]+=1
-        else:
-            correct_count[letter]=1
+        if letter in correct_count: correct_count[letter]+=1
+        else: correct_count[letter]=1
     #creates empty word
     color_guess=[]
     for i in range((len(guess))):
@@ -36,7 +34,10 @@ def word_adder(correct_word: str, guess: str, game: list[str], found_letters: di
         if guess[i]==correct_word[i]:
             correct_count[guess[i]]-=1
             color_guess+=[f'\033[32m{guess[i]}\033[0m']
-            found_letters['g'][i]=color_guess[-1]
+            found_letters['g'][i][0]=color_guess[-1]
+            found_letters['g'][i][1]-=1
+            found_letters['y'][i][0]=f'\033[33m{color_guess[-1]}\033[0m'
+            found_letters['y'][i][1]-=1
         #if letter is black
         else:
             color_guess+=[f'\033[30m{guess[i]}\033[0m']
@@ -47,7 +48,8 @@ def word_adder(correct_word: str, guess: str, game: list[str], found_letters: di
             if correct_count[guess[i]]>0:
                 color_guess[i]=f'\033[33m{guess[i]}\033[0m'
                 correct_count[guess[i]]-=1
-                found_letters['y'].append(color_guess[i])
+                found_letters['y'][i][0]=color_guess[-1]
+                found_letters['y'][i][1]-=1
             else:
                 continue
     game.append(color_guess)
@@ -68,9 +70,12 @@ else:
 game=[]
 attempts=6
 correct_word=random.choice(file.readlines()).strip('\n')
-found_letters={'b':[], 'y':[], 'g':['\033[30m#\033[0m' for i in range(5)], 'word': correct_word}#############
+found_letters={'b':[], 'y':[], 'g':[]}
+correct_count={i:1 for i in correct_word}
+for k, v in correct_count.items(): found_letters['g'].append(['\033[30m#\033[0m', v]), found_letters['y'].append(['\033[30m#\033[0m', v])
+help='qwertyuiop\n asdfghjkl\n zxcvbnm'
 #print(found_letters)
-print('\n### WORDLE ###\nHelp: prints a keyboard with every letter found so far\nHints: type y for yellow, g for green\n')
+print('\n### WORDLE ###\nHints: type y for yellow, g for green\n')
 while attempts>0:
     #makes sure input is a real, length-5 word
     while True: 
@@ -78,10 +83,26 @@ while attempts>0:
         guess=input('Guess word: ').upper().strip()
         if len(guess)==5 and guess+'\n' in file.readlines():
             break
-        #hints
-        elif guess=='Y':
-            pass
+        #yellow letter hint
+        elif guess=='Y': 
+            for letter in ''.join(random.sample(correct_word, 5)):
+                if letter not in found_letters['y'] and letter not in [i for i in found_letters['y']]:
+                    if found_letters['y'][correct_word.index(letter)][1]!=0:
+                        found_letters['y'][correct_word.index(letter)][0]=f'\033[33m{letter}\033[0m'
+                        found_letters['y'][correct_word.index(letter)][1]-=1
+                        print(f'Hint: \033[33m{letter}\033[0m')
+                        break
+        #green letter hint
         elif guess=='G':
+            for letter in range(len(correct_word)):
+                if f'\033[32m{correct_word[letter]}\033[0m' not in found_letters['g']:
+                    if found_letters['g'][letter][1]!=0:
+                        found_letters['g'][letter][0]=f'\033[32m{correct_word[letter]}\033[0m'
+                        found_letters['g'][letter][1]-=1
+                        print('Hint:', ''.join(i[0] for i in found_letters['g']), sep=' ')
+                        break
+        #help
+        elif guess=='HELP':
             pass
         else:
             print(f'Invalid word "{guess}"')
@@ -96,6 +117,6 @@ while attempts>0:
     #if guess isn't the right word
     else:
         attempts-=1
-#always prints. duh
-time.sleep(0.5)
-print(f'\nYou lost. Correct word was {correct_word}')
+        if attempts==0:
+            time.sleep(0.5)
+            print(f'\nYou lost. Correct word was {correct_word}')

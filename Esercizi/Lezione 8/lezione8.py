@@ -82,7 +82,7 @@ class Book:
     @classmethod
     def from_string(cls, book_string: str) -> object:
         title, author, isbn=book_string.split(', ')
-        return Book(title, author, isbn)
+        return Book(title, author, int(isbn))
 
 class Member:
     def __init__(self, name: str, member_id: str) -> None:
@@ -98,7 +98,7 @@ class Member:
     @classmethod
     def from_string(cls, member_str: str) -> object:
         name, member_id=member_str.split(', ')
-        return Member(name, member_id)
+        return Member(name, int(member_id))
 
 class Library:
     total_books: int=0
@@ -106,9 +106,9 @@ class Library:
         self.books: list[Book]=[]
         self.members: list[Member]=[]
     def add_book(self, book:Book) -> None:
-        if book not in self.books: self.books.append(book); total_books+=1
+        if book not in self.books: self.books.append(book); Library.total_books+=1
     def remove_book(self, book: Book) -> None:
-        if book.id in self.books: self.books.remove(book); total_books-=1
+        if book.id in self.books: self.books.remove(book); Library.total_books-=1
     def register_member(self, member: Member) -> None:
         if member.id not in self.members: self.members.append(member)
     def lend_book(self, book: Book, member: Member) -> None:
