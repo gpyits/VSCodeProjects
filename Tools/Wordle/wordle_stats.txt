@@ -1,0 +1,7 @@
+Profile: Gabriel
+Games won: 0
+Games lost: 0
+Winrate: 0%
+Current win streak: 0
+Max win streak: 0
+False
