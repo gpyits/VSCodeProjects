@@ -1,7 +1,8 @@
 Profile: Gabriel
-Games won: 0
+Games won: 3
 Games lost: 0
-Winrate: 0%
-Current win streak: 0
-Max win streak: 0
-False
+Winrate: 100%
+Current win streak: 3
+Max win streak: 3
+Time spent playing: 0.05607565051979489hours
+True

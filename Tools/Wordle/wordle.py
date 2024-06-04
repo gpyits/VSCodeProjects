@@ -4,22 +4,43 @@ import random, time
 #GREEN '\033[32m'
 #RESET '\033[0m'
 
-'''things to add:
-Add statistics:
- Create a file statistics.txt with wins, losses and winrate%. Add time spent to win/lose at the end of the game (and for each word? maybe not)
-'''
 #stats handler
-def user_stats(user: str) -> None:
+def user_stats(has_won: bool, time: float, reset=False) -> None:
     with open('Tools/Wordle/wordle_stats.txt', 'r') as f:
         lines=f.readlines()
         f.seek(0)
-    profile_name, games_won, games_lost, winrate, current_streak, max_streak, won_last_game=lines[0][9:-1][0], lines[1][11:-1][0], lines[2][12:-1][0], lines[3][8:-2], lines[4][19:-1], lines[5][16:-1], lines[6][:-1]
-    print(profile_name, games_won, games_lost, winrate, current_streak, max_streak, won_last_game)
+    profile_name, games_won, games_lost, winrate, current_streak, max_streak, total_time, won_last_game=lines[0][9:-1], int(lines[1][11:-1]), int(lines[2][12:-1]), int(lines[3][9:-2]), int(lines[4][20:-1]), int(lines[5][16:-1]), float(lines[6][20: -6]), bool(lines[7])
+    games_won+=1 if has_won else 0 #if player won
+    games_lost+=1 if not has_won else 0 #if player lost
+    winrate=round(games_won/(games_won+games_lost)*100) #calculates winrate
+    current_streak=current_streak+1 if has_won&won_last_game else 0 #calculates win streak
+    max_streak=current_streak if current_streak>max_streak else max_streak #updates maximum streak if the current streak is bigger
+    time/=3600 #seconds to hour conversion
+    total_time+=time #adds time spent
+    won_last_game=has_won #updates last game win for streak purposes
+    #updates file
+    with open('Tools/Wordle/wordle_stats.txt', 'w') as f:
+        if not reset:
+            lines=[
+                f'Profile: {profile_name}\n', 
+                f'Games won: {games_won}\n', 
+                f'Games lost: {games_lost}\n', 
+                f'Winrate: {winrate}%\n', 
+                f'Current win streak: {current_streak}\n', 
+                f'Max win streak: {max_streak}\n',
+                f'Time spent playing: {round(total_time, 2)}hours\n',
+                str(won_last_game)
+                ]
+        else:
+            lines=['Profile: Gabriel\n', 'Games won: 0\n', 'Games lost: 0\n', 'Winrate: 0%\n', 'Current win streak: 0\n', 'Max win streak: 0\n', 'Time spent playing: 0hours\n', 'False']
+        for line in lines:
+            f.write(line)
+
+#prints user statistics
+def print_user_stats() -> None:
     with open('Tools/Wordle/wordle_stats.txt', 'r') as f:
-        pass
-def print_user_stats(user: str) -> None:
-    with open('Tools/Wordle/wordle_stats.txt') as f:
-        pass
+        for line in f.readlines()[:-1]:
+            print(line.strip('\n'))
 
 #prints letters keyboard
 def print_help(help: list[str]) -> None:
@@ -75,8 +96,8 @@ def word_adder(correct_word: str, guess: str, game: list[str], found_letters: di
             if correct_count[guess[i]]>0:
                 color_guess[i]=f'\033[33m{guess[i]}\033[0m'
                 correct_count[guess[i]]-=1
-                found_letters['y'][i][0]=color_guess[-1]
-                found_letters['y'][i][1]-=1
+                found_letters['y'][shuffled.index(guess[i])][0]=f'\033[30m{guess[i]}\033[0m'
+                found_letters['y'][shuffled.index(guess[i])][1]-=1
                 #help keyboard logic
                 if guess[i] in help:
                     help[help.index(guess[i])]=f'\033[33m{guess[i]}\033[0m'
@@ -95,14 +116,25 @@ elif wordle_language=='it':
 else:
     raise NameError(f'invalid language "{wordle_language}"')
 
-game=[]
-attempts=6
-correct_word=random.choice(file.readlines()).strip('\n')
+#game starter
+game=[] #game matrix
+attempts=6 #attempts
+correct_word=random.choice(file.readlines()).strip('\n') #chooses word
+#hints
 found_letters={'b':[], 'y':[], 'g':[]}
-for i in correct_word: found_letters['g'].append(['\033[30m#\033[0m', 1]), found_letters['y'].append(['\033[30m#\033[0m', 1])
+for i in correct_word: found_letters['g'].append(['\033[30m#\033[0m', 1]), found_letters['y'].append(['#', 1])
+#yellow hints logic
+shuffled=list(correct_word)
+random.shuffle(shuffled)
+shuffled=''.join(i for i in shuffled)
+#keyboard help
 help=['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M']
+#starting banner
 print('\n### WORDLE ###\nHints: type y for yellow, g for green\n')
-easy=input('Choose difficulty: [easy/normal]').lower()
+#game difficulty
+easy=input('Choose difficulty: [easy/else] ').lower()
+#starts timer for current game
+timer_start=time.time()
 while attempts>0:
     #makes sure input is a real, length-5 word 
     while True:
@@ -119,12 +151,12 @@ while attempts>0:
                 if choice=='y' or choice==0: break
             else: break
         #yellow letter hint
-        elif guess=='Y': 
-            for letter in ''.join(random.sample(correct_word, 5)):
-                if letter not in found_letters['y'] and letter not in [i for i in found_letters['y']]:
-                    if found_letters['y'][correct_word.index(letter)][1]!=0:
-                        found_letters['y'][correct_word.index(letter)][0]=f'\033[33m{letter}\033[0m'
-                        found_letters['y'][correct_word.index(letter)][1]-=1
+        elif guess=='Y':
+            for letter in shuffled:
+                if [f'\033[33m{letter}\033[0m', 1] not in [i for i in found_letters['y']]:
+                    if found_letters['y'][shuffled.index(letter)][1]>0:
+                        found_letters['y'][shuffled.index(letter)][0]=f'\033[33m{letter}\033[0m'
+                        found_letters['y'][shuffled.index(letter)][1]-=1
                         #help keyboard logic
                         if letter in help:
                             help[help.index(letter)]=f'\033[33m{letter}\033[0m'
@@ -135,8 +167,8 @@ while attempts>0:
         #green letter hint
         elif guess=='G':
             for letter in range(len(correct_word)):
-                if f'\033[32m{correct_word[letter]}\033[0m' not in found_letters['g']:
-                    if found_letters['g'][letter][1]!=0:
+                if f'\033[32m{correct_word[letter]}\033[0m' not in [i[0] for i in found_letters['g']]:
+                    if found_letters['g'][letter][1]>0:
                         found_letters['g'][letter][0]=f'\033[32m{correct_word[letter]}\033[0m'
                         found_letters['g'][letter][1]-=1
                         #help keyboard logic
@@ -158,6 +190,8 @@ while attempts>0:
     if guess==correct_word:
         time.sleep(0.5)
         print(f'\nCongratulations! You won!\nAttempts: {6-attempts}')
+        user_stats(True, time.time()-timer_start)
+        print_user_stats()
         break
     #if guess isn't the right word
     else:
@@ -165,3 +199,5 @@ while attempts>0:
         if attempts==0:
             time.sleep(0.5)
             print(f'\nYou lost. Correct word was {correct_word}')
+            user_stats(False, time.time()-timer_start)
+            print_user_stats()
