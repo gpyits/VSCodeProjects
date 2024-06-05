@@ -27,21 +27,37 @@
 
 # Si verifichi il funzionamento scrivendo un codice che crei almeno due oggetti di tipo Film, 
 # aggiunga a ognuno dei due almeno dieci valutazioni e richiami il metodo recensione().
-
 class Media:
-    def __init__(self, title: str, reviews: list[int]) -> None:
-        self.title: str=title
-        self.reviews: list[float]=reviews
+    def __init__(self, reviews: list[int]) -> None:
+        self.reviews: list[int]=reviews
     def set_title(self, title: str) -> None:
         self.title=title
     def get_title(self) -> str:
         return self.title
-    def aggiungiValutazione(self, voto: float) -> None:
+    def aggiungiValutazione(self, voto: int) -> None:
         self.reviews.append(voto)
     def getMedia(self) -> float:
-        return sum(self.reviews)/len(self.reviews)
+        return round(sum(self.reviews)/len(self.reviews), 1)
     def getRate(self) -> str:
-        ratings=[(0), (1, 'Terribile'), (2, 'Brutto'), (3, 'Normale'), (4, 'Bello'), (5, 'Grandioso')]
-        for i in range(1, len(ratings)):
-            if self.getMedia()##
-            pass
+        global ratings
+        ratings={1: 'Terribile', 2: 'Brutto', 3: 'Normale', 4: 'Bello', 5: 'Grandioso'}
+        return ratings[round(self.getMedia())]
+    def ratePercentage(self, voto: int) -> float:
+        return round(len([i for i in self.reviews if i==voto])/len(self.reviews)*100, 2)
+    def recensione(self) -> None:
+        print(f'Titolo del film: {self.title}',\
+              f'Voto medio: {self.getMedia()}',\
+              f'Giudizio: {self.getRate()}',\
+              f'Terribile: {self.ratePercentage(1)}%',\
+              f'Brutto: {self.ratePercentage(2)}%',\
+              f'Normale: {self.ratePercentage(3)}%',\
+              f'Bello: {self.ratePercentage(4)}%',\
+              f'Grandioso: {self.ratePercentage(5)}%', sep='\n')
+
+class Film(Media):
+    def __init__(self, reviews: list[int]) -> None:
+        super().__init__(reviews)
+    
+film1=Film([1, 2, 4, 4, 4, 5, 5, 5, 5, 3])
+film1.set_title('The Shawshank Redemption')
+film1.recensione()
