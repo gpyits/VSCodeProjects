@@ -57,7 +57,7 @@ class Media:
 class Film(Media):
     def __init__(self, reviews: list[int]) -> None:
         super().__init__(reviews)
-    
+
 film1=Film([1, 2, 4, 4, 4, 5, 5, 5, 5, 3])
 film1.set_title('The Shawshank Redemption')
 film1.recensione()
