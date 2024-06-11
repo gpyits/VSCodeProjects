@@ -45,16 +45,17 @@ class Doctor(Person):
         self.__specialization: str=specialization if type(specialization)==str else print('Specialization must be a string')
         self.__parcel: float=parcel if type(parcel)==float else print('Parcel must be a float')
     def setSpecialization(self, specialization: str) -> None:
-        if type(specialization)!=str: print('Specialization must be a string'); return
+        if type(specialization)!=str: return 'Specialization must be a string'
         self.__specialization: str=specialization
     def setParcel(self, parcel: float) -> None:
-        if type(parcel)!=float: print('Parcel must be a float')
+        if type(parcel)!=float: return 'Parcel must be a float'
         self.__parcel: float=parcel
     def getSpecialization(self) -> str:
         return self.__specialization
     def getParcel(self) -> float:
         return self.__parcel
     def isAValidDoctor(self) -> bool:
-        print(f'Doctor {self.getName()} {self.getLastName()} is valid'); return True if self.getAge>=30 else print(f'Doctor {self.getName()} {self.getLastName()} is not valid'); return False
+        print(f'Doctor {self.getName()} {self.getLastName()} is valid') if self.getAge()>=30 else print(f'Doctor {self.getName()} {self.getLastName()} is not valid')
+        return True if self.getAge()>=30 else False
     def doctorGreet(self) -> None:
         self.greet(), print(f'\nI\'m a {self.getSpecialization()}')

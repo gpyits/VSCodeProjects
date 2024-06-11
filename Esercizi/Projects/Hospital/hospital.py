@@ -122,41 +122,85 @@ In tale file, creare una classe chiamata Fattura.
       richiamando il metodo getFatture() e getSalary(). 
       Stampare "Alla lista del Dottor cognome è stato aggiunto il paziente {codice_identificativo}"
     
-    removePatient(): consente di rimuovere un paziente alla lista di pazienti di un dottore ricevendo in input il codice identificativo del paziente da rimuovere, aggiornando poi il numero di fatture e il salario, richiamando il metodo get Fatture() e getSalary(). Stampare "Alla lista del Dottor cognome è stato rimosso il paziente {codice_identificativo}".
-
-### Creazione di Test Case con UnitTest
-
-Creare una suite di test utilizzando il modulo unittest di Python per verificare il corretto funzionamento delle classi Persona, Dottore, Paziente e Fattura fornite nel codice. I test devono coprire l'inizializzazione degli oggetti, i metodi di accesso e modifica degli attributi, e i comportamenti specifici delle classi.
-
--Istruzioni:
-Creare un nuovo file Python denominato "test_persona.py".
-Importare il modulo unittest e tutte le classi definite.
-
-Test della Classe Persona
-- Creare una classe di test chiamata TestPersona che eredita da unittest.TestCase.
-- Implementare il metodo setUp per inizializzare un oggetto Persona con nome e cognome.
-- Scrivere test per verificare:
-  - L'inizializzazione corretta degli attributi first_name, last_name e age.
-  - Il funzionamento dei metodi setName, setLastName e setAge.
-
-Test della Classe Dottore
-- Creare una classe di test chiamata TestDottore che eredita da unittest.TestCase.
-- Implementare il metodo setUp per inizializzare un oggetto Dottore con nome, cognome, specializzazione e parcella.
-- Scrivere test per verificare:
-  - L'inizializzazione corretta degli attributi specifici di Dottore.
-  - Il funzionamento del metodo isValidDoctor con diverse età.
-
-Test della Classe Paziente
-- Creare una classe di test chiamata TestPaziente che eredita da unittest.TestCase.
-- Implementare il metodo setUp per inizializzare un oggetto Paziente con nome, cognome e ID.
-- Scrivere test per verificare:
-  - L'inizializzazione corretta degli attributi specifici di Paziente.
-
-Test della Classe Fattura
-- Creare una classe di test chiamata TestFattura che eredita da unittest.TestCase.
-- Implementare il metodo setUp per inizializzare un oggetto Fattura con una lista di pazienti e un dottore valido.
-- Scrivere test per verificare:
-  - L'inizializzazione corretta della classe Fattura.
-  - Il calcolo corretto del salario e del numero di fatture.
-  - L'aggiunta e la rimozione di pazienti dalla lista.
+    removePatient(): 
+      Consente di rimuovere un paziente alla lista di pazienti di un dottore ricevendo in input il codice identificativo del paziente da rimuovere, 
+      aggiornando poi il numero di fatture e il salario, richiamando il metodo get Fatture() e getSalary(). 
+      Stampare "Alla lista del Dottor cognome è stato rimosso il paziente {codice_identificativo}".
 '''
+class Person:
+  def __init__(self, first_name: str, last_name: str) -> None:
+    self.__first_name: str=first_name if type(first_name)==str else print('First name must be a string')
+    self.__last_name: str=last_name if type(last_name)==str else print('Last name must be a string')
+    self.__age: int=0 if self.__first_name and self.__last_name else None
+  def setName(self, first_name: str) -> None:
+    if type(first_name)!=str: return 'First name must be a string'
+    self.__first_name: str=first_name
+  def setLastName(self, last_name: str) -> None:
+    if type(last_name)!=str: return 'Last name must be a string'
+    self.__last_name: str=last_name
+  def setAge(self, age: int) -> None:
+    if type(age)!=int or age<0: return 'Age must be a positive integer'
+    self.__age: int=age
+  def getName(self) -> str:
+    return self.__first_name
+  def getLastName(self) -> str:
+    return self.__last_name
+  def getAge(self) -> int:
+    return self.__age
+  def greet(self) -> None:
+    print(f'Hi, my name is {self.getName()} {self.getLastName()}! I am {self.getAge()} years old!')
+
+class Patient(Person):
+    def __init__(self, first_name: str, last_name: str, id: str) -> None:
+        super().__init__(first_name, last_name)
+        self.__id: str=id
+    def setIdCode(self, id: str) -> None:
+        if type(id)!=str: return 'ID must be a string'
+        self.__id: str=id
+    def getidCode(self) -> str:
+        return self.__id
+    def patientInfo(self) -> None:
+        print(f'Patient: {self.getName()} {self.getLastName()}\nID: {self.getidCode()}')
+
+class Doctor(Person):
+    def __init__(self, first_name: str, last_name: str, specialization: str, parcel: float) -> None:
+        super().__init__(first_name, last_name)
+        self.__specialization: str=specialization if type(specialization)==str else print('Specialization must be a string')
+        self.__parcel: float=parcel if type(parcel)==float else print('Parcel must be a float')
+    def setSpecialization(self, specialization: str) -> None:
+        if type(specialization)!=str: return 'Specialization must be a string'
+        self.__specialization: str=specialization
+    def setParcel(self, parcel: float) -> None:
+        if type(parcel)!=float: return 'Parcel must be a float'
+        self.__parcel: float=parcel
+    def getSpecialization(self) -> str:
+        return self.__specialization
+    def getParcel(self) -> float:
+        return self.__parcel
+    def isAValidDoctor(self) -> bool:
+        print(f'Doctor {self.getName()} {self.getLastName()} is valid') if self.getAge()>=30 else print(f'Doctor {self.getName()} {self.getLastName()} is not valid')
+        return True if self.getAge()>=30 else False
+    def doctorGreet(self) -> None:
+        self.greet(), print(f'I\'m a {self.getSpecialization()}')
+
+class Invoice:
+    def __init__(self, doctor: Doctor) -> None:
+        self.doctor: Doctor=doctor if doctor.isAValidDoctor() else None
+        self.patients: list[Patient]=[] if doctor.isAValidDoctor() else None
+        self.bills: int=len(self.patients) if doctor.isAValidDoctor() else None
+        self.salary: int=0 if doctor.isAValidDoctor() else None
+        if not self.doctor: print('Unable to create class Invoice: invalid doctor')
+    def getSalary(self) -> float:
+        self.salary=self.doctor.getParcel()*self.bills; return self.salary
+    def getBills(self) -> int:
+        self.bills: int=len(self.patients); return self.bills
+    def addPatient(self, patient: Patient) -> None:
+        if patient not in self.patients: 
+            self.patients.append(patient), print(f'Patient {patient.getidCode()} was added to doctor {self.doctor.getName()} {self.doctor.getLastName()}\'s patients list')
+            self.getSalary(), self.getBills()
+        else: raise ValueError('Patient is already in patients list')
+    def removePatient(self, patient: Patient):
+        if patient in self.patients: 
+            self.patients.remove(patient), print(f'Patient {patient.getidCode()} was removed from doctor {self.doctor.getName()} {self.doctor.getLastName()}\'s patients list')
+            self.getSalary(), self.getBills()
+        else: raise ValueError('Patient was not found')

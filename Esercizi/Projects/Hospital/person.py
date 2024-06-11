@@ -43,13 +43,13 @@ class Person:
     self.__last_name: str=last_name if type(last_name)==str else print('Last name must be a string')
     self.__age: int=0 if self.__first_name and self.__last_name else None
   def setName(self, first_name: str) -> None:
-    if type(first_name)!=str: print('First name must be a string'); return
+    if type(first_name)!=str: return 'First name must be a string'
     self.__first_name: str=first_name
   def setLastName(self, last_name: str) -> None:
-    if type(last_name)!=str: print('Last name must be a string'); return
+    if type(last_name)!=str: return 'Last name must be a string'
     self.__last_name: str=last_name
   def setAge(self, age: int) -> None:
-    if type(age)!=int: print('Age must be an integer'); return
+    if type(age)!=int or age<0: return 'Age must be a positive integer'
     self.__age: int=age
   def getName(self) -> str:
     return self.__first_name
