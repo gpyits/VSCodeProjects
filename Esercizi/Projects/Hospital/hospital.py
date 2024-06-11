@@ -124,7 +124,7 @@ In tale file, creare una classe chiamata Fattura.
     
     removePatient(): 
       Consente di rimuovere un paziente alla lista di pazienti di un dottore ricevendo in input il codice identificativo del paziente da rimuovere, 
-      aggiornando poi il numero di fatture e il salario, richiamando il metodo get Fatture() e getSalary(). 
+      aggiornando poi il numero di fatture e il salario, richiamando il metodo get Fatture() e getSalary().
       Stampare "Alla lista del Dottor cognome è stato rimosso il paziente {codice_identificativo}".
 '''
 class Person:
@@ -185,22 +185,26 @@ class Doctor(Person):
 
 class Invoice:
     def __init__(self, doctor: Doctor) -> None:
-        self.doctor: Doctor=doctor if doctor.isAValidDoctor() else None
-        self.patients: list[Patient]=[] if doctor.isAValidDoctor() else None
-        self.bills: int=len(self.patients) if doctor.isAValidDoctor() else None
-        self.salary: int=0 if doctor.isAValidDoctor() else None
-        if not self.doctor: print('Unable to create class Invoice: invalid doctor')
+        if doctor.isAValidDoctor():
+          self.doctor: Doctor=doctor
+          self.patients: list[Patient]=[]
+          self.bills: int=len(self.patients)
+          self.salary: int=0
+        else:
+          self.doctor, self.patients, self.bills, self.salary=None, None, None, None
+          print('Unable to create class Invoice: invalid doctor')
     def getSalary(self) -> float:
         self.salary=self.doctor.getParcel()*self.bills; return self.salary
     def getBills(self) -> int:
         self.bills: int=len(self.patients); return self.bills
     def addPatient(self, patient: Patient) -> None:
-        if patient not in self.patients: 
+        if patient not in self.patients:
             self.patients.append(patient), print(f'Patient {patient.getidCode()} was added to doctor {self.doctor.getName()} {self.doctor.getLastName()}\'s patients list')
             self.getSalary(), self.getBills()
-        else: raise ValueError('Patient is already in patients list')
-    def removePatient(self, patient: Patient):
-        if patient in self.patients: 
-            self.patients.remove(patient), print(f'Patient {patient.getidCode()} was removed from doctor {self.doctor.getName()} {self.doctor.getLastName()}\'s patients list')
-            self.getSalary(), self.getBills()
-        else: raise ValueError('Patient was not found')
+        else: return 'Patient is already in patients list'
+    def removePatient(self, patient_id: str) -> None:
+        for patient in self.patients:
+            if patient.getidCode()==patient_id:
+              self.patients.remove(patient), print(f'Patient {patient_id} was removed from doctor {self.doctor.getName()} {self.doctor.getLastName()}\'s patients list')
+              self.getSalary(), self.getBills(); return
+        return 'Patient was not found'

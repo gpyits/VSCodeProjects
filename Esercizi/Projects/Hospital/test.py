@@ -79,7 +79,7 @@ class TestDoctor(unittest.TestCase):
         self.assertEqual((self.none.getSpecialization(), self.none.getParcel()), (None, None))
         self.assertEqual(self.doctor.setSpecialization(0), 'Specialization must be a string')
         self.assertEqual(self.doctor.setParcel('12.5'), 'Parcel must be a float')
-        #class sspecific methods
+        #class specific methods
         self.assertEqual(self.doctor.isAValidDoctor(), True)
         self.assertEqual(self.none.isAValidDoctor(), False)
         #greet
@@ -88,7 +88,7 @@ class TestDoctor(unittest.TestCase):
 class TestPatient(unittest.TestCase):
     def setUp(self) -> None:
         self.patient=Patient('Morton', 'Koopa', 'wrld6')
-        self.none=Patient(None, None, None) #put init error like all the other classes?
+        self.none=Patient(None, None, None)
     def test_patient(self) -> None:
         #verify init
         self.assertEqual(self.patient.getidCode(), 'wrld6')
@@ -101,19 +101,31 @@ class TestPatient(unittest.TestCase):
         #patient info
         self.patient.patientInfo()
 
-# Test della Classe Fattura
-# - Creare una classe di test chiamata TestFattura che eredita da unittest.TestCase.
-# - Implementare il metodo setUp per inizializzare un oggetto Fattura con una lista di pazienti e un dottore valido.
-# - Scrivere test per verificare:
-#   - L'inizializzazione corretta della classe Fattura.
-#   - Il calcolo corretto del salario e del numero di fatture.
-#   - L'aggiunta e la rimozione di pazienti dalla lista.
 class TestInvoice(unittest.TestCase):
     def setUp(self) -> None:
-        pass
+        self.validDoctor=Doctor('Bowser', 'Jr', 'Coroner', 50.0)
+        self.validDoctor.setAge(40)
+        self.invoice=Invoice(self.validDoctor)
+        self.invoice.addPatient(Patient('Morton', 'Koopa', 'wrld6'))
+        self.invalidDoctor=Doctor('Lemmy', 'Koopa', 'Chiropractor', 40.0)
+        self.invalidDoctor.setAge(29)
+        self.none=Invoice(self.invalidDoctor)
+        self.testPatient=Patient('Wendy', 'Koopa', 'wrld4')
     def test_invoice(self) -> None:
-        pass
-
+        #test init
+        self.assertEqual(self.invoice.doctor.isAValidDoctor(), True)
+        self.assertIsNone(self.none.doctor)
+        #class specific methods
+        self.assertEqual(self.invoice.getSalary(), 50)
+        self.assertEqual(self.invoice.getBills(), 1)
+        self.invoice.removePatient('wrld6')
+        self.assertEqual(self.invoice.patients, [])
+        self.invoice.addPatient(self.testPatient)
+        self.assertEqual(len(self.invoice.patients), 1)
+        #errors
+        self.assertEqual(self.invoice.addPatient(self.testPatient), 'Patient is already in patients list')
+        self.invoice.removePatient('wrld4')
+        self.assertEqual(self.invoice.removePatient('wrld4'), 'Patient was not found')
 
 if __name__ == '__main__':
     unittest.main()
