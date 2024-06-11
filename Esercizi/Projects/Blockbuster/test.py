@@ -42,3 +42,19 @@ Testare la Stampa dei Film Noleggiati da un Cliente (printRentMovies):
 '''
 import unittest
 from blockbuster import *
+
+class TestFilm(unittest.TestCase):
+# Configurazione Iniziale:
+# - Utilizzare il metodo setUp per creare l'ambiente di test:
+#    - In setUp, istanziare 10 film (5 di azione, 4 commedie e 1 drammatico) e aggiungerli a una lista di film.
+#    - Creare un oggetto Noleggio utilizzando la lista di film creata.
+   def setUp(self):
+      pass
+# Testare la Disponibilità di un Film (isAvaible):
+# - Scrivere un test per verificare che un film disponibile ritorni True.
+# - Scrivere un test per verificare che un film non disponibile ritorni False.
+   def test_case(self):
+      pass
+
+if __name__=='__main__':
+    unittest.main()

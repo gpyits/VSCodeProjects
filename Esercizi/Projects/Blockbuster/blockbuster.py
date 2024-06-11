@@ -75,3 +75,83 @@ un dizionario (rented_film) che ha come chiave un numero intero rappresentante l
     printRentMovies(clientID): 
         questo metodo deve stampare la lista dei film noleggiati dal cliente di cui viene specificato l'id.
 '''
+class Film:
+    def __init__(self, id: int, title: str) -> None:
+        self.__id: int=id
+        self.__title: str
+    def setId(self, id: int) -> None:
+        self.__id=id
+    def setTitle(self, title: str) -> None:
+        self.__title=title
+    def getID(self) -> int:
+        return self.__id
+    def getTitle(self) -> str:
+        return self.__title
+    def isEqual(self, otherFilm: 'Film') -> bool:
+        return True if self.getID()==otherFilm.getID() else False
+
+class Acion(Film):
+    def __init__(self, id: int, title: str) -> None:
+        super().__init__(id, title)
+        self.fee: float=3.0
+    def getGenre(self) -> str:
+        return 'Azione'
+    def getFee(self) -> float:
+        return self.fee
+    def calculateDailyFee(self, days: int) -> float:
+        return days*self.fee
+    def __str__(self) -> str:
+        return 'genre=Action'
+
+class Comedy(Film):
+    def __init__(self, id: int, title: str) -> None:
+        super().__init__(id, title)
+        self.fee: float=2.5
+    def getGenre(self) -> str:
+        return 'Comedy'
+    def getFee(self) -> float:
+        return self.fee
+    def calculateDailyFee(self, days: int) -> float:
+        return days*self.fee
+    def __str__(self) -> str:
+        return 'genre=Comedy'
+    
+class Drama(Film):
+    def __init__(self, id: int, title: str) -> None:
+        super().__init__(id, title)
+        self.fee: float=2.0
+    def getGenre(self) -> str:
+        return 'Drama'
+    def getFee(self) -> float:
+        return self.fee
+    def calculateDailyFee(self, days: int) -> float:
+        return days*self.fee
+    def __str__(self) -> str:
+        return 'genre=Drama'
+    
+class Rent:
+    def __init__(self, film_list: list[Film]) -> None:
+        self.film_list: list[Film]=film_list
+        self.rented_films: dict[int:list[Film]]={}
+    def isAvailable(self, film: Film) -> bool:
+        if film in self.film_list: print(f'The chosen film "{film.getTitle()}" is available'); return True
+        else: print(f'The chosen film "{film.getTitle()}" is not available'); return False
+    def rentAMovie(self, film: Film, clientID: int) -> None:
+        if self.isAvailable(film):
+            try: self.rented_films[clientID].append(film), self.film_list.remove(film)
+            except KeyError: self.rented_films[clientID]=[]; return self.rentAMovie(film, clientID)
+            print(f'Client {clientID} rented "{film.getTitle()}"')
+        else:
+            print(f'Client {clientID} couldn\'t rent "{film.getTitle()}"')
+    def giveBack(self, film: Film, clientID: str, days: int) -> None:
+        try: 
+            if film in self.rented_films[clientID]: 
+                self.rented_films[clientID].remove(film), self.film_list.append(film)
+                print(f'Film {film.getTitle()} returned, client {clientID} must pay {film.calculateDailyFee(days)}'); return
+        except KeyError: self.rented_films[clientID]=[]; return self.giveBack(film, clientID, days)
+        print(f'Client {clientID} couldn\'t return "{film.getTitle()}"')
+    def printMovies(self) -> None:
+        print(*[f'{film.getTitle()} - '+str(film) for film in self.film_list], sep='\n') if self.film_list else print([])
+    def printRentedMovies(self, clientID: str) -> None:
+        try: print(*[f'{film.getTitle()} - '+str(film) for film in self.rented_films[clientID]], sep='\n')
+        except KeyError: print([])
