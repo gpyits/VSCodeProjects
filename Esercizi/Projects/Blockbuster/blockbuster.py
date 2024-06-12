@@ -78,7 +78,7 @@ un dizionario (rented_film) che ha come chiave un numero intero rappresentante l
 class Film:
     def __init__(self, id: int, title: str) -> None:
         self.__id: int=id
-        self.__title: str
+        self.__title: str=title
     def setId(self, id: int) -> None:
         self.__id=id
     def setTitle(self, title: str) -> None:
@@ -90,7 +90,7 @@ class Film:
     def isEqual(self, otherFilm: 'Film') -> bool:
         return True if self.getID()==otherFilm.getID() else False
 
-class Acion(Film):
+class Action(Film):
     def __init__(self, id: int, title: str) -> None:
         super().__init__(id, title)
         self.fee: float=3.0
@@ -129,7 +129,7 @@ class Drama(Film):
     def __str__(self) -> str:
         return 'genre=Drama'
     
-class Rent:
+class Rental:
     def __init__(self, film_list: list[Film]) -> None:
         self.film_list: list[Film]=film_list
         self.rented_films: dict[int:list[Film]]={}
@@ -137,21 +137,22 @@ class Rent:
         if film in self.film_list: print(f'The chosen film "{film.getTitle()}" is available'); return True
         else: print(f'The chosen film "{film.getTitle()}" is not available'); return False
     def rentAMovie(self, film: Film, clientID: int) -> None:
-        if self.isAvailable(film):
-            try: self.rented_films[clientID].append(film), self.film_list.remove(film)
-            except KeyError: self.rented_films[clientID]=[]; return self.rentAMovie(film, clientID)
-            print(f'Client {clientID} rented "{film.getTitle()}"')
-        else:
-            print(f'Client {clientID} couldn\'t rent "{film.getTitle()}"')
-    def giveBack(self, film: Film, clientID: str, days: int) -> None:
+        try:
+            self.rented_films[clientID]
+            if self.isAvailable(film):
+                self.rented_films[clientID].append(film), self.film_list.remove(film)
+                print(f'Client {clientID} rented "{film.getTitle()}"'); return
+        except KeyError: self.rented_films[clientID]=[]; return self.rentAMovie(film, clientID)
+        print(f'Client {clientID} couldn\'t rent "{film.getTitle()}"')
+    def giveBack(self, clientID: int, film: Film, days: int) -> None:
         try: 
-            if film in self.rented_films[clientID]: 
+            if film in self.rented_films[clientID]:
                 self.rented_films[clientID].remove(film), self.film_list.append(film)
                 print(f'Film {film.getTitle()} returned, client {clientID} must pay {film.calculateDailyFee(days)}'); return
         except KeyError: self.rented_films[clientID]=[]; return self.giveBack(film, clientID, days)
         print(f'Client {clientID} couldn\'t return "{film.getTitle()}"')
     def printMovies(self) -> None:
-        print(*[f'{film.getTitle()} - '+str(film) for film in self.film_list], sep='\n') if self.film_list else print([])
+        print('\nMovies:',*[f'{film.getTitle()} - '+str(film) for film in self.film_list], '',sep='\n') if self.film_list else print('\nMovies: []\n')
     def printRentedMovies(self, clientID: str) -> None:
-        try: print(*[f'{film.getTitle()} - '+str(film) for film in self.rented_films[clientID]], sep='\n')
-        except KeyError: print([])
+        try: print(f'\nRented movies by client {clientID}:', *[f'{film.getTitle()} - '+str(film) for film in self.rented_films[clientID]], sep='\n') if self.rented_films else print(f'\nRented movies by client {clientID}:\n[]')
+        except KeyError: print(f'Rented movies by client {clientID}:\n[]\n')

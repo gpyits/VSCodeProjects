@@ -26,7 +26,7 @@ Entrambi gli attributi sono da considerarsi privati.
 class Film:
     def __init__(self, id: int, title: str) -> None:
         self.__id: int=id
-        self.__title: str
+        self.__title: str=title
     def setId(self, id: int) -> None:
         self.__id=id
     def setTitle(self, title: str) -> None:
