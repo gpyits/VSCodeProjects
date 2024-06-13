@@ -49,34 +49,33 @@ class Pagamento:
         self.__importo=importo
     def getImporto(self) -> float:
         return self.__importo
-    def dettagliPagamento(self, importo: float) -> None:
-        print(f'Importo del pagamento: €{round(importo, 2)}')
+    def dettagliPagamento(self) -> None:
+        print(f'Importo del pagamento: €{round(self.getImporto(), 2)}')
 
 class PagamentoContanti(Pagamento):
     def __init__(self, importo: float) -> None:
         super().__init__()
         self.setImporto(importo)
-    def dettagliPagamento(self, importo: float) -> None:
-        print(f'Pagamento in contanti di: €{round(importo, 2)}')
+    def dettagliPagamento(self) -> None:
+        print(f'\nPagamento di €{self.getImporto(): .2f} da pagare in contanti con:')
+        self.inPezziDa()
     def inPezziDa(self) -> None:
         amount, i=0, 0
         money_list=[500, 200, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01]
         importo=self.getImporto()
-        while importo>0:
+        while i<15:
             if importo>=money_list[i]:
                 importo-=money_list[i]
                 amount+=1
             else:
-                print(f'{amount} banconota da {money_list[i]}') if i<7 and amount==1\
-                else print(f'{amount} banconote da {money_list[i]}') if i<7\
-                else print(f'{amount} moneta da {money_list[i]}') if amount==1\
-                else print(f'{amount} monete da {money_list[i]}')
+                if amount!=0:
+                    print(f'{amount} banconota da {money_list[i]} euro') if i<7 and amount==1\
+                    else print(f'{amount} banconote da {money_list[i]} euro') if i<7\
+                    else print(f'{amount} moneta da {money_list[i]} euro') if amount==1\
+                    else print(f'{amount} monete da {money_list[i]} euro')
                 amount=0
                 i+=1
     
-# Si definisca una classe PagamentoCartaDiCredito derivata anch'essa da Pagamento e che definisce l'importo. 
-# Questa classe deve contenere gli attributi per il nome del titolare della carta, la data di scadenza, e il numero della carta di credito. 
-# Infine, si ridefinisca il metodo dettagliPagamento() per includere tutte le informazioni della carta di credito oltre all'importo del pagamento.
 class PagamentoCartaDiCredito(Pagamento):
     def __init__(self, nome_titolare: str, data_scadenza: str, numero_carta: int, importo: float) -> None:
         super().__init__()
@@ -85,7 +84,17 @@ class PagamentoCartaDiCredito(Pagamento):
         self.data: str=data_scadenza
         self.numero: int=numero_carta
     def dettagliPagamento(self) -> None:
-        print(f'Pagamento di: €{self.getImporto(): .2f} effettuato con la carta di credito',\
+        print(f'\nPagamento di: €{self.getImporto(): .2f} effettuato con la carta di credito',\
               f'Nome sulla carta: {self.nome}',\
               f'Data di scadenza: {self.data}',\
-              f'Numero della carta: {self.numero}')
+              f'Numero della carta: {self.numero}', sep='\n')
+
+pagamento1=PagamentoContanti(96.26)
+pagamento2=PagamentoContanti(150.0)
+card1=PagamentoCartaDiCredito('Elon Musk', '05/11/2004', 5455678847678, 80.0)
+card2=PagamentoCartaDiCredito('Bill Gates', '15/08/2028', 9876575654675, 150.0)
+
+#contanti
+pagamento1.dettagliPagamento(), pagamento2.dettagliPagamento()
+#carte
+card1.dettagliPagamento(), card2.dettagliPagamento()

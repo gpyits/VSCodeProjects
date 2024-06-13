@@ -54,5 +54,54 @@ L'area di questo triangolo vale: 8.0
 '''
 from abc import *
 
-class Forma(ABC):
-    pass
+class Shape(ABC):
+    @abstractmethod
+    def getArea(self) -> int:
+        '''Returns shape area'''
+        pass
+    @abstractmethod
+    def render(self) -> None:
+        '''Prints  a graphic rendering of the shape'''
+        pass
+    def describeShape(self) -> None:
+        '''Renders shape and gives a brief description'''
+        print(f'\n{self.name} with height={self.height} and width={self.width}')
+        self.render()
+        print(f'The area of this {self.name.lower()} is: {self.getArea()}\n')
+
+class Rectangle(Shape):
+    def __init__(self, height: int, width: int) -> None:
+        super().__init__()
+        self.height: int=height
+        self.width: int=width
+        self.name: str='Rectangle'
+        if not (height and width): raise ValueError('Rectangle sides can\'t be 0')
+    def getArea(self) -> int:
+        return self.height*self.width
+    def render(self) -> None:
+        if self.width!=1:
+            for i in range(self.height): print('*', *[' ' for i in range(self.width-2)], '*') if i not in (0, self.height-1) else print(*['*' for i in range(self.width)])
+        else: print(*['*' for i in range(self.height)], sep='\n')
+
+class Square(Rectangle):
+    def __init__(self, side: int) -> None:
+        height, width=side, side
+        super().__init__(height, width)
+        self.name: str='Square'
+        if not side: raise ValueError('Square side can\'t be 0')
+
+class Triangle(Shape):
+    def __init__(self, height: int, width: int) -> None:
+        super().__init__()
+        self.height: int=height
+        self.width: int=width
+        self.name: str='Triangle'
+        if not (height and width): raise ValueError('Triangle sides can\'t be 0')
+    def getArea(self) -> int:
+        return (self.height*self.width)//2
+    def render(self) -> None:
+        for i in range(self.height): print('*', *[' ' for i in range(i-1)], '*') if i not in (0, self.height-1) else print('*') if i==0 else print(*['*' for i in range(self.width)])
+
+Square(4).describeShape()
+Rectangle(4, 8).describeShape()
+Triangle(5, 5).describeShape()
