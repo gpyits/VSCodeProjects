@@ -11,13 +11,18 @@
 import math
 
 def safe_sqrt(number: int) -> int:
-    assert math.sqrt(number)!=None, 'Must be a positive number'
+    class SquaredByZeroError(Exception): pass
+    try: return math.sqrt(number)
+    except: raise SquaredByZeroError('Must be a positive number')
 
 safe_sqrt(-5)
 # Password Validation: 
 #   Write a function validate_password(password) that checks if a password meets certain criteria 
 #   (i.e., minimum length of 20 characters, at least three uppercase characters, and at least four special characters).  
 #   Raise a custom exception (e.g., InvalidPasswordError) for invalid passwords.
+def validate_password(password: str):
+    pass
+
 
 # Context Managers for File Handling: 
 #   Use the with statement and context managers to open and close a file. 
