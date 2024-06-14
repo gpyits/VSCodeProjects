@@ -5,28 +5,41 @@
 # (i.e., print the list,  reverse the list, and check whether the list is ordered). 
 # Raise this exception if the data structure's integrity is compromised (e.g., empty list access, index error).
 
+#Exceptions
+class SquaredByZeroError(Exception):
+    '''Raises error'''
+    pass
+class InvalidPasswordError(Exception):
+    pass
+
 # Safe Square Root: 
 #   Write a function safe_sqrt(number) that calculates the square root of a number using math.sqrt(). 
 #   Handle ValueError if the input is negative by returning an informative message.
 import math
 
 def safe_sqrt(number: int) -> int:
-    class SquaredByZeroError(Exception): pass
     try: return math.sqrt(number)
     except: raise SquaredByZeroError('Must be a positive number')
 
-safe_sqrt(-5)
+safe_sqrt(5)
 # Password Validation: 
 #   Write a function validate_password(password) that checks if a password meets certain criteria 
 #   (i.e., minimum length of 20 characters, at least three uppercase characters, and at least four special characters).  
 #   Raise a custom exception (e.g., InvalidPasswordError) for invalid passwords.
 def validate_password(password: str):
-    pass
+    if len(password)>20 and len([i for i in password if i==i.upper()])>=3 and len([i for i in password if i in '!"£$%&&/()[]{}=?^\'-.,;:_><'])>=4:
+        return True
+    else: raise InvalidPasswordError('Invalid password: must contain more than twenty characters, have at least three uppercase letters and four special characters')
 
-
+validate_password('][-aifuhweioufhew')
 # Context Managers for File Handling: 
 #   Use the with statement and context managers to open and close a file. 
 #   Handle potential IOError within the with block for clean resource management.
+try: 
+    with open('file.txt', 'r') as f:
+        pass
+except Exception:
+    pass
 
 # Database of dates: 
 #   Write a class that manages a database of dates with the format gg.mm.aaaa 
