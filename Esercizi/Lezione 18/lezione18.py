@@ -22,6 +22,7 @@ def safe_sqrt(number: int) -> int:
     except: raise SquaredByZeroError('Must be a positive number')
 
 safe_sqrt(5)
+
 # Password Validation: 
 #   Write a function validate_password(password) that checks if a password meets certain criteria 
 #   (i.e., minimum length of 20 characters, at least three uppercase characters, and at least four special characters).  
@@ -31,21 +32,45 @@ def validate_password(password: str):
         return True
     else: raise InvalidPasswordError('Invalid password: must contain more than twenty characters, have at least three uppercase letters and four special characters')
 
-validate_password('][-aifuhweioufhew')
+validate_password('ABC[][]]12345678901234567890')
+
 # Context Managers for File Handling: 
 #   Use the with statement and context managers to open and close a file. 
 #   Handle potential IOError within the with block for clean resource management.
 try: 
-    with open('file.txt', 'r') as f:
+    with open('Esercizi/Lezione 18/file.txt', 'r') as f:
+        lines=f.readlines()
+except FileNotFoundError:
+    with open('Esercizi/Lezione 18/file.txt', 'a') as f:
         pass
-except Exception:
-    pass
 
 # Database of dates: 
 #   Write a class that manages a database of dates with the format gg.mm.aaaa 
 #   implementing methods to add a new date, delete a given date, modify a date, and perform a query on a given date is required.  
 #   A query on a given date allows for retrieving a given new date. 
 #   Note that a date is an object for your database; it must be instantiated from a string.
+class Date:
+    def __init__(self, month: int, day: int, year: int) -> None:
+        self.month: int=month
+        self.day: int=day
+        self.year: int=year
+    @classmethod
+    def create_date(cls, date: str) -> 'Date':
+        '''Takes a string containing the date in the format mm.dd.yyyy and converts it into a Date object'''
+        month, day, year=map(int, date.split('.'))
+        return cls(month, day, year)
+    def __str__(self) -> str:
+        return f'{self.day}.{self.month}.{self.year}'
+
+class Database:
+    def __init__(self, dates_database: list[Date]) -> None:
+        self.database: list[Date]=dates_database
+    def addDdate(self, date: Date) -> None:
+        if date not in self.database:
+            self.database.append(date)
+        else: raise Exception 
+        pass
+
 
 # An interactive calculator: 
 #   It is required to develop an interactive calculator with at least 10 test cases using UnitTest trying to (possibly) cover all execution paths! 
