@@ -27,7 +27,6 @@ class InvalidFraction(Exception):
     '''Raises error if fraction given is not in the given numerator/denominator format'''
     pass
 
-
 # Safe Square Root: 
 #   Write a function safe_sqrt(number) that calculates the square root of a number using math.sqrt(). 
 #   Handle ValueError if the input is negative by returning an informative message.
@@ -185,9 +184,7 @@ class fraction:
             if len(fraction1.split('/'))!=3 or len(fraction2.split('/'))!=3: int(None)
             numerator1, denominator1=map(int, fraction1.split('/'))
             numerator2, denominator2=map(int, fraction1.split('/'))
-            result_denominator=denominator1*denominator2
-            result_numerator=(result_denominator//denominator1*numerator1)+(result_denominator//denominator2*numerator2)
-            return fraction.simplify(f'{result_numerator}/{result_numerator}')
+            return fraction.simplify(f'{(denominator1*denominator2//denominator1*numerator1)+(denominator1*denominator2//denominator2*numerator2)}/{denominator1*denominator2}')
         except ValueError:
             raise InvalidFraction('Invalid fraction input')
     @staticmethod
@@ -196,9 +193,7 @@ class fraction:
             if len(fraction1.split('/'))!=3 or len(fraction2.split('/'))!=3: int(None)
             numerator1, denominator1=map(int, fraction1.split('/'))
             numerator2, denominator2=map(int, fraction1.split('/'))
-            result_denominator=denominator1*denominator2
-            result_numerator=(result_denominator//denominator1*numerator1)-(result_denominator//denominator2*numerator2)
-            return fraction.simplify(f'{result_numerator}/{result_numerator}')
+            return fraction.simplify(f'{(denominator1*denominator2//denominator1*numerator1)-(denominator1*denominator2//denominator2*numerator2)}/{denominator1*denominator2}')
         except ValueError:
             raise InvalidFraction('Invalid fraction input')
     @staticmethod
@@ -207,16 +202,22 @@ class fraction:
             if len(fraction1.split('/'))!=3 or len(fraction2.split('/'))!=3: int(None)
             numerator1, denominator1=map(int, fraction1.split('/'))
             numerator2, denominator2=map(int, fraction1.split('/'))
-            result_denominator=denominator1*denominator2
-            result_numerator=numerator1*numerator2
-            return fraction.simplify(f'{result_numerator}/{result_numerator}')
+            return fraction.simplify(f'{numerator1*numerator2}/{denominator1*denominator2}')
         except ValueError:
             raise InvalidFraction('Invalid fraction input')
     @staticmethod
     def divide(fraction1: str, fraction2: str) -> str:
         try:
             if len(fraction1.split('/'))!=3 or len(fraction2.split('/'))!=3: int(None)
-            pass ###continue here
-            return fraction.simplify(f'{result_numerator}/{result_numerator}')
+            numerator1, denominator1=map(int, fraction1.split('/'))
+            numerator2, denominator2=map(int, fraction1.split('/'))
+            return fraction.simplify(f'{numerator1*denominator2}/{numerator2*denominator1}')
+        except ValueError:
+            raise InvalidFraction('Invalid fraction input')
+    @staticmethod
+    def isEquivalent(fraction1: str, fraction2: str) -> bool:
+        try:
+            if len(fraction1.split('/'))!=3 or len(fraction2.split('/'))!=3: int(None)
+            return True if fraction.simplify(fraction1)==fraction.simplify(fraction2) else False
         except ValueError:
             raise InvalidFraction('Invalid fraction input')
