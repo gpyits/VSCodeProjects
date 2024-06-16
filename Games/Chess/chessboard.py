@@ -1,16 +1,5 @@
-class InvalidPositionError(Exception):
-    '''Raises error when user tries to move a valid piece to an invalid position'''
-    pass
-class InvalidPieceError(Exception):
-    '''Raises error when user tries to move an invalid piece'''
-    pass
-
-class Piece:
-    def __init__(self, name: str, color: str) -> None:
-        self.name: str=name
-        self.color: str=color
-    def canMove(self, position: str) -> None:
-        pass
+from exceptions import *
+from pieces import Piece, Pawn, Knight, Bishop, Rook, Queen, King
 
 class ChessBoard:
     def __init__(self) -> None:
