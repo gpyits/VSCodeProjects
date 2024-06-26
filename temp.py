@@ -1,8 +1,12 @@
-with open('Tools/dictionary_it.txt', 'r') as f:
-    lines=f.readlines()
-    f.seek(0)
+def decorator(func):
+    def wrapper():
+        print('hello')
+        func()
+        print('hello')
+    return wrapper
 
-with open('Tools/dictionary_it.txt', 'w') as f:
-    for line in lines:
-        if len(line.strip('\n'))==5:
-            f.write(line.upper())
+def say_hello():
+    print('hello')
+
+say_hello=decorator(say_hello)
+say_hello()
