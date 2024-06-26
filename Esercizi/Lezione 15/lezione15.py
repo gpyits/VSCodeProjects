@@ -27,7 +27,7 @@ with FileManager('example.txt', 'w') as f:
     f.write('Hello, world!')
 
 #decorator
-def decorator(func) -> None:
+def file_manager(func) -> None:
     def wrapper(*args):
         try:
             print('File opened')
@@ -37,13 +37,12 @@ def decorator(func) -> None:
             print(f'Caught an exception: {e}')
     return wrapper
 
-def file_manager(filename: str, mode: str) -> None:
+@file_manager
+def file_opener(filename: str, mode: str) -> None:
     with open(filename, mode) as f:
         f.close()
 
-file_manager=decorator(file_manager)
-file_manager('example.txt', 'w')
-
+file_opener('example.txt', 'w')
 # Crea un context manager che permette di calcolare il tempo che viene impiegato ad eseguire le istruzioni che si trovano nel with
 # with Timer():
 #     time.sleep(1)
@@ -78,8 +77,8 @@ def timer(func) -> None:
         print(round(finish-start, 2))
     return wrapper
 
+@timer
 def test_function():
     time.sleep(1)
 
-test_function=timer(test_function)
 test_function()
