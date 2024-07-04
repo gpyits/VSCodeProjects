@@ -1,12 +1,3 @@
-def decorator(func):
-    def wrapper():
-        print('hello')
-        func()
-        print('hello')
-    return wrapper
+l=(1, 2, 3, 4)
 
-def say_hello():
-    print('hello')
-
-say_hello=decorator(say_hello)
-say_hello()
+print(list(l))

@@ -19,4 +19,4 @@ def is_valid_parenthesis(s: str) -> bool:
                 return is_valid_parenthesis(''.join(s))
     return False
             
-print(is_valid_parenthesis("(]")) 
+print(is_valid_parenthesis("(]"))
