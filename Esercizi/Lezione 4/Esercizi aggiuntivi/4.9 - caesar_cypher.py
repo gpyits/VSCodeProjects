@@ -16,7 +16,6 @@ def shift(letter: str, offset: int, is_positive: bool) -> str:
 
 #handles result message assembly, shaves offset so it doesn't overflow past 25
 def caesar_cypher(message: str, offset: int, decrypt: bool=False) -> str:
-    result=''
     is_positive=True if offset>0 else False
     while abs(offset)>24: offset-=24 if is_positive else -24
     if decrypt==True: 
