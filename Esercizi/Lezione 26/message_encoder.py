@@ -43,7 +43,22 @@ class CifratoreAScorrimento(CodificatoreMessaggio, DecodificatoreMessaggio):
     def __init__(self, chiave: int):
         self.chiave = chiave
         assert self.chiave>0
-    def __shift(self, letter: str) -> str:
+    def __shift(self, letter: str, decode: bool=False) -> str:
+        pass
+    def codifica(self, testoInChiaro: str) -> str:
+        pass
+    def decodifica(self, testoCodificato: str) -> str:
+        pass
+
+class CifratoreACombinazione(CodificatoreMessaggio, DecodificatoreMessaggio):
+    def __init__(self, n: int):
+        self.n = n
+        assert self.n>0
+    def combination(self, word: str, decode: bool=False) -> str:
+        pass
+    def codifica(self, testoInChiaro: str) -> str:
+        pass
+    def decodifica(self, testoCodificato: str) -> str:
         pass
 
 #encryption/decryption handler, shift single letter by one for specified number times
@@ -55,6 +70,7 @@ def shift(letter: str, offset: int, is_positive: bool) -> str:
             return shift(chr(ord(letter)+1), offset-1, is_positive) if ord(letter)+1!=123 else shift(chr(97), offset-1, is_positive)
         else:
             return shift(chr(ord(letter)-1), offset+1, is_positive) if ord(letter)-1!=96 else shift(chr(122), offset+1, is_positive)
+        
 
 #handles result message assembly, shaves offset so it doesn't overflow past 25
 def caesar_cypher(message: str, offset: int, decrypt: bool=False) -> str:
