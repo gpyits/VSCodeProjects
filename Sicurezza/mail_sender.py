@@ -27,10 +27,10 @@ def send_email(sender_email, receiver_email, subject, body, password):
         print(f"Failed to send email. Error: {e}")
 
 # Example usage
-sender_email = "bancobpm.comunicazioni@yahoo.com"
+sender_email = ""
 receiver_email = "francorcr@hotmail.it"
 subject = "Comunicazione Importante"
 body = "Comunicazione importante"
-password = "whC54CtBUQYDHVj"
+password = ""
 
 send_email(sender_email, receiver_email, subject, body, password)
