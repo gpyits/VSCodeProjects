@@ -1,0 +1,25 @@
+ipperf
+10.46.1.118  
+Discovery delle caratteristiche di massima di un ip
+sudo nmap -p 1-65535 10.46.1.118
+PORT     STATE SERVICE
+22/tcp   open  ssh
+111/tcp  open  rpcbind
+631/tcp  open  ipp
+902/tcp  open  iss-realsecure
+3389/tcp open  ms-wbt-server
+8000/tcp open  http-alt
+
+curl http://10.46.1.118:8000
+Sulla mia macchina, quale applicazione è legata a questo servizio  (porta 8000)?
+sudo netstat -anp --tcp|grep "LISTEN"
+docker run --rm -it  -p 8888:80 -v ./:/usr/local/apache2/htdocs/ httpd:latest
+
+ab -n 1000 -c 64 http://10.46.1.118:8888/leggimi.txt
+
+Esempio di DDOS a un sito web
+ab
+
+Da tool di benchmark a tool per fare DOS o DDOS
+iperf3 –s
+iperf3 -c [server_ip_address] -t 60
