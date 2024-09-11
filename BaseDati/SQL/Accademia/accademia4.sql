@@ -1,5 +1,5 @@
 -- Quali sono i cognomi distinti di tutti gli strutturati?
-select distinct p.cognome as pc
+select distinct p.cognome
 from Persona p;
 
 -- Quali sono i ricercatori (con nome e cognome)?
@@ -22,7 +22,7 @@ and p.posizione <> 'Ricercatore';
 -- Quali sono i progetti già terminati in data odierna?
 select p.fine
 from Progetto p 
-where p.fine = CURRENT_DATE;
+where p.fine < CURRENT_DATE;
 
 -- Quali sono i nomi di tutti i progetti ordinati in ordine crescente di data di inizio?
 select p.nome, p.inizio
