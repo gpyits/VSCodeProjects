@@ -1,11 +1,20 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Buongiorno</title>
+        <title>Form</title>
     </head>
     <body>
         <center>
-            <h1>Ciao a tutti</h1>
+            <h1>LOGIN FORM</h1><br>
+            <form>
+                <label for="firstname">Nome:</label><br>
+                <input type="text" id="fname" name="name" required><br>
+                <label for="email">Email:</label><br>
+                <input type="text" id="mail" name="mail" required><br>
+                <label for="codicefiscale">Codice Fiscale:</label><br>
+                <input type="text" id="cf" name="CF" maxlength="16" required><br><br>
+                <input type="submit" value="Invia">
+            </form>
         </center>
     </body>
-    
 </html>
