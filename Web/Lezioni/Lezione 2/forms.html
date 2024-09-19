@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIV</title>
+</head>
+<body>
+    <center><h1 style="color: red;">DIV</h1></center>
+    <form action="">
+        <div style="border: solid 1px black; display: flex;flex-direction: column; align-items: center;">
+            <p>Inserire Username</p>
+            <input type="text">
+        </div>
+        <br>
+        <div style="border: solid 1px black; display: flex;flex-direction: column; align-items: center;"></div>    
+            <label for="txtUsername">Inserire Username</label>
+            <input type="text" id="txtUsername" name="username" value="testo">
+        </div>
+        <br>
+        <div style="border: solid 1px black; display: flex;flex-direction: column; align-items: center;">    
+            <input type="radio" name="linguaggio" value="Javascript"> Javascript
+            <input type="radio" name="linguaggio" value="Css"> Css
+            <input type="radio" name="linguaggio" value="Python"> Python 
+        </div>
+        <br>
+        <div style="border: solid 1px black; display: flex;flex-direction: column; align-items: center;"></div>    
+            <label for="js">Html</label>
+            <input id="js" type="radio" name="linguaggio" value="html">
+            <input id="js" type="radio" name="linguaggio" value="ciao">
+            <label for="js">ciao</label>
+            <label for="js">hey</label>
+            <input id="js" type="radio" name="linguaggio" value="hey">
+        </div>
+        <br>
+        <div style="border: solid 1px black; display: flex;flex-direction: column; align-items: center;">    
+            <label for="chkCondizioni">Accetta le condizioni di utilizzo</label>
+            <input type="checkbox" id="chkCondizioni" name="chkCondizioni">
+            <input type="submit" value="Invia">
+            <button type="submit">Zippamelo tutto</button>
+        </div>
+        <br>
+        <div style="border: solid 1px black; display: flex;flex-direction: column; align-items: center;"></div>    
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+            <button type="submit">give me, give me a psw at midnight</button>
+        </div>
+        <br>
+        <div style="border: solid 1px black; display: flex;flex-direction: column; align-items: center;">    
+            <label for="birthday">Data di nascita</label>
+            <input type="date" id="birthday" name="birthday">
+            <button type="submit">Invia</button>
+        </div>
+        <br>
+        <div style="border: solid 1px black; display: flex;flex-direction: column; align-items: center;"></div>  
+            <label for="prenotation">Data prenotazione</label>
+            <input type="datetime-local" id="prenotation" name="prenotation">
+            <button type="submit">Invia</button>
+            
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+            <button type="submit">Invia</button>
+        </div>
+        <br>
+        <div style="border: solid 1px black; display: flex;flex-direction: column; align-items: center;">    
+            <label for="myfile">Seleziona un file:</label>
+            <input type="file" id="myfile" name="myfile">
+            <button type="submit">Invia</button>
+        </div>
+        <br>
+        <div style="border: solid 1px black; display: flex;flex-direction: column; align-items: center;"></div>    
+            <label for="quantity">Quantit&aacute;:</label>
+            <input type="number" name="quantity" id="quantity" min="0" max="10">
+            <button type="submit">Invia</button>
+            <br>
+            <label for="quantity">Quantit&aacute;:</label>
+            <input type="number" name="quantity" id="quantity" min="0" max="10" disabled>
+            <button type="submit">Invia</button>
+            <br>
+            <label for="quantity">Quantit&aacute;:</label>
+            <input style="width: auto;" stype="number" name="quantity" id="quantity" min="0" max="10" placeholder="Inserisci un numero" step="2">
+            <button type="submit">Invia</button>
+        </div>
+        <br>
+        <div style="border: solid 1px black; display: flex;flex-direction: column; align-items: center;"></div>    
+            <label for="telefono">Telefono</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+            <button type="submit">Invia</button>
+            
+            <label for="car">Seleziona una macchina:</label>
+            <select name="modello" id="">
+                <option value="bmw">BMW</option>
+                <option value="fiat">Fiat</option>
+                <option value="audi">Audi</option>
+                <option value="volvo">Volvo</option>
+                <option value="ferrari" selected>Ferrari</option>
+            </select>
+            <button type="submit">Invia</button>
+            
+            <label for="commento">Commento</label><br>
+            <textarea name="commento" id="commento" style="background-color: aquamarine;" cols="40" rows="18">scrivi qua</textarea>
+            
+            <fieldset>
+            <p>Inserire Username</p>
+            <input type="text">
+            </fieldset>
+        </div>
+    </form>
+</body>
+</html>
