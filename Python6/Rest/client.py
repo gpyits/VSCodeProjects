@@ -1,4 +1,4 @@
-import requests,json
+import requests, json
 
 base_api_url = "http://127.0.0.1:8080/"
 
@@ -22,7 +22,7 @@ def GetDatiCittadino():
     datiCittadino = {"nome":nome, "cognome": cognome, "dataNascita":dataN, "codFiscale":codF}
     return datiCittadino
 
-print("Cosa vuoi fare?")
+print("Cosa vuoi fare?") 
 comando = StampaMenuOperazioni()
 print("Comando inserito: " + comando)
 if comando=="1":
@@ -34,4 +34,18 @@ if comando=="1":
     print(response.headers["Content-Type"])
     data1 = response.json()
     if (type(response.json()) is dict):
-            print_dictionary(response.json())
+        print_dictionary(response.json())
+
+if comando == "2":
+    api_url = base_api_url + "read_cittadino"
+    jsonDataRequest = GetDatiCittadino()
+    response = requests.post(api_url,json=jsonDataRequest)
+
+if comando == "3":
+    api_url = base_api_url + "modifica_cittadino"
+
+if comando == "4":
+    pass
+
+if comando == "5":
+    pass
