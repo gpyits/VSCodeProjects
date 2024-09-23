@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Form</title>
-    </head>
-    <body>
-        <center>
-            <h1>LOGIN FORM</h1><br>
-            <form>
-                <label for="firstname">Nome:</label><br>
-                <input type="text" id="fname" name="name" required><br>
-                <label for="email">Email:</label><br>
-                <input type="text" id="mail" name="mail" required><br>
-                <label for="codicefiscale">Codice Fiscale:</label><br>
-                <input type="text" id="cf" name="CF" maxlength="16" required><br><br>
-                <input type="submit" value="Invia">
-            </form>
-        </center>
-    </body>
+   <head><title>Ciao a tutti</title></head>
+   <body>
+      <center><h1>Ciao</h1></center> 
+      <h2>Accedi</h2>
+
+         <form action="/Registrati" method="POST">
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome" required><br>
+            <label for="cognome">Cognome:</label><br>
+            <input type="text" id="cognome" name="cognome" required><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="cf">Codice Fiscale:</label><br>
+            <input type="text" id="cf" name="cf" minlenght="16" maxlenght="16" pattern="^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$" required>
+            <input type="submit" value="Submit">
+          </form>
+   </body>
 </html>

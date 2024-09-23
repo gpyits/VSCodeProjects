@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Form</title>
+    <style>
+        .center {
+            text-align: center;
+            margin: auto;
+            width: 30%;
+            border: 1px solid black;
+            padding: 20px;
+            background-color: azure;
+        }
+        input{
+            border: 1px solid black;
+        }
+        input:hover{
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body style="background-color: lightcyan;">
+    <center><h1>Form</h1></center>
+    <form>
+        <div class="center">
+                <!-- un input per il nome e cognome -->
+                <p>Inserire nome</p>
+                <input type="text">
+                <p>Inserire cognome</p>
+                <input type="text">
+                <!-- un input per l'indirizzo email del mittente -->
+                <p>Inserire email</p>
+                <input type="email">
+                <!-- un input per il subject -->
+                <p>Inserire oggetto</p>
+                <input type="text">
+                <br><br>
+        </div>
+        <br>
+        <!-- un input a tendina per la selezione del linguaggio di programmazione preferito -->
+        <div class="center">
+                <label for="linguaggio">Linguaggio preferito:</label>
+                <select>
+                    <option value="java">Java</option>
+                    <option value="js">Javascript</option>
+                    <option value="cs">C#</option>
+                    <option value="py">Python</option>
+                    <option value="go" selected>Go</option>
+                </select>
+        </div>
+        <br>
+        <!-- un input per radio per la selezione del sesso
+        un input per inserire l'etá -->
+        <div class="center">
+            <!-- un input per la selezione del sesso -->
+            <input id="sesso" type="radio" name="sesso" value="M">
+            <label for="sesso">Uomo</label>
+            <input id="sesso" type="radio" name="sesso" value="F">
+            <label for="sesso">Donna</label>
+            <!-- un input per inserire l'etá -->
+            <br><br>
+            <label for="birthday">Data di nascita</label>
+            <input type="date" id="birthday" name="birthday"><br>
+            <!-- un input multilinea per una descrizione -->
+            <br><textarea name="descrizione" id="desc" cols="40" rows="10">Descrivi te stesso</textarea>
+        </div>
+        <br>
+        <div class="center">
+            <!-- L'accettazione della privacy policy con la label cliccabile che porta ad una pagina -->
+            <p>Accetta la nostra <a href="policy.html" target="_blank">privacy policy</a></p>
+            <input type="checkbox" id="policy" name="privacy policy checkbox" required/>
+            <label for="Accetta">Accetto la privacy policy</label>
+            <!-- Pulsante di submit e pulsante di reset -->
+            <br><br>
+            <button type="submit" style="background-color: gray;">Invia</button>
+            <br><br>
+            <button type="reset" style="background-color: lightcoral;">Reset</button>
+        </div>
+    </form>
+</body>
+</html>
