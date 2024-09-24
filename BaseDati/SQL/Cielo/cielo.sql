@@ -53,24 +53,23 @@ and l1.citta = 'Roma' and l2.citta = 'New York';
 -- voli della stessa compagnia) da un qualunque aeroporto della città di ‘Roma’ ad un
 -- qualunque aeroporto della città di ‘New York’ ? Restituire: nome della compagnia,
 -- codici dei voli, e aeroporti di partenza, scalo e arrivo.
-SELECT c.nome AS compagnia, a1.codice AS volo1, a2.codice AS volo2, 
-       l1.citta AS partenza, l3.citta AS scalo, l2.citta AS arrivo
-FROM ArrPart a1
-JOIN ArrPart a2 ON a1.arrivo = a2.partenza
-JOIN Compagnia c ON a1.comp = c.nome AND a2.comp = c.nome
-JOIN LuogoAeroporto l1 ON a1.partenza = l1.aeroporto
-JOIN LuogoAeroporto l2 ON a2.arrivo = l2.aeroporto
-JOIN LuogoAeroporto l3 ON a1.arrivo = l3.aeroporto
-WHERE l1.citta = 'Roma'
-  AND l2.citta = 'New York'
-  AND l3.citta != 'Roma' AND l3.citta != 'New York';
+select c.nome as compagnia, a1.codice as volo1, a2.codice as volo2, l1.citta as partenza, l3.citta as scalo, l2.citta as arrivo
+from ArrPart a1
+join ArrPart a2 on a1.arrivo = a2.partenza
+join Compagnia c on a1.comp = c.nome and a2.comp = c.nome
+join LuogoAeroporto l1 on a1.partenza = l1.aeroporto
+join LuogoAeroporto l2 on a2.arrivo = l2.aeroporto
+join LuogoAeroporto l3 on a1.arrivo = l3.aeroporto
+where l1.citta = 'Roma'
+and l2.citta = 'New York'
+and l3.citta != 'Roma' and l3.citta != 'New York';
 
 -- 11. Quali sono le compagnie che hanno voli che partono dall’aeroporto ‘FCO’, atter-
 -- rano all’aeroporto ‘JFK’, e di cui si conosce l’anno di fondazione?
-SELECT c.nome AS compagnia
-FROM ArrPart a
-JOIN Compagnia c ON a.comp = c.nome
-JOIN LuogoAeroporto l1 ON a.partenza = l1.aeroporto
-JOIN LuogoAeroporto l2 ON a.arrivo = l2.aeroporto
-WHERE l1.aeroporto = 'FCO'
-  AND l2.aeroporto = 'JFK';
+select c.nome as compagnia
+from ArrPart a
+join Compagnia c on a.comp = c.nome
+join LuogoAeroporto l1 on a.partenza = l1.aeroporto
+join LuogoAeroporto l2 on a.arrivo = l2.aeroporto
+where l1.aeroporto = 'FCO'
+and l2.aeroporto = 'JFK';
