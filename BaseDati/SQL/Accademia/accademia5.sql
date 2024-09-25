@@ -5,7 +5,6 @@ from wp, progetto p
 where wp.progetto = p.id
 and p.nome = 'Pegasus'
 
-
 -- 2 Quali sono il nome, il cognome e la posizione degli strutturati che hanno almeno
 -- una attività nel progetto ‘Pegasus’, ordinati per cognome decrescente?
 select distinct s.nome, s.cognome, s.posizione
@@ -13,7 +12,6 @@ from attivitaprogetto ap, progetto p, persona s
 where ap.progetto = p.id 
 and ap.persona = s.id
 and p.nome = 'Pegasus';
-
 
 -- 3 Quali sono il nome, il cognome e la posizione degli strutturati che hanno 
 -- più di una attività nel progetto ‘Pegasus’?
@@ -30,7 +28,6 @@ and a1.persona = s.id
 and a1.progetto = p.id
 and p.nome = 'Pegasus';
 
-
 -- 4 Quali sono il nome, il cognome e la posizione dei Professori Ordinari che hanno
 -- fatto almeno una assenza per malattia?
 select distinct s.id, nome, cognome, posizione 
@@ -38,7 +35,6 @@ from assenza a, persona s
 where a.persona = s.id
 and tipo = 'Malattia' 
 and posizione = 'Professore Ordinario';
-
 
 -- 5 Quali sono il nome, il cognome e la posizione dei Professori Ordinari 
 -- che hanno fatto più di una assenza per malattia?
