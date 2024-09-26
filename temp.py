@@ -1,4 +1,1 @@
-a={'a':3, 'b':2}
-b={'a':1, 'd':1}
-c={**a, **b}
-print(c)
+print('tempyay')
