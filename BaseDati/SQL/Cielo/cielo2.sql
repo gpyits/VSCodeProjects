@@ -1,6 +1,8 @@
 -- 1. Quante sono le compagnie che operano (sia in arrivo che in partenza) nei diversi
 -- aeroporti?
-
+select a.comp
+from arrpart a join aeroporto ap on a.partenza = ap.codice
+where a.arrivo = ap.codice;
 
 -- 2. Quanti sono i voli che partono dall’aeroporto ‘HTR’ e hanno una durata di almeno
 -- 100 minuti?

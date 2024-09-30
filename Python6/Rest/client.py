@@ -1,51 +1,38 @@
-import requests, json
+import json, requests
+import sys
 
-base_api_url = "http://127.0.0.1:8080/"
+base_url = "http://127.0.0.1:8080"
 
-def StampaMenuOperazioni():
-    print("1. Inserisci cittadino")
-    print("2. Leggi dati cittadino")
-    print("3. Modifica cittadino")
+
+def RichiediDatiCittadino():
+    nome = input("inserisci nome cittadino: ")
+    cognome = input("inserisci cognome cittadino: ")
+    dataNascita = input("inserisci data nascita: ")
+    codFiscale = input("Inserisci codice fiscale: ")
+    jRequest = {"nome":nome, "cognome":cognome, "data nascita":dataNascita,"codice fiscale":codFiscale }
+    return jRequest
+
+def CreaInterfaccia():
+    print("Operazioni disponibili:")
+    print("1. Inserisci cittadino (es. atto di nascita)")
+    print("2. Richiedi dati cittadino (es. cert. residenza)")
+    print("3. Modifica dati cittadino")
     print("4. Elimina cittadino")
-    comando = input("Inserisci operazione: ")
-    return comando
-    
-def print_dictionary(dData):
-    for keys, values in dData.items():
-        print(keys + " - " + values)
-        
-def GetDatiCittadino():
-    nome = input("Inserisci nome: ")
-    cognome = input("Inserisci cognome: ")
-    dataN = input("Inserisci data nascita(dd/mm/yyyy): ")
-    codF = input("Inserisci codice fiscale: ")
-    datiCittadino = {"nome":nome, "cognome": cognome, "dataNascita":dataN, "codFiscale":codF}
-    return datiCittadino
+    print("5. Exit")
 
-print("Cosa vuoi fare?") 
-comando = StampaMenuOperazioni()
-print("Comando inserito: " + comando)
-if comando=="1":
-    api_url = base_api_url + "add_cittadino"
-    jsonDataRequest = GetDatiCittadino()
-    response = requests.post(api_url,json=jsonDataRequest)
-    #print(response.json())
-    print(response.status_code)
-    print(response.headers["Content-Type"])
-    data1 = response.json()
-    if (type(response.json()) is dict):
-        print_dictionary(response.json())
-
-if comando == "2":
-    api_url = base_api_url + "read_cittadino"
-    jsonDataRequest = GetDatiCittadino()
-    response = requests.post(api_url,json=jsonDataRequest)
-
-if comando == "3":
-    api_url = base_api_url + "modifica_cittadino"
-
-if comando == "4":
-    pass
-
-if comando == "5":
-    pass
+CreaInterfaccia()
+sOper = input("Seleziona operazione: ")
+while (sOper != "5"):
+    if sOper=="1":
+        api_url = base_url + "/add_cittadino"
+        jsonDataRequest = RichiediDatiCittadino()
+        try:
+            response = requests.post(api_url,json=jsonDataRequest)
+            print(response.status_code)
+            print(response.headers["Content-Type"])
+            data1 = response.json()
+            print(data1)
+        except:
+            print("Problemi di comunicazione con il server, riprova più tardi")
+    CreaInterfaccia()
+    sOper = input("Seleziona operazione")

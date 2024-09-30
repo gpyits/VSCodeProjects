@@ -9,7 +9,7 @@ VALUES
 ('1',	'Mario',	'Rossi', 		'Ricercatore', 			'35500.00'),
 ('2',	'Barbara',	'Burso', 		'Ricercatore', 			'40442.50'),
 ('3',	'Gino',		'Spada', 		'Ricercatore', 			'35870.90'),
-('4',	'Aurora',	'Bianchi', 		'Professore Associato', '43500.50'),
+('4',	'Aurora',	'iBanchi', 		'Professore Associato', '43500.50'),
 ('5',	'Guido',	'Spensierato', 	'Professore Associato', '38221.00'),
 ('6',	'Consolata','Ferrari',	 	'Professore Associato', '29200.10'),
 ('7',	'Andrea',	'Verona', 		'Professore Associato', '39002.05'),
