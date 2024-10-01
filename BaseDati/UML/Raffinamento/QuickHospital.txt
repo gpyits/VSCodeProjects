@@ -1,0 +1,40 @@
+1. Paziente
+	1.1. Nome
+	1.2. Cognome
+	1.3. Data di nascita
+	1.4. numero di telefono
+	1.5. indirizzo email
+	1.6. indirizzo
+
+2. Medico
+	2.1. Nome
+	2.2. Cognome
+	2.3. Data di nascita
+	2.4. Specializzazione primaria
+	2.5. Specializzazioni secondarie
+	2.6. Ricoveri seguiti (v. req. 3)
+
+
+3. Ricovero
+	3.1. data di inizio del ricovero
+	3.2. Devono esistere abbastanza posti letto liberi per i ricoveri
+	3.3. Posto letto (v. req. 4)
+	3.4. data di dimissione (se esiste)
+	3.5. Medico curante (v. req. 2)
+
+
+4. Posto letto
+	4.1 Stanza (v. req. 5)
+
+5. Stanza
+	5.1. Posti letto (minimo 1 massimo 8) (v. req. 4)
+	5.2. Piano (intero positivo)
+	5.3. Settore (intero positivo)
+
+6. Paziente esterno
+	6.1 Prestazioni richieste
+
+7. Prestazione esterna
+	7.1. Medico
+	7.2. Specializzazione richiesta
+	7.3. Descrizione
