@@ -29,3 +29,12 @@ create table Riparazione(
     off_rip PosInteger not null primary key,
         foreign key (off_rip) references Officina(id)
 );
+
+create table Persona(
+    cf CodFis not null primary key,
+    nome varchar no null,
+    indirizzo Indirizzo not null,
+    telefono varchar not null,
+    citta_staff varchar not null primary key,
+    foreign key (citta_staff) references 
+);
