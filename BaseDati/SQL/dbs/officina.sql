@@ -1,3 +1,5 @@
+create database officina;
+
 create table Nazione(
     nome varchar not null primary key,
 );
@@ -37,4 +39,8 @@ create table Persona(
     telefono varchar not null,
     citta_staff varchar not null primary key,
     foreign key (citta_staff) references 
+);
+
+create table Cliente(
+    c_isa_p 
 );
