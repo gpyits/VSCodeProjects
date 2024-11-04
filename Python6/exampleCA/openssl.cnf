@@ -1,0 +1,53 @@
+#
+# OpenSSL configuration file.
+#
+ 
+# Establish working directory.
+ 
+dir = .
+ 
+[ ca ]
+default_ca	= exampleCA
+
+ 
+[ exampleCA ]
+serial					= $dir/serial
+database                = $dir/index.txt
+certificate				= $dir/cacert.pem
+private_key				= $dir/private/privkey.pem
+new_certs_dir           = $dir/certs
+default_days			= 365
+default_crl_days        = 7
+default_md				= sha512
+policy					= exampleca_policy
+x509_extensions         = certificate_extensions
+ 
+[ exampleca_policy ]
+commonName				= supplied
+countryName				= supplied
+stateOrProvinceName		= supplied
+organizationName		= match
+organizationalUnitName	= optional
+emailAddress			= optional
+
+[ certificate_extensions ] 
+basicConstraints		= CA:FALSE
+
+[ req ]
+default_bits			= 1024			# Size of keys
+default_keyfile			= $dir/private/privkey.pem		# name of generated keys
+default_md				= md5				# message digest algorithm
+prompt                  = no
+distinguished_name		= root_ca_distinguished_name
+x509_extensions         = root_ca_extensions
+
+[ root_ca_distinguished_name ]
+commonName	            = CyberSecurity CA 
+stateOrProvinceName     = Italy
+countryName             = EU
+emailAddress            = cybersec@mycert.it
+organizationName        = Root Cert Authority
+
+[ root_ca_extensions ]
+basicConstraints  = CA:true
+
