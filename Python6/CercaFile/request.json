@@ -1,4 +1,4 @@
-echo '{         
+{         
   "contents":[
     {
       "parts":[
@@ -6,10 +6,10 @@ echo '{
         {
           "inline_data": {
             "mime_type":"image/jpeg",
-            "data": "'$(base64 -w0 image.jpg)'"
+            "data": ""
           }
         }
       ]
     }
   ]
-}' > request.json
+}
