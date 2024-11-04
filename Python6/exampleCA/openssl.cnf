@@ -3,51 +3,61 @@
 #
  
 # Establish working directory.
- 
 dir = .
  
 [ ca ]
 default_ca	= exampleCA
 
- 
 [ exampleCA ]
 serial					= $dir/serial
 database                = $dir/index.txt
-certificate				= $dir/cacert.pem
-private_key				= $dir/private/privkey.pem
+certificate				= $dir/examplecacert.pem
+private_key				= $dir/private/exampleCA.key
 new_certs_dir           = $dir/certs
 default_days			= 365
 default_crl_days        = 7
 default_md				= sha512
-policy					= exampleca_policy
-x509_extensions         = certificate_extensions
+x509_extensions         = v3_server_req
+policy = exampleca_policy
+
+[ exampleca_policy ] 
+countryName = supplied
+stateOrProvinceName = supplied
+localityName = supplied
+organizationName = supplied
+commonName = supplied
+
+
+[req]
+default_bits = 2048
+default_md = sha256
+prompt = y
+distinguished_name = req_distinguished_name
+#x509_extensions = v3_ca
+#req_extensions = v3_req
  
-[ exampleca_policy ]
-commonName				= supplied
-countryName				= supplied
-stateOrProvinceName		= supplied
-organizationName		= match
-organizationalUnitName	= optional
-emailAddress			= optional
+[req_distinguished_name]
+C = Country Name(es. US)
+ST = stateOrProvinceName (es. California)
+L = localityName(es. Los Angeles)
+O = Organization Name(es.Cyber)
+CN = Common Name (es. localhost)
+ 
+[v3_root_ca]
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always,issuer:always
+basicConstraints = critical, CA:true, pathlen:0
+keyUsage = critical, digitalSignature, cRLSign, keyCertSign
+ 
+[v3_server_req]
+subjectKeyIdentifier = hash
+basicConstraints = critical, CA:false
+nsCertType = server
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
 
-[ certificate_extensions ] 
-basicConstraints		= CA:FALSE
-
-[ req ]
-default_bits			= 1024			# Size of keys
-default_keyfile			= $dir/private/privkey.pem		# name of generated keys
-default_md				= md5				# message digest algorithm
-prompt                  = no
-distinguished_name		= root_ca_distinguished_name
-x509_extensions         = root_ca_extensions
-
-[ root_ca_distinguished_name ]
-commonName	            = CyberSecurity CA 
-stateOrProvinceName     = Italy
-countryName             = EU
-emailAddress            = cybersec@mycert.it
-organizationName        = Root Cert Authority
-
-[ root_ca_extensions ]
-basicConstraints  = CA:true
-
+[alt_names]
+DNS.1 = localhost
+IP.1 = 127.0.0.1
+IP.2 = ::1
