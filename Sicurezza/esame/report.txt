@@ -1,0 +1,195 @@
+Weekly Report
+Report for 1995-08-01 to 1995-08-07
+Total Requests: 198854
+Number of Suspicious Hosts: 3267
+Top 10 Requested URLs:
+  /images/NASA-logosmall.gif: 10939
+  /images/KSC-logosmall.gif: 8842
+  /images/MOSAIC-logosmall.gif: 8605
+  /images/USA-logosmall.gif: 8577
+  /images/WORLD-logosmall.gif: 8499
+  /images/ksclogo-medium.gif: 8207
+  /ksc.html: 5584
+  /: 4369
+  /history/apollo/images/apollo-logo1.gif: 4241
+  /images/launch-logo.gif: 3790
+Top 10 Requesting Hosts:
+  edams.ksc.nasa.gov: 842
+  piweba5y.prodigy.com: 835
+  piweba3y.prodigy.com: 803
+  www-a2.proxy.aol.com: 716
+  news.ti.com: 636
+  gn2.getnet.com: 623
+  www-b5.proxy.aol.com: 621
+  www-d3.proxy.aol.com: 620
+  www-b4.proxy.aol.com: 610
+  www-relay.pa-x.dec.com: 603
+Total Successful Requests: 197365
+Total Failed Requests: 1489
+Unusual Requests: 492
+Total Downtime Hours: 37.0
+Downtime Periods:
+  1995-08-01 14:52:01 to 1995-08-03 04:36:13
+  1995-08-03 04:42:03 to 1995-08-03 05:27:36
+----------------------------------------
+Report for 1995-08-07 to 1995-08-13
+Total Requests: 374274
+Number of Suspicious Hosts: 11891
+Top 10 Requested URLs:
+  /images/NASA-logosmall.gif: 21414
+  /images/KSC-logosmall.gif: 18024
+  /images/MOSAIC-logosmall.gif: 15221
+  /images/USA-logosmall.gif: 15136
+  /images/WORLD-logosmall.gif: 15009
+  /images/ksclogo-medium.gif: 14378
+  /ksc.html: 9838
+  /history/apollo/images/apollo-logo1.gif: 9686
+  /images/launch-logo.gif: 8924
+  /: 7064
+Top 10 Requesting Hosts:
+  edams.ksc.nasa.gov: 1436
+  piweba5y.prodigy.com: 1138
+  163.206.89.4: 1117
+  www-d1.proxy.aol.com: 1016
+  www-d2.proxy.aol.com: 859
+  www-b4.proxy.aol.com: 846
+  www-c2.proxy.aol.com: 816
+  e659229.boeing.com: 782
+  news.ti.com: 770
+  www-b5.proxy.aol.com: 765
+Total Successful Requests: 372091
+Total Failed Requests: 2183
+Unusual Requests: 940
+Total Downtime Hours: 0.0
+Downtime Periods:
+  1995-08-13 02:30:08 to 1995-08-13 03:03:39
+----------------------------------------
+Report for 1995-08-14 to 1995-08-20
+Total Requests: 355180
+Number of Suspicious Hosts: 16530
+Top 10 Requested URLs:
+  /images/NASA-logosmall.gif: 20363
+  /images/KSC-logosmall.gif: 17773
+  /images/MOSAIC-logosmall.gif: 14974
+  /images/USA-logosmall.gif: 14887
+  /images/WORLD-logosmall.gif: 14746
+  /images/ksclogo-medium.gif: 13966
+  /ksc.html: 9778
+  /history/apollo/images/apollo-logo1.gif: 9640
+  /images/launch-logo.gif: 8978
+  /: 6612
+Top 10 Requesting Hosts:
+  piweba4y.prodigy.com: 1380
+  edams.ksc.nasa.gov: 1309
+  piweba3y.prodigy.com: 1209
+  piweba5y.prodigy.com: 1083
+  www-d1.proxy.aol.com: 1068
+  www-c3.proxy.aol.com: 1058
+  www-b3.proxy.aol.com: 1052
+  www-d4.proxy.aol.com: 1042
+  www-c6.proxy.aol.com: 1026
+  www-b2.proxy.aol.com: 1001
+Total Successful Requests: 353269
+Total Failed Requests: 1911
+Unusual Requests: 815
+Total Downtime Hours: 0
+Downtime Periods:
+----------------------------------------
+Report for 1995-08-21 to 1995-08-27
+Total Requests: 345033
+Number of Suspicious Hosts: 20382
+Top 10 Requested URLs:
+  /images/NASA-logosmall.gif: 21187
+  /images/KSC-logosmall.gif: 17344
+  /images/MOSAIC-logosmall.gif: 16078
+  /images/USA-logosmall.gif: 15994
+  /images/WORLD-logosmall.gif: 15839
+  /images/ksclogo-medium.gif: 14607
+  /ksc.html: 10387
+  /history/apollo/images/apollo-logo1.gif: 8732
+  /images/launch-logo.gif: 8197
+  /: 6667
+Top 10 Requesting Hosts:
+  edams.ksc.nasa.gov: 1649
+  piweba4y.prodigy.com: 1324
+  intgate.raleigh.ibm.com: 1078
+  e659229.boeing.com: 991
+  www-c5.proxy.aol.com: 914
+  www-c1.proxy.aol.com: 863
+  piweba1y.prodigy.com: 862
+  www-d3.proxy.aol.com: 841
+  piweba5y.prodigy.com: 826
+  www-b3.proxy.aol.com: 810
+Total Successful Requests: 342448
+Total Failed Requests: 2585
+Unusual Requests: 922
+Total Downtime Hours: 0
+Downtime Periods:
+----------------------------------------
+Report for 1995-08-28 to 1995-08-31
+Total Requests: 293120
+Number of Suspicious Hosts: 23265
+Top 10 Requested URLs:
+  /images/NASA-logosmall.gif: 23364
+  /images/KSC-logosmall.gif: 13295
+  /images/MOSAIC-logosmall.gif: 12471
+  /images/USA-logosmall.gif: 12374
+  /images/WORLD-logosmall.gif: 12251
+  /images/ksclogo-medium.gif: 11505
+  /htbin/cdt_main.pl: 9739
+  /ksc.html: 8028
+  /shuttle/countdown/images/countclock.gif: 6526
+  /shuttle/missions/sts-69/count69.gif: 5727
+Top 10 Requesting Hosts:
+  163.206.89.4: 2029
+  beta.xerox.com: 1819
+  edams.ksc.nasa.gov: 1280
+  piweba3y.prodigy.com: 1188
+  koriel.sun.com: 929
+  piweba4y.prodigy.com: 897
+  goose.sms.fi: 812
+  inet2.tek.com: 810
+  webgate1.mot.com: 772
+  piweba5y.prodigy.com: 725
+Total Successful Requests: 291177
+Total Failed Requests: 1943
+Unusual Requests: 796
+Total Downtime Hours: 0
+Downtime Periods:
+----------------------------------------
+
+Monthly Report
+Report for 1995-08
+Total Requests: 1566461
+Number of Suspicious Hosts: 23265
+Top 10 Requested URLs:
+  /images/NASA-logosmall.gif: 97267
+  /images/KSC-logosmall.gif: 75278
+  /images/MOSAIC-logosmall.gif: 67349
+  /images/USA-logosmall.gif: 66968
+  /images/WORLD-logosmall.gif: 66344
+  /images/ksclogo-medium.gif: 62663
+  /ksc.html: 43615
+  /history/apollo/images/apollo-logo1.gif: 37804
+  /images/launch-logo.gif: 35116
+  /: 30100
+Top 10 Requesting Hosts:
+  edams.ksc.nasa.gov: 6516
+  piweba4y.prodigy.com: 4846
+  163.206.89.4: 4791
+  piweba5y.prodigy.com: 4607
+  piweba3y.prodigy.com: 4416
+  www-d1.proxy.aol.com: 3889
+  www-b2.proxy.aol.com: 3534
+  www-b3.proxy.aol.com: 3463
+  www-c5.proxy.aol.com: 3423
+  www-b5.proxy.aol.com: 3411
+Total Successful Requests: 1556350
+Total Failed Requests: 10111
+Unusual Requests: 3965
+Total Downtime Hours: 37.0
+Downtime Periods:
+  1995-08-01 14:52:01 to 1995-08-03 04:36:13
+  1995-08-03 04:42:03 to 1995-08-03 05:27:36
+  1995-08-13 02:30:08 to 1995-08-13 03:03:39
+----------------------------------------
