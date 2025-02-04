@@ -1,0 +1,14 @@
+DEFINE ipset anyip = { *.*.*.*:8080 };
+DEFINE ipset anyip2 = { *.*.*.*:8080 };
+
+define urlset homeurl = {  /sito01, /sito01*, /sito01/*/ };
+
+
+//Questa è la regola che ci fa trasferire la richiesta
+//al server dei microservizi
+DEFINE AR "CallHook"
+	CONDITION
+		http.url is in homeurl
+	ACTION
+		ANSWER "<p>Non abilitato</p>"
+	;
