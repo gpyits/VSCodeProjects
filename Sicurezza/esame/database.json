@@ -1,0 +1,66 @@
+{
+    "case_in_vendita": [
+        {
+            "catastale": "DEF456",
+            "indirizzo": "Via Milano",
+            "numero_civico": 22,
+            "piano": 1,
+            "metri": 120,
+            "vani": 4,
+            "prezzo": 200000,
+            "stato": "OCCUPATO",
+            "filiale_proponente": "Filiale2"
+        }
+    ],
+    "case_in_affitto": [
+        {
+            "catastale": "XYZ789",
+            "indirizzo": "Via Torino",
+            "numero_civico": 5,
+            "tipo_affitto": "TOTALE",
+            "bagno_personale": "S\u00ec",
+            "prezzo_mensile": 800,
+            "filiale_proponente": "Filiale1"
+        }
+    ],
+    "filiali": [
+        {
+            "partita_iva": "12345678901",
+            "nome": "Filiale1",
+            "indirizzo_sede": "Piazza Italia",
+            "civico": 1,
+            "telefono": "0123456789"
+        },
+        {
+            "partita_iva": "98765432109",
+            "nome": "Filiale2",
+            "indirizzo_sede": "Corso Venezia",
+            "civico": 10,
+            "telefono": "0987654321"
+        }
+    ],
+    "vendite_casa": [
+        {
+            "catastale": "ABC123",
+            "indirizzo": "Via Roma",
+            "numero_civico": 10,
+            "piano": 2,
+            "metri": 80,
+            "vani": 3,
+            "prezzo": 150000,
+            "stato": "LIBERO",
+            "filiale_proponente": "Filiale1"
+        }
+    ],
+    "affitti_casa": [
+        {
+            "catastale": "LMN345",
+            "indirizzo": "Via Napoli",
+            "numero_civico": 18,
+            "tipo_affitto": "PARZIALE",
+            "bagno_personale": "No",
+            "prezzo_mensile": 500,
+            "filiale_proponente": "Filiale3"
+        }
+    ]
+}
