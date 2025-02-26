@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}Welcome to My Flask App{% endblock %}
+
+{% block content %}
+<p>This is the homepage of your Flask web application.</p>
+<p>You can visit:</p>
+<ul>
+    <li><a href="{{ url_for('public_page') }}">Public Page</a></li>
+    <li><a href="{{ url_for('show_items') }}">Dynamic Page</a></li>
+    {% if session.get('user_id') %}
+    <li><a href="{{ url_for('protected_page') }}">Protected Page</a></li>
+    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    {% else %}
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+    {% endif %}
+</ul>
+{% endblock %}

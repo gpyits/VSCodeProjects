@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dynamic Page</title>
+</head>
+
+<body>
+    <h1>Items List</h1>
+    <ul>
+        {% for item in items %}
+        <li><strong>{{ item['name'] }}</strong>: {{ item['description'] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

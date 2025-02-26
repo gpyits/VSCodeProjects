@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Protected Page{% endblock %}
+
+{% block header %}This is a Protected Page{% endblock %}
+
+{% block content %}
+<p>Only logged-in users can see this page.</p>
+<p>Welcome, {{ session['username'] }}!</p>
+{% endblock %}

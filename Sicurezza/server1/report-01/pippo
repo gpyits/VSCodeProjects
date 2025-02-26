@@ -1,0 +1,15 @@
+CAT{IP source: 127.0.0.1:37050IP dst: 127.0.0.1:61100Host: 127.0.0.1:61100GET/?what=init
+}|
+
+CAT{IP source: 10.46.8.107:39886IP dst: 172.17.0.2:30003Host: 10.46.8.107:8087GET/Sito-02/
+}|
+
+CAT{IP source: 10.46.8.107:50712IP dst: 172.17.0.2:30002Host: 10.46.8.107:8086GET/Sito-01/
+}|
+
+CAT{IP source: 10.46.8.107:59080IP dst: 172.17.0.2:30003Host: 10.46.8.107:8087GET/Sito-02/
+}|
+
+CAT{IP source: 10.46.8.107:47404IP dst: 172.17.0.2:30002Host: 10.46.8.107:8086GET/Sito-01/pippo
+}|
+

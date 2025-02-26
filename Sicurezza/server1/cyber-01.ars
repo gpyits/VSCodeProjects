@@ -1,0 +1,71 @@
+(* /*
+Sia dato un sistema di servizi WEB.
+Costruire un insieme di regole che:
+- caso01: per tutti gli indirizzi IP del server e
+  per la porta 8080 consentano
+  l'accesso alle pagine del sottoalbero /sito01/
+  del server mioserver
+
+- caso02: per tutti gli indirizzi IP del server e 
+  per la porta 80 consentano
+  l'accesso alle pagine del sottoalbero /sito02
+  del server mioserver
+
+- In via temporanea, in attesa del completamento
+  del sito per tutte le richieste su pagine
+  differenti rispondere con 
+  il messaggo "sito in allestimento"
+*/ *)
+
+DEFINE ipset caso01_ip = { *.*.*.*:30002 }; 
+DEFINE ipset caso02_ip = { *.*.*.*:30003 };
+DEFINE ipset tuttigli_ip = { *.*.*.*:* };
+
+DEFINE urlset caso01_url = { /sito01, /sito01*, /sito01/*/ }; // */
+DEFINE urlset caso02_url = { /sito02, /sito02*, /sito02/*/ }; // */
+
+DEFINE AR "Caso01"
+    CONDITION
+       http.url is in caso01_url
+       net.ipdst is in caso01_ip
+    ACTION
+        TCP.REDIRECT "192.168.122.1:8088"
+    ;
+
+DEFINE AR "Caso02"
+    CONDITION
+       http.url is in caso02_url
+       net.ipdst is in caso02_ip
+    ACTION
+        TCP.REDIRECT "192.168.122.1:8089"
+    ;
+
+DEFINE AR "Il Resto"
+    CONDITION
+       net.ipdst is in tuttigli_ip
+    ACTION
+        ANSWER "<h1>Sito in allestimento</h1>"
+    ;
+
+DEFINE VR "log"
+  CONDITION
+      obs.event is net.send
+  ACTION
+		REPORT pippo { 
+      CAT { 
+        "IP source: ", net.ipsrc, "\n",
+        "IP dst: ", net.ipdst, "\n",
+        "Host: ", http.host, ", ", http.method, ", ", http.uri, ", ", OBS.TIME, 
+        "\n"
+        }}
+  ;
+DEFINE VR "logback"
+  CONDITION
+      obs.event is net.recv
+  ACTION
+    REPORT pluto { CAT {"0: ", http.answer.code, " ",
+    http.answer.data} }
+;
+
+        // "IP source: ", net.ipsrc ":[0-9]+" "", ". Port source: ",  net.ipsrc "[0-9.]+:" "", 
+        // "IP dst: ", net.ipdst ":[0-9]+" "", ". Port source: ",  net.ipdst "[0-9.]+:" "",

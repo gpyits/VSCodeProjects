@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Flask App{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        nav {
+            background: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('public_page') }}">Public Page</a>
+        {% if session.get('user_id') %}
+        <a href="{{ url_for('protected_page') }}">Protected Page</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+    </nav>
+
+
+    <h1>{% block header %}Welcome to My Flask App{% endblock %}</h1>
+
+    <div>
+        {% block content %}Default content goes here.{% endblock %}
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+//
+// Feb 13th 2025
+// Passtrough (c) 2025 by cyber room
+//
+
+// for i in 192.168.101.10 192.168.150.2 192.168.101.2
+// do
+//     sudo ip addr add $i/255.255.255.0 dev enp4s0
+// done
+
+
+DEFINE ipset any_ip = { *.*.*.*:* };
+DEFINE set userpwd = { "aaaaaa", "bbbccc" }; //concatenazione di username e password del DB utenti
+
+DEFINE SET allUsers = mysql { 192.168.150.2:12006, "cyber05", "root", "root", "select concat(username, password) from users" };
+
+DEFINE AR "Trasferisci"
+    CONDITION
+        net.ipsrc is in any_ip
+        http.method is HTTP.POST
+        //http.query["username"] is "Ciao" "[0-9]+" "Ciao"
+        // http.query["password"] is "Ciao" "aaa" "Ciao"
+        cat {http.query["username"], http.query["password"]} is in allUsers
+    ACTION
+        TCP.REDIRECT "192.168.101.10:8087"
+    ;
+
+DEFINE AR "Trasferisci1"
+    CONDITION
+        net.ipsrc is in any_ip
+        http.method is HTTP.GET
+    ACTION
+        TCP.REDIRECT "192.168.101.10:8087"
+    ;
+
+DEFINE AR "fine"
+    CONDITION
+        net.ipsrc is in any_ip
+    ACTION
+        ANSWER "KO"
+    ;
+
+/*
+(*
+Per la validation rule che deve verificare la POST, questi sono i dati in andata
+POST /register HTTP/1.1
+Host: 192.168.101.10:8087
+Connection: keep-alive
+Content-Length: 25
+Cache-Control: max-age=0
+Origin: http://192.168.101.10:8087
+Content-Type: application/x-www-form-urlencoded
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.101.10:8087/register
+Accept-Encoding: gzip, deflate
+Accept-Language: it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7
+Cookie: session=.eJw1zEEKgzAQheGrvM46eACP0V0RkZhOYiDMQCdpF-LdNVBXDx4_305LLN42NhqnnVCvoSxRydFLGzb_ZazMgqIp8Rva6kDz4e7WWghsduVPTtnqx9esgv8dW3mgO8ELRH9dQZYuzMcJIccqSg.Z7Mvpg.A02bQZrd7_6XYlvm-EAcuklkwno
+
+username=www&password=www
+
+
+Per la risposta
+HTTP/1.1 302 FOUND
+Server: Werkzeug/3.1.3 Python/3.13.1
+Date: Mon, 17 Feb 2025 12:47:20 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 199
+Location: /login
+Vary: Cookie
+Set-Cookie: session=.eJytzEEKgzAQheGrvM5aPECP0Z2ISJpOYiDMQCdpF-LdjaA3cPXg8fOtNIfsbGGj57gSShtKEpQ6GrRicT_Gm1mQNUb-QGvpadq6q7XqPZu1_MUxWfm6klRw3qHmBw7HO4Ho_1CQ5B5h2nbsEUEL.Z7Mv2A.hFofsAUPWYz9PUxUDPlJxGpK3Iw; HttpOnly; Path=/
+Connection: close
+
+*)
+*/

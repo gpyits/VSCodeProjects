@@ -1,0 +1,45 @@
+CAT{IP source: 127.0.0.1:51912
+IP dst: 127.0.0.1:61100
+Host: 127.0.0.1:61100, GET, /?what=init, 1738842098
+}|
+
+CAT{IP source: 172.17.0.1:43812
+IP dst: 172.17.0.2:30002
+Host: 127.22.0.1:8888, GET, /api?add1=10&add2=20&user=user01, 1738842101
+}|
+
+CAT{IP source: 127.0.0.1:51756
+IP dst: 127.0.0.1:61100
+Host: 127.0.0.1:61100, GET, /?what=init, 1738842638
+}|
+
+CAT{IP source: 172.17.0.1:55796
+IP dst: 172.17.0.2:30002
+Host: 127.22.0.1:8888, GET, /api?add1=10&add2=20&user=user01, 1738842641
+}|
+
+CAT{IP source: 172.17.0.1:56756
+IP dst: 172.17.0.2:30002
+Host: 127.22.0.1:8888, GET, /api?add1=10&add2=20&user=arcieri, 1738842646
+}|
+
+CAT{IP source: 172.17.0.1:56142
+IP dst: 172.17.0.2:30002
+Host: 127.22.0.1:8888, GET, /api?add1=10&add2=20&user=arcieri, 1738842665
+}|
+
+CAT{IP source: 127.0.0.1:60870
+IP dst: 127.0.0.1:61100
+Host: 127.0.0.1:61100, GET, /?what=init, 1738842719
+}|
+
+CAT{IP source: 172.17.0.1:33474
+IP dst: 172.17.0.2:30002
+Host: 127.22.0.1:8888, GET, /api?add1=10&add2=20&user=arcieri, 1738842722
+}|
+
+CAT{IP source: 127.0.0.1:53268
+IP dst: 127.0.0.1:61100
+Host: 127.0.0.1:61100, GET, /?what=init, 1738917751
+}|
+

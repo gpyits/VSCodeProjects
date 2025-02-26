@@ -1,0 +1,124 @@
+
+// Inutile a meno che non si lanci il AppFw su due o più porte
+// DEFINE ipset caso01_ip = { *.*.*.*:30002 }; 
+
+DEFINE ipset tuttigli_ip = { *.*.*.*:* };
+
+DEFINE urlset api_url = { /api, /api*, /api/*/ }; // */
+DEFINE urlset abilita_url = { /abilita, /abilita*, /abilita/*/ }; // */
+
+DEFINE urlset abilitaEapi = { /api, /api*, /api/*/, /abilita, /abilita*, /abilita/*/ };
+
+DEFINE set utenti_bloccati_api = { "arcieri", "de cupis" };
+DEFINE set utenti_abilitati_abilita = { "dimitri" };
+
+DEFINE AR "AccediAPI"
+    CONDITION
+        !http.query["username"] is in utenti_bloccati_api
+        http.url is in api_url
+    ACTION
+        TCP.REDIRECT "192.168.122.1:3000"
+    ;
+
+DEFINE AR "AccediABILITA"
+    CONDITION
+        http.query["admin"] is in utenti_abilitati_abilita
+        http.url is in abilita_url
+    ACTION
+        TCP.REDIRECT "192.168.122.1:3000"
+    ;
+
+
+//pozzo nero
+DEFINE AR "Il Resto"
+    CONDITION
+       net.ipdst is in tuttigli_ip
+    ACTION
+        ANSWER "<h1>Sito in allestimento</h1>"
+    ;
+
+DEFINE VR "log"
+    CONDITION
+        obs.event is net.send
+        http.url is in abilitaEapi
+    VAR
+        oldsessid=net.sesid
+        oldtime = OBS.TIME
+        oldhost=http.host
+        oldmethod = http.method 
+        olduri=http.uri
+        oldquery=http.query
+    NEXT (
+        obs.event is net.recv
+        net.sesid is oldsessid
+        http.answer.code is "200 OK"
+    ACTION
+        REPORT api { CAT {
+            "\nClient->Server\n",
+            "Net.Sesid: ", oldsessid, "\n",
+            "TimeRichiesta  : ", oldtime, "\n",
+            "Host  : ", oldhost, "\n", 
+            "Method: ", oldmethod, "\n", 
+            "Uri   : ", olduri, "\n", 
+            "Query : ", oldquery,"\n\n",
+
+            "\nServer->Client\n",
+            "Net.Sesid: ", net.sesid, "\n",
+            "TimeRisposta  : ", OBS.TIME, "\n",
+            "Code: ", http.answer.code, "\n",
+            "Data: ", http.answer.data["risposta"], "\n\n"
+        } }
+    ) OR (
+        obs.event is net.recv
+        net.sesid is oldsessid
+        !http.answer.code is "200 OK"
+    ACTION
+        REPORT api { CAT {
+            "\nClient->Server\n",
+            "Net.Sesid: ", oldsessid, "\n",
+            "TimeRichiesta  : ", oldtime, "\n",
+            "Host  : ", oldhost, "\n", 
+            "Method: ", oldmethod, "\n", 
+            "Uri   : ", olduri, "\n", 
+            "Query : ", oldquery,"\n\n",
+
+            "\nServer->Client\n",
+            "Net.Sesid: ", net.sesid, "\n",
+            "TimeRisposta  : ", OBS.TIME, "\n",
+            "Code: ", http.answer.code, "\n",
+            "Data: ", http.answer.data["risposta"], "\n\n"
+        } }
+    )
+    ;
+
+
+
+// DEFINE VR "log"
+//   CONDITION
+//       obs.event is net.send
+//       http.url is in api_url
+//   ACTION
+// 		REPORT api_request { 
+//       CAT {
+//         "\nClient->Server\n",
+//         "Net.Sesid: ", net.sesid, "\n",
+//         "Time  : ", OBS.TIME, "\n",
+//         "Host  : ", http.host, "\n", 
+//         "Method: ", http.method, "\n", 
+//         "Uri   : ", http.uri, "\n", 
+//         "Query : ", http.query,"\n\n"
+//         }}
+//   ;
+
+// DEFINE VR "apiback"
+//   CONDITION
+//       obs.event is net.recv
+//   ACTION
+//     REPORT api_answer { CAT {
+//               "\nServer->Client\n",
+//               "Net.Sesid: ", net.sesid, "\n",
+//               "Code: ", http.answer.code, "\n",
+//               "Data: ", http.answer.data, "\n\n"
+//               } }
+//     ;
+

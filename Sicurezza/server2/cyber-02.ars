@@ -1,0 +1,71 @@
+
+// Inutile a meno che non si lanci il AppFw su due o più porte
+// DEFINE ipset caso01_ip = { *.*.*.*:30002 }; 
+
+DEFINE ipset tuttigli_ip = { *.*.*.*:* };
+
+DEFINE urlset api_url = { /api, /api*, /api/*/ }; // */
+
+DEFINE set utenti_bloccati = { "arcieri", "de cupis" };
+
+DEFINE AR "Caso01Bloccati"
+    CONDITION
+       http.url is in api_url
+       http.query["username"] is in utenti_bloccati
+    ACTION
+        ANSWER "errore401.html"
+    ;
+
+DEFINE AR "Caso01"
+    CONDITION
+       http.url is in api_url
+    ACTION
+        TCP.REDIRECT "192.168.122.1:3000"
+    ;
+
+DEFINE AR "Il Resto"
+    CONDITION
+       net.ipdst is in tuttigli_ip
+    ACTION
+        ANSWER "<h1>Sito in allestimento</h1>"
+    ;
+
+DEFINE VR "log"
+  CONDITION
+      obs.event is net.send
+      http.url is in api_url
+  ACTION
+		REPORT api { 
+      CAT {
+        "Client->Server\n",
+        "Time  : ", OBS.TIME, "\n",
+        "Host  : ", http.host, "\n", 
+        "Method: ", http.method, "\n", 
+        "Uri   : ", http.uri, "\n", 
+        "Query : ", http.query,"\n\n"
+        }}
+   NEXT
+       obs.event is net.recv
+   ACTION
+       REPORT api_answer { CAT {
+            "Server->Client\n",
+              "Net.Sesid: ", net.sesid, "\n",
+              "Net.OBsid: ", net.obsid, "\n",
+              "Code: ", http.answer.code, "\n",
+              "Data: ", http.answer.data, "\n\n"
+       } }
+  ;
+
+DEFINE VR "apiback"
+  CONDITION
+      obs.event is net.recv
+  ACTION
+    REPORT api { CAT {
+              "Server->Client\n",
+              "Code: ", http.answer.code, "\n",
+              "Data: ", http.answer.data, "\n\n"
+              } }
+    ;
+
+        // "IP source: ", net.ipsrc ":[0-9]+" "", ". Port source: ",  net.ipsrc "[0-9.]+:" "", 
+        // "IP dst: ", net.ipdst ":[0-9]+" "", ". Port source: ",  net.ipdst "[0-9.]+:" "",

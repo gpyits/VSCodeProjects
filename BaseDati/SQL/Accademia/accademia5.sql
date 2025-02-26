@@ -9,7 +9,7 @@ and p.nome = 'Pegasus'
 -- una attività nel progetto ‘Pegasus’, ordinati per cognome decrescente?
 select distinct s.nome, s.cognome, s.posizione
 from attivitaprogetto ap, progetto p, persona s
-where ap.progetto = p.id 
+where ap.progetto = p.id
 and ap.persona = s.id
 and p.nome = 'Pegasus';
 
@@ -33,7 +33,7 @@ and p.nome = 'Pegasus';
 select distinct s.id, nome, cognome, posizione 
 from assenza a, persona s
 where a.persona = s.id
-and tipo = 'Malattia' 
+and tipo = 'Malattia'
 and posizione = 'Professore Ordinario';
 
 -- 5 Quali sono il nome, il cognome e la posizione dei Professori Ordinari 
