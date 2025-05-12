@@ -1,0 +1,219 @@
+=== 📊 Network Traffic Log Report ===
+
+🧾 Total Entries: 158616
+🧾 Total Columns: 86
+
+=== 🧬 Column Overview ===
+- Flow ID (type: object) | Missing: 0 | Unique: 79160
+- Src IP (type: object) | Missing: 0 | Unique: 4026
+- Src Port (type: int64) | Missing: 0 | Unique: 34524
+- Dst IP (type: object) | Missing: 0 | Unique: 7553
+- Dst Port (type: int64) | Missing: 0 | Unique: 13346
+- Protocol (type: int64) | Missing: 0 | Unique: 3
+- Timestamp (type: datetime64[ns]) | Missing: 0 | Unique: 34836
+- Flow Duration (type: int64) | Missing: 0 | Unique: 83563
+- Total Fwd Packet (type: int64) | Missing: 0 | Unique: 2203
+- Total Bwd packets (type: int64) | Missing: 0 | Unique: 2224
+- Total Length of Fwd Packet (type: int64) | Missing: 0 | Unique: 8170
+- Total Length of Bwd Packet (type: int64) | Missing: 0 | Unique: 10851
+- Fwd Packet Length Max (type: int64) | Missing: 0 | Unique: 1457
+- Fwd Packet Length Min (type: int64) | Missing: 0 | Unique: 253
+- Fwd Packet Length Mean (type: float64) | Missing: 0 | Unique: 16553
+- Fwd Packet Length Std (type: float64) | Missing: 0 | Unique: 21983
+- Bwd Packet Length Max (type: int64) | Missing: 0 | Unique: 1482
+- Bwd Packet Length Min (type: int64) | Missing: 0 | Unique: 396
+- Bwd Packet Length Mean (type: float64) | Missing: 0 | Unique: 15811
+- Bwd Packet Length Std (type: float64) | Missing: 0 | Unique: 19306
+- Flow Bytes/s (type: float64) | Missing: 48 | Unique: 75575
+- Flow Packets/s (type: float64) | Missing: 0 | Unique: 84466
+- Flow IAT Mean (type: float64) | Missing: 0 | Unique: 84441
+- Flow IAT Std (type: float64) | Missing: 0 | Unique: 59550
+- Flow IAT Max (type: int64) | Missing: 0 | Unique: 81065
+- Flow IAT Min (type: int64) | Missing: 0 | Unique: 35026
+- Fwd IAT Total (type: int64) | Missing: 0 | Unique: 62606
+- Fwd IAT Mean (type: float64) | Missing: 0 | Unique: 62952
+- Fwd IAT Std (type: float64) | Missing: 0 | Unique: 46985
+- Fwd IAT Max (type: int64) | Missing: 0 | Unique: 59815
+- Fwd IAT Min (type: int64) | Missing: 0 | Unique: 27648
+- Bwd IAT Total (type: int64) | Missing: 0 | Unique: 40246
+- Bwd IAT Mean (type: float64) | Missing: 0 | Unique: 40262
+- Bwd IAT Std (type: float64) | Missing: 0 | Unique: 33353
+- Bwd IAT Max (type: int64) | Missing: 0 | Unique: 38215
+- Bwd IAT Min (type: int64) | Missing: 0 | Unique: 15692
+- Fwd PSH Flags (type: int64) | Missing: 0 | Unique: 2
+- Bwd PSH Flags (type: int64) | Missing: 0 | Unique: 1
+- Fwd URG Flags (type: int64) | Missing: 0 | Unique: 1
+- Bwd URG Flags (type: int64) | Missing: 0 | Unique: 1
+- Fwd Header Length (type: int64) | Missing: 0 | Unique: 3071
+- Bwd Header Length (type: int64) | Missing: 0 | Unique: 3075
+- Fwd Packets/s (type: float64) | Missing: 0 | Unique: 84563
+- Bwd Packets/s (type: float64) | Missing: 0 | Unique: 62358
+- Packet Length Min (type: int64) | Missing: 0 | Unique: 139
+- Packet Length Max (type: int64) | Missing: 0 | Unique: 1555
+- Packet Length Mean (type: float64) | Missing: 0 | Unique: 21067
+- Packet Length Std (type: float64) | Missing: 0 | Unique: 24983
+- Packet Length Variance (type: float64) | Missing: 0 | Unique: 24995
+- FIN Flag Count (type: int64) | Missing: 0 | Unique: 3
+- SYN Flag Count (type: int64) | Missing: 0 | Unique: 6
+- RST Flag Count (type: int64) | Missing: 0 | Unique: 13
+- PSH Flag Count (type: int64) | Missing: 0 | Unique: 1685
+- ACK Flag Count (type: int64) | Missing: 0 | Unique: 2603
+- URG Flag Count (type: int64) | Missing: 0 | Unique: 1
+- CWE Flag Count (type: int64) | Missing: 0 | Unique: 1
+- ECE Flag Count (type: int64) | Missing: 0 | Unique: 1
+- Down/Up Ratio (type: int64) | Missing: 0 | Unique: 23
+- Average Packet Size (type: float64) | Missing: 0 | Unique: 20628
+- Fwd Segment Size Avg (type: float64) | Missing: 0 | Unique: 16553
+- Bwd Segment Size Avg (type: float64) | Missing: 0 | Unique: 15810
+- Fwd Bytes/Bulk Avg (type: int64) | Missing: 0 | Unique: 1
+- Fwd Packet/Bulk Avg (type: int64) | Missing: 0 | Unique: 1
+- Fwd Bulk Rate Avg (type: int64) | Missing: 0 | Unique: 1
+- Bwd Bytes/Bulk Avg (type: int64) | Missing: 0 | Unique: 1
+- Bwd Packet/Bulk Avg (type: int64) | Missing: 0 | Unique: 1867
+- Bwd Bulk Rate Avg (type: int64) | Missing: 0 | Unique: 14991
+- Subflow Fwd Packets (type: int64) | Missing: 0 | Unique: 2
+- Subflow Fwd Bytes (type: int64) | Missing: 0 | Unique: 924
+- Subflow Bwd Packets (type: int64) | Missing: 0 | Unique: 1
+- Subflow Bwd Bytes (type: int64) | Missing: 0 | Unique: 1111
+- FWD Init Win Bytes (type: int64) | Missing: 0 | Unique: 3360
+- Bwd Init Win Bytes (type: int64) | Missing: 0 | Unique: 2929
+- Fwd Act Data Pkts (type: int64) | Missing: 0 | Unique: 1504
+- Fwd Seg Size Min (type: int64) | Missing: 0 | Unique: 7
+- Active Mean (type: int64) | Missing: 0 | Unique: 1
+- Active Std (type: int64) | Missing: 0 | Unique: 1
+- Active Max (type: int64) | Missing: 0 | Unique: 1
+- Active Min (type: int64) | Missing: 0 | Unique: 1
+- Idle Mean (type: float64) | Missing: 0 | Unique: 58162
+- Idle Std (type: float64) | Missing: 0 | Unique: 51094
+- Idle Max (type: float64) | Missing: 0 | Unique: 58226
+- Idle Min (type: float64) | Missing: 0 | Unique: 58169
+- Label (type: object) | Missing: 0 | Unique: 4
+- Label.1 (type: float64) | Missing: 158616 | Unique: 0
+- Is Suspicious (type: bool) | Missing: 0 | Unique: 1
+
+=== 📈 Numeric Statistics ===
+                               count          mean           std          min           25%           50%           75%           max
+Src Port                    158616.0  3.835519e+04  1.925681e+04     0.000000  32916.000000  4.353300e+04  5.326000e+04  6.553400e+04
+Dst Port                    158616.0  1.744442e+04  2.211329e+04     0.000000     80.000000  4.070000e+03  3.981725e+04  6.553500e+04
+Flow Duration               158616.0  2.064569e+07  3.799717e+07     0.000000   4944.250000  4.169220e+05  1.171051e+07  1.200000e+08
+Total Fwd Packet            158616.0  1.395841e+02  2.247873e+03     1.000000      1.000000  2.000000e+00  4.000000e+00  2.381610e+05
+Total Bwd packets           158616.0  1.420365e+02  3.230451e+03     0.000000      0.000000  1.000000e+00  3.000000e+00  4.708620e+05
+Total Length of Fwd Packet  158616.0  1.006577e+05  3.071446e+06     0.000000      0.000000  4.400000e+01  2.380000e+02  7.693074e+08
+Total Length of Bwd Packet  158616.0  1.194523e+05  4.313782e+06     0.000000      0.000000  0.000000e+00  2.160000e+02  6.704287e+08
+Fwd Packet Length Max       158616.0  2.083811e+02  6.255644e+02     0.000000      0.000000  3.400000e+01  1.070000e+02  6.424000e+04
+Fwd Packet Length Min       158616.0  1.514214e+01  3.030034e+01     0.000000      0.000000  0.000000e+00  3.100000e+01  1.350000e+03
+Fwd Packet Length Mean      158616.0  6.682658e+01  2.101574e+02     0.000000      0.000000  2.266667e+01  4.500000e+01  2.850237e+04
+Fwd Packet Length Std       158616.0  6.377001e+01  1.652071e+02     0.000000      0.000000  0.000000e+00  3.925982e+01  1.587012e+04
+Bwd Packet Length Max       158616.0  2.369200e+02  7.629933e+02     0.000000      0.000000  0.000000e+00  2.130000e+02  4.816800e+04
+Bwd Packet Length Min       158616.0  3.806356e+01  9.587657e+01     0.000000      0.000000  0.000000e+00  0.000000e+00  1.350000e+03
+Bwd Packet Length Mean      158616.0  1.098699e+02  2.462168e+02     0.000000      0.000000  0.000000e+00  8.800000e+01  9.901913e+03
+Bwd Packet Length Std       158616.0  6.914360e+01  1.941573e+02     0.000000      0.000000  0.000000e+00  1.131371e+01  1.146919e+04
+Flow Bytes/s                158568.0           inf           NaN     0.000000      0.000000  7.032077e+01  7.859117e+02           inf
+Flow Packets/s              158616.0           inf           NaN     0.016669      0.699319  7.643558e+00  8.244873e+02           inf
+Flow IAT Mean               158616.0  2.456168e+06  6.860355e+06     0.000000   1852.250000  1.939705e+05  1.768584e+06  1.199856e+08
+Flow IAT Std                158616.0  3.060499e+06  7.456717e+06     0.000000      0.000000  1.627059e+04  2.209045e+06  8.477462e+07
+Flow IAT Max                158616.0  9.519875e+06  1.917927e+07     0.000000   4085.000000  4.113875e+05  7.082092e+06  1.199994e+08
+Flow IAT Min                158616.0  8.507973e+05  5.458504e+06 -2255.000000     16.000000  1.080000e+02  1.190610e+05  1.199856e+08
+Fwd IAT Total               158616.0  1.964207e+07  3.758684e+07     0.000000      0.000000  1.704945e+05  9.742176e+06  1.200000e+08
+Fwd IAT Mean                158616.0  3.861086e+06  1.098485e+07     0.000000      0.000000  4.815082e+04  2.573470e+06  1.199997e+08
+Fwd IAT Std                 158616.0  2.516378e+06  6.927520e+06     0.000000      0.000000  0.000000e+00  1.459833e+06  8.483684e+07
+Fwd IAT Max                 158616.0  8.865326e+06  1.873314e+07     0.000000      0.000000  1.302975e+05  6.318092e+06  1.199997e+08
+Fwd IAT Min                 158616.0  2.282175e+06  1.003980e+07  -458.000000      0.000000  5.900000e+01  3.483450e+04  1.199997e+08
+Bwd IAT Total               158616.0  1.657130e+07  3.582390e+07     0.000000      0.000000  0.000000e+00  1.448912e+06  1.200000e+08
+Bwd IAT Mean                158616.0  2.874582e+06  9.902222e+06     0.000000      0.000000  0.000000e+00  1.862141e+05  1.198065e+08
+Bwd IAT Std                 158616.0  2.144727e+06  6.643814e+06     0.000000      0.000000  0.000000e+00  5.559397e+04  8.480719e+07
+Bwd IAT Max                 158616.0  7.158946e+06  1.759077e+07     0.000000      0.000000  0.000000e+00  7.729315e+05  1.199657e+08
+Bwd IAT Min                 158616.0  1.472530e+06  8.654712e+06  -445.000000      0.000000  0.000000e+00  3.600000e+01  1.198065e+08
+Fwd PSH Flags               158616.0  9.509759e-02  2.933506e-01     0.000000      0.000000  0.000000e+00  0.000000e+00  1.000000e+00
+Bwd PSH Flags               158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+Fwd URG Flags               158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+Bwd URG Flags               158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+Fwd Header Length           158616.0  2.680574e+03  4.491949e+04     0.000000     16.000000  4.000000e+01  9.200000e+01  4.768644e+06
+Bwd Header Length           158616.0  2.846311e+03  6.609863e+04     0.000000      0.000000  1.600000e+01  7.200000e+01  9.417240e+06
+Fwd Packets/s               158616.0  6.930476e+03  3.517526e+04     0.000000      0.416864  4.870731e+00  5.165289e+02  2.000000e+06
+Bwd Packets/s               158616.0  5.136904e+03  2.197167e+04     0.000000      0.000000  1.140162e+00  3.968035e+01  1.000000e+06
+Packet Length Min           158616.0  1.398331e+01  2.338396e+01     0.000000      0.000000  0.000000e+00  3.000000e+01  1.350000e+03
+Packet Length Max           158616.0  3.248224e+02  9.301038e+02     0.000000      0.000000  5.500000e+01  3.450000e+02  6.424000e+04
+Packet Length Mean          158616.0  9.429253e+01  1.894032e+02     0.000000      0.000000  3.000000e+01  9.566667e+01  6.647071e+03
+Packet Length Std           158616.0  1.091578e+02  2.075421e+02     0.000000      0.000000  9.237604e+00  1.192418e+02  1.261710e+04
+Packet Length Variance      158616.0  5.498890e+04  7.504995e+05     0.000000      0.000000  8.533333e+01  1.421862e+04  1.591911e+08
+FIN Flag Count              158616.0  4.738173e-01  5.521407e-01     0.000000      0.000000  0.000000e+00  1.000000e+00  2.000000e+00
+SYN Flag Count              158616.0  4.807270e-01  8.557501e-01     0.000000      0.000000  0.000000e+00  0.000000e+00  7.000000e+00
+RST Flag Count              158616.0  3.642760e-02  3.290850e-01     0.000000      0.000000  0.000000e+00  0.000000e+00  7.100000e+01
+PSH Flag Count              158616.0  5.754013e+01  7.662360e+02     0.000000      0.000000  0.000000e+00  2.000000e+00  4.802500e+04
+ACK Flag Count              158616.0  2.464215e+02  5.049213e+03     0.000000      0.000000  2.000000e+00  6.000000e+00  7.090230e+05
+URG Flag Count              158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+CWE Flag Count              158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+ECE Flag Count              158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+Down/Up Ratio               158616.0  6.197609e-01  1.180628e+01     0.000000      0.000000  1.000000e+00  1.000000e+00  4.266000e+03
+Average Packet Size         158616.0  1.079257e+02  1.956628e+02     0.000000      0.000000  3.609091e+01  1.333889e+02  6.647188e+03
+Fwd Segment Size Avg        158616.0  6.682658e+01  2.101574e+02     0.000000      0.000000  2.266667e+01  4.500000e+01  2.850237e+04
+Bwd Segment Size Avg        158616.0  1.098699e+02  2.462168e+02     0.000000      0.000000  0.000000e+00  8.800000e+01  9.901913e+03
+Fwd Bytes/Bulk Avg          158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+Fwd Packet/Bulk Avg         158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+Fwd Bulk Rate Avg           158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+Bwd Bytes/Bulk Avg          158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+Bwd Packet/Bulk Avg         158616.0  1.447943e+02  2.875103e+03     0.000000      0.000000  0.000000e+00  0.000000e+00  4.708620e+05
+Bwd Bulk Rate Avg           158616.0  4.341220e+04  1.025573e+06     0.000000      0.000000  0.000000e+00  0.000000e+00  1.515741e+08
+Subflow Fwd Packets         158616.0  2.660576e-01  4.418961e-01     0.000000      0.000000  0.000000e+00  1.000000e+00  1.000000e+00
+Subflow Fwd Bytes           158616.0  4.095442e+01  1.314409e+02     0.000000      0.000000  1.700000e+01  2.300000e+01  6.644000e+03
+Subflow Bwd Packets         158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+Subflow Bwd Bytes           158616.0  5.729025e+01  1.388202e+02     0.000000      0.000000  0.000000e+00  4.200000e+01  4.872000e+03
+FWD Init Win Bytes          158616.0  5.321171e+03  9.597200e+03     0.000000      0.000000  9.130000e+02  1.460000e+04  6.553500e+04
+Bwd Init Win Bytes          158616.0  1.765500e+03  7.232630e+03     0.000000      0.000000  0.000000e+00  1.047000e+03  6.553500e+04
+Fwd Act Data Pkts           158616.0  8.766215e+01  1.496098e+03     0.000000      0.000000  1.000000e+00  2.000000e+00  1.133250e+05
+Fwd Seg Size Min            158616.0  1.588586e+01  6.955550e+00     0.000000      8.000000  2.000000e+01  2.000000e+01  4.400000e+01
+Active Mean                 158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+Active Std                  158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+Active Max                  158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+Active Min                  158616.0  0.000000e+00  0.000000e+00     0.000000      0.000000  0.000000e+00  0.000000e+00  0.000000e+00
+Idle Mean                   158616.0  7.134231e+14  7.052456e+14     0.000000      0.000000  7.281651e+14  1.456253e+15  1.456417e+15
+Idle Std                    158616.0  5.873675e+13  2.006960e+14     0.000000      0.000000  0.000000e+00  1.210090e+07  1.029836e+15
+Idle Max                    158616.0  7.435619e+14  7.248794e+14     0.000000      0.000000  1.427909e+15  1.456322e+15  1.456417e+15
+Idle Min                    158616.0  6.023175e+14  7.145478e+14     0.000000      0.000000  5.664990e+06  1.456253e+15  1.456417e+15
+Label.1                          0.0           NaN           NaN          NaN           NaN           NaN           NaN           NaN
+
+=== ⏱️ Timestamp Range ===
+Start: 2015-01-04 11:02:31
+End  : 2016-02-25 12:13:17
+
+=== 🧪 Protocol Distribution ===
+Protocol
+6     96482
+17    61310
+0       824
+
+=== 🏷️ Label Distribution ===
+Label
+Non-Tor    110442
+NonVPN      23863
+VPN         22919
+Tor          1392
+
+=== 🌐 Top 5 Source IPs ===
+Src IP
+10.152.152.11      95109
+131.202.240.150     8078
+10.8.0.10           7553
+131.202.240.242     3811
+10.8.8.130          3630
+
+=== 🎯 Top 5 Destination IPs ===
+Dst IP
+10.152.152.10    16618
+10.152.152.11    15230
+224.0.0.252       9891
+131.202.244.5     8076
+131.202.244.3     5005
+
+=== 🚨 Suspicious Activity Summary ===
+Total Suspicious Entries: 158616 (100.00%)
+Criteria: Entries labeled with any of the following keywords:
+Malicious, Anomaly, Botnet, DDoS, DoS, Exfiltration, Backdoor, PortScan, Tor, VPN
+
+Breakdown by Suspicious Labels:
+Label
+Non-Tor    110442
+NonVPN      23863
+VPN         22919
+Tor          1392
